@@ -45,12 +45,12 @@
 
     <style name="Title" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:textSize">@dimen/_16sdp</item>
-        <item name="android:fontFamily">@font/yugioh_font</item>
+
     </style>
 
     <style name="Menu" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:textSize">@dimen/_10sdp</item>
-        <item name="android:fontFamily">@font/yugioh_font</item>
+
         <item name="android:textStyle">bold</item>
     </style>
 

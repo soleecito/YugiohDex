@@ -20,7 +20,8 @@
             android:layout_height="@dimen/_180sdp"
             android:scaleType="fitXY"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/sin_carta"/>
 
         <TextView
             android:id="@+id/tvName"
@@ -29,11 +30,8 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginEnd="8dp"
-            android:fontFamily="@font/yugioh_font"
-            android:textSize="@dimen/_15sdp"
-            android:textStyle="bold"
+            android:textSize="@dimen/_18ssp"
             android:text="Nombre"
-            android:textColor="@color/primary_label"
             app:layout_constraintEnd_toStartOf="@+id/ivCharacter"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -44,12 +42,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10ssp"
             android:layout_marginEnd="8dp"
-            android:textSize="@dimen/_18sdp"
+            android:textSize="@dimen/_15sdp"
             android:text="Tipo"
 
-            android:textColor="@color/primary_label"
             app:layout_constraintEnd_toStartOf="@+id/ivCharacter"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvName" />
