@@ -17,12 +17,11 @@ import kotlinx.coroutines.launch
 import retrofit2.*
 import retrofit2.converter.gson.GsonConverterFactory
 
-class MainActivity : AppCompatActivity() , SearchView.OnQueryTextListener {
+class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     lateinit var binding: ActivityMainBinding
-    lateinit var adapter : CharacterAdapter
+    lateinit var adapter: CharacterAdapter
     private val listCards = mutableListOf<Data>()
     lateinit var toggle: ActionBarDrawerToggle
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,8 +33,6 @@ class MainActivity : AppCompatActivity() , SearchView.OnQueryTextListener {
         initReciclerView()
         testReciclerView()
         navigationBar()
-
-
     }
 
     private fun appDatabase() = Room
@@ -45,13 +42,14 @@ class MainActivity : AppCompatActivity() , SearchView.OnQueryTextListener {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        if(toggle.onOptionsItemSelected(item)){
+        if (toggle.onOptionsItemSelected(item)) {
             return true
         }
         return super.onOptionsItemSelected(item)
     }
+
     private fun navigationBar() {
-        toggle = ActionBarDrawerToggle(this,binding.drawerLayout,R.string.open, R.string.close)
+        toggle = ActionBarDrawerToggle(this, binding.drawerLayout, R.string.open, R.string.close)
         binding.drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
@@ -60,13 +58,30 @@ class MainActivity : AppCompatActivity() , SearchView.OnQueryTextListener {
         binding.navView.setNavigationItemSelectedListener {
 
 
-            when(it.itemId){
+            when (it.itemId) {
 
-                R.id.nav_home -> Toast.makeText(applicationContext, "Click Home" , Toast.LENGTH_LONG).show()
-                R.id.nav_myDesk -> Toast.makeText(applicationContext, "Click My desk" , Toast.LENGTH_LONG).show()
-                R.id.nav_favorite -> Toast.makeText(applicationContext, "Click Favorite" , Toast.LENGTH_LONG).show()
-                R.id.nav_settings -> Toast.makeText(applicationContext, "Click Settings" , Toast.LENGTH_LONG).show()
-                R.id.nav_login -> Toast.makeText(applicationContext, "Click Login" , Toast.LENGTH_LONG).show()
+                R.id.nav_home -> Toast.makeText(applicationContext, "Click Home", Toast.LENGTH_LONG)
+                    .show()
+                R.id.nav_myDesk -> Toast.makeText(
+                    applicationContext,
+                    "Click My desk",
+                    Toast.LENGTH_LONG
+                ).show()
+                R.id.nav_favorite -> Toast.makeText(
+                    applicationContext,
+                    "Click Favorite",
+                    Toast.LENGTH_LONG
+                ).show()
+                R.id.nav_settings -> Toast.makeText(
+                    applicationContext,
+                    "Click Settings",
+                    Toast.LENGTH_LONG
+                ).show()
+                R.id.nav_login -> Toast.makeText(
+                    applicationContext,
+                    "Click Login",
+                    Toast.LENGTH_LONG
+                ).show()
 
             }
 
@@ -76,16 +91,17 @@ class MainActivity : AppCompatActivity() , SearchView.OnQueryTextListener {
 
     private fun testReciclerView() {
         CoroutineScope(Dispatchers.IO).launch {
-            val call =getListCharacter().create(YugiohAPI::class.java).getCharacters("?format=Speed%20Duel")
+            val call = getListCharacter().create(YugiohAPI::class.java)
+                .getCharacters("?format=Speed%20Duel")
             val cards = call.body()
             runOnUiThread {
-                if(call.isSuccessful){
+                if (call.isSuccessful) {
                     val actualCards = cards?.list ?: emptyList()
                     listCards.clear()
                     listCards.addAll(actualCards)
                     adapter.notifyDataSetChanged()
 
-                }else{
+                } else {
                     showError()
                 }
             }
@@ -100,25 +116,26 @@ class MainActivity : AppCompatActivity() , SearchView.OnQueryTextListener {
 
     }
 
-    private fun  getListCharacter(): Retrofit {
+    private fun getListCharacter(): Retrofit {
         return Retrofit.Builder()
             .baseUrl("https://db.ygoprodeck.com/api/v7/cardinfo.php/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
 
-    private fun searchName(query : String ){
+    private fun searchName(query: String) {
         CoroutineScope(Dispatchers.IO).launch {
-            val call =getListCharacter().create(YugiohAPI::class.java).getCharacters("?name=$query%")
+            val call =
+                getListCharacter().create(YugiohAPI::class.java).getCharacters("?name=$query%")
             val cards = call.body()
             runOnUiThread {
-                if(call.isSuccessful){
+                if (call.isSuccessful) {
                     val actualCards = cards?.list ?: emptyList()
                     listCards.clear()
                     listCards.addAll(actualCards)
                     adapter.notifyDataSetChanged()
 
-                }else{
+                } else {
                     showError()
                 }
             }
@@ -127,11 +144,11 @@ class MainActivity : AppCompatActivity() , SearchView.OnQueryTextListener {
     }
 
     private fun showError() {
-        Toast.makeText(this,"Error",Toast.LENGTH_LONG).show()
+        Toast.makeText(this, "Error", Toast.LENGTH_LONG).show()
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
-        if(!query.isNullOrEmpty()){
+        if (!query.isNullOrEmpty()) {
             searchName(query.lowercase())
         }
         return true
