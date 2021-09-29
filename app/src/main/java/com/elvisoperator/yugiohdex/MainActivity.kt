@@ -9,6 +9,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.room.Room
 import com.elvisoperator.yugiohdex.databinding.ActivityMainBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -29,12 +30,18 @@ class MainActivity : AppCompatActivity() , SearchView.OnQueryTextListener {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.searchCharacters.setOnQueryTextListener(this)
+        val room = appDatabase()
         initReciclerView()
         testReciclerView()
         navigationBar()
 
 
     }
+
+    private fun appDatabase() = Room
+        .databaseBuilder(this, AppDatabase::class.java, "list_cards")
+        .allowMainThreadQueries()
+        .build()
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 

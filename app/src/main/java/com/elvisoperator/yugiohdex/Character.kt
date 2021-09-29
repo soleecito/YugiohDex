@@ -1,28 +1,34 @@
 package com.elvisoperator.yugiohdex
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
-data class Character( @SerializedName("data")
-                      var list: List<Data>  )
+data class Character(
+    @SerializedName("data")
+    var list: List<Data>
+)
 
+@Entity(tableName = "data")
 data class Data(
-    var archetype: String,
-    var atk: Int,
-    var attribute: String,
-    var banlist_info: BanlistInfo,
-    var card_images: List<CardImage>,
-    var card_prices: List<CardPrice>,
-    var card_sets: List<CardSet>,
-    var def: Int,
-    var desc: String,
-    var id: Int,
-    var level: Int,
-    var linkmarkers: List<String>,
-    var linkval: Int,
-    var name: String,
-    var race: String,
-    var scale: Int,
-    var type: String
+    @PrimaryKey var id: Int,
+    @ColumnInfo(name = "archetype") var archetype: String,
+    @ColumnInfo(name = "atk") var atk: Int,
+    @ColumnInfo(name = "attribute") var attribute: String,
+    @ColumnInfo(name = "banlist_info") var banlist_info: BanlistInfo,
+    @ColumnInfo(name = "card_images") var card_images: List<CardImage>,
+    @ColumnInfo(name = "card_prices") var card_prices: List<CardPrice>,
+    @ColumnInfo(name = "card_sets") var card_sets: List<CardSet>,
+    @ColumnInfo(name = "def") var def: Int,
+    @ColumnInfo(name = "desc") var desc: String,
+    @ColumnInfo(name = "level") var level: Int,
+    @ColumnInfo(name = "linkmarkers") var linkmarkers: List<String>,
+    @ColumnInfo(name = "linkval") var linkval: Int,
+    @ColumnInfo(name = "name") var name: String,
+    @ColumnInfo(name = "race") var race: String,
+    @ColumnInfo(name = "scale") var scale: Int,
+    @ColumnInfo(name = "type") var type: String
 )
 
 data class BanlistInfo(
