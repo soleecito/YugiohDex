@@ -6,7 +6,6 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.SearchView
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
 import com.elvisoperator.yugiohdex.databinding.ActivityMainBinding
@@ -91,8 +90,8 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
     private fun testReciclerView() {
         CoroutineScope(Dispatchers.IO).launch {
-            val call = getListCharacter().create(YugiohAPI::class.java)
-                .getCharacters("?format=Speed%20Duel")
+            val call = getListCards().create(YugiohAPI::class.java)
+                .getData("?format=Speed%20Duel")
             val cards = call.body()
             runOnUiThread {
                 if (call.isSuccessful) {
@@ -116,7 +115,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
     }
 
-    private fun getListCharacter(): Retrofit {
+    private fun getListCards(): Retrofit {
         return Retrofit.Builder()
             .baseUrl("https://db.ygoprodeck.com/api/v7/cardinfo.php/")
             .addConverterFactory(GsonConverterFactory.create())
@@ -126,7 +125,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     private fun searchName(query: String) {
         CoroutineScope(Dispatchers.IO).launch {
             val call =
-                getListCharacter().create(YugiohAPI::class.java).getCharacters("?name=$query%")
+                getListCards().create(YugiohAPI::class.java).getData("?name=$query%")
             val cards = call.body()
             runOnUiThread {
                 if (call.isSuccessful) {

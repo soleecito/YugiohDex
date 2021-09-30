@@ -17,7 +17,6 @@ class CardListFragment : Fragment(){
         val binding = DataBindingUtil.inflate<FragmentCardListBinding>(inflater,
             R.layout.fragment_card_list,container,false)
         return binding.root
-
     }
 
 }
