@@ -7,7 +7,7 @@ import com.elvisoperator.yugiohdex.databinding.ItemCardsBinding
 import com.squareup.picasso.Picasso
 
 
-class CharacterHolder(view : View):RecyclerView.ViewHolder(view) {
+class CardHolder(view : View):RecyclerView.ViewHolder(view) {
 
     private  val binding  = ItemCardsBinding.bind(view)
     fun bind(card :Data ){
