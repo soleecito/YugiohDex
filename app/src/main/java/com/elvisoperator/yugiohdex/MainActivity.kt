@@ -2,7 +2,6 @@ package com.elvisoperator.yugiohdex
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -19,9 +18,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     lateinit var binding: ActivityMainBinding
-    lateinit var adapter: CharacterAdapter
+    lateinit var adapter: CardAdapter
     private val listCards = mutableListOf<Data>()
     lateinit var toggle: ActionBarDrawerToggle
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -111,7 +111,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
     private fun initReciclerView() {
         binding.recyclerViewCharacter.layoutManager = LinearLayoutManager(this)
-        adapter = CharacterAdapter(listCards)
+        adapter = CardAdapter(listCards)
         binding.recyclerViewCharacter.adapter = adapter
 
     }
