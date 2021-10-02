@@ -13,10 +13,9 @@ import kotlinx.coroutines.launch
 import retrofit2.*
 import retrofit2.converter.gson.GsonConverterFactory
 
-class MainActivity : AppCompatActivity() , SearchView.OnQueryTextListener {
+class MainActivity : AppCompatActivity() {
+
     lateinit var binding: ActivityMainBinding
-    lateinit var adapter : CardAdapter
-    private val listCards = mutableListOf<Data>()
     lateinit var toggle: ActionBarDrawerToggle
 
 
@@ -25,11 +24,7 @@ class MainActivity : AppCompatActivity() , SearchView.OnQueryTextListener {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.searchCharacters.setOnQueryTextListener(this)
-       // initReciclerView()
-        //testReciclerView()
-        //navigationBar()
-
+        navigationBar()
 
     }
 
@@ -40,6 +35,7 @@ class MainActivity : AppCompatActivity() , SearchView.OnQueryTextListener {
         }
         return super.onOptionsItemSelected(item)
     }
+
     private fun navigationBar() {
         toggle = ActionBarDrawerToggle(this,binding.drawerLayout,R.string.open, R.string.close)
         binding.drawerLayout.addDrawerListener(toggle)
@@ -63,74 +59,6 @@ class MainActivity : AppCompatActivity() , SearchView.OnQueryTextListener {
             true
         }
     }
-
-    private fun testReciclerView() {
-        CoroutineScope(Dispatchers.IO).launch {
-            val call =getListCharacter().create(YugiohAPI::class.java).getCharacters("?format=Speed%20Duel")
-            val cards = call.body()
-            runOnUiThread {
-                if(call.isSuccessful){
-                    val actualCards = cards?.list ?: emptyList()
-                    listCards.clear()
-                    listCards.addAll(actualCards)
-                    adapter.notifyDataSetChanged()
-
-                }else{
-                    showError()
-                }
-            }
-
-        }
-    }
-/*
-    private fun initReciclerView() {
-        binding.recyclerViewCharacter.layoutManager = LinearLayoutManager(this)
-        adapter = CharacterAdapter(listCards)
-        binding.recyclerViewCharacter.adapter = adapter
-
-    }*/
-
-    private fun  getListCharacter(): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl("https://db.ygoprodeck.com/api/v7/cardinfo.php/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-    }
-
-    private fun searchName(query : String ){
-        CoroutineScope(Dispatchers.IO).launch {
-            val call =getListCharacter().create(YugiohAPI::class.java).getCharacters("?name=$query%")
-            val cards = call.body()
-            runOnUiThread {
-                if(call.isSuccessful){
-                    val actualCards = cards?.list ?: emptyList()
-                    listCards.clear()
-                    listCards.addAll(actualCards)
-                    adapter.notifyDataSetChanged()
-
-                }else{
-                    showError()
-                }
-            }
-
-        }
-    }
-
-    private fun showError() {
-        Toast.makeText(this,"Error",Toast.LENGTH_LONG).show()
-    }
-
-    override fun onQueryTextSubmit(query: String?): Boolean {
-        if(!query.isNullOrEmpty()){
-            searchName(query.lowercase())
-        }
-        return true
-    }
-
-    override fun onQueryTextChange(newText: String?): Boolean {
-        return true
-    }
-
 
 }
 

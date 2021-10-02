@@ -10,6 +10,6 @@ import retrofit2.http.Url
 interface YugiohAPI {
 
     @GET
-   suspend fun getCharacters(@Url url :String) : Response<Character>
+   suspend fun getCard(@Url url :String) : Response<Character>
 
 }
