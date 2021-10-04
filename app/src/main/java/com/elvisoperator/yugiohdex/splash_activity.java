@@ -9,6 +9,8 @@ import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.elvisoperator.yugiohdex.ui.MainActivity;
+
 public class splash_activity extends AppCompatActivity {
 
     private final int DURACION_SPLASH = 5000;

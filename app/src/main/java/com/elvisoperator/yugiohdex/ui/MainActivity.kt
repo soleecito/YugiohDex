@@ -1,4 +1,4 @@
-package com.elvisoperator.yugiohdex
+package com.elvisoperator.yugiohdex.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,7 +6,11 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.SearchView
+import com.elvisoperator.yugiohdex.models.CardAdapter
+import com.elvisoperator.yugiohdex.Data
+import com.elvisoperator.yugiohdex.R
 import com.elvisoperator.yugiohdex.databinding.ActivityMainBinding
+import com.elvisoperator.yugiohdex.network.YugiohAPI
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -28,7 +32,7 @@ class MainActivity : AppCompatActivity() , SearchView.OnQueryTextListener {
         binding.searchCharacters.setOnQueryTextListener(this)
        // initReciclerView()
         //testReciclerView()
-        //navigationBar()
+        navigationBar()
 
 
     }
@@ -41,7 +45,7 @@ class MainActivity : AppCompatActivity() , SearchView.OnQueryTextListener {
         return super.onOptionsItemSelected(item)
     }
     private fun navigationBar() {
-        toggle = ActionBarDrawerToggle(this,binding.drawerLayout,R.string.open, R.string.close)
+        toggle = ActionBarDrawerToggle(this,binding.drawerLayout, R.string.open, R.string.close)
         binding.drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
@@ -64,7 +68,7 @@ class MainActivity : AppCompatActivity() , SearchView.OnQueryTextListener {
         }
     }
 
-    private fun testReciclerView() {
+  /*  private fun testReciclerView() {
         CoroutineScope(Dispatchers.IO).launch {
             val call =getListCharacter().create(YugiohAPI::class.java).getCharacters("?format=Speed%20Duel")
             val cards = call.body()
@@ -81,7 +85,7 @@ class MainActivity : AppCompatActivity() , SearchView.OnQueryTextListener {
             }
 
         }
-    }
+    }*/
 /*
     private fun initReciclerView() {
         binding.recyclerViewCharacter.layoutManager = LinearLayoutManager(this)

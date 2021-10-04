@@ -2,7 +2,7 @@ package com.elvisoperator.yugiohdex
 
 import com.google.gson.annotations.SerializedName
 
-data class Character( @SerializedName("data")
+data class Card( @SerializedName("data")
                       var list: List<Data>  )
 
 data class Data(

@@ -1,8 +1,10 @@
-package com.elvisoperator.yugiohdex
+package com.elvisoperator.yugiohdex.models
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.elvisoperator.yugiohdex.Data
+import com.elvisoperator.yugiohdex.R
 
 class CardAdapter(private val character: MutableList<Data>) :
     RecyclerView.Adapter<CardHolder>() {
