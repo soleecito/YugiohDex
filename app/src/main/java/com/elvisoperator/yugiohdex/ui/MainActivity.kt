@@ -104,9 +104,10 @@ class MainActivity : AppCompatActivity() , SearchView.OnQueryTextListener {
 
     private fun searchName(query : String ){
 
-
+        //clase que funciona como un map
         val bundle = Bundle()
         bundle.putString("nombre" , query)
+
         val transcaccion = supportFragmentManager.beginTransaction()
         val fragmento = CardFragment()
         fragmento.arguments = bundle
