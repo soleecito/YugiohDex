@@ -48,20 +48,29 @@ class CardFragment : Fragment() {
          binding = CardFragmentBinding.bind(view)
 
         initReciclerView()
-        testReciclerView()
+       // testReciclerView("dark")
 
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(CardViewModel::class.java)
         // TODO: Use the ViewModel
+        if (arguments != null) {
+            val nombre : String? = arguments?.getString("nombre")
+            if (nombre != null) {
+                testReciclerView(nombre)
+            }
+        }
+
 
 
     }
 
-    private fun testReciclerView() {
+     fun testReciclerView(query: String) {
+
+
         viewLifecycleOwner.lifecycleScope.launch  {
-            val call =getListCharacter().create(YugiohAPI::class.java).getCharacters("?format=Speed%20Duel")
+            val call =getListCharacter().create(YugiohAPI::class.java).getCharacters("?name=$query%")
             val cards = call.body()
             activity?.runOnUiThread {
                 if(call.isSuccessful){
@@ -89,6 +98,7 @@ class CardFragment : Fragment() {
 
     }
 
+    //Reveer si es posible pasarlo a un companion object en la interfaz o bien como clase aparte 
     private fun  getListCharacter(): Retrofit {
         return Retrofit.Builder()
             .baseUrl("https://db.ygoprodeck.com/api/v7/cardinfo.php/")

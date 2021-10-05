@@ -11,6 +11,7 @@ import com.elvisoperator.yugiohdex.Data
 import com.elvisoperator.yugiohdex.R
 import com.elvisoperator.yugiohdex.databinding.ActivityMainBinding
 import com.elvisoperator.yugiohdex.network.YugiohAPI
+import com.elvisoperator.yugiohdex.ui.fragments.CardFragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -102,6 +103,18 @@ class MainActivity : AppCompatActivity() , SearchView.OnQueryTextListener {
     }
 
     private fun searchName(query : String ){
+
+
+        val bundle = Bundle()
+        bundle.putString("nombre" , query)
+        val transcaccion = supportFragmentManager.beginTransaction()
+        val fragmento = CardFragment()
+        fragmento.arguments = bundle
+        transcaccion.replace(R.id.myNavHostFragment, fragmento)
+        transcaccion.addToBackStack(null)
+        transcaccion.commit()
+
+        /*
         CoroutineScope(Dispatchers.IO).launch {
             val call =getListCharacter().create(YugiohAPI::class.java).getCharacters("?name=$query%")
             val cards = call.body()
@@ -117,7 +130,7 @@ class MainActivity : AppCompatActivity() , SearchView.OnQueryTextListener {
                 }
             }
 
-        }
+        }*/
     }
 
     private fun showError() {
