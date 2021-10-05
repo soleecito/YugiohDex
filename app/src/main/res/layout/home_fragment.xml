@@ -113,7 +113,8 @@
             app:layout_constraintTop_toTopOf="@+id/constraintPrincipal"
             app:layout_constraintStart_toStartOf="@+id/constraintPrincipal"
             app:layout_constraintEnd_toEndOf="@+id/constraintPrincipal"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:background="@drawable/border"/>
 
         <com.makeramen.roundedimageview.RoundedImageView
             android:layout_margin="@dimen/_10sdp"
@@ -191,7 +192,8 @@
             android:layout_height="@dimen/_35sdp"
             app:layout_constraintTop_toBottomOf="@id/textCategorias"
             app:layout_constraintStart_toStartOf="@id/constraintCategorias"
-            app:layout_constraintEnd_toEndOf="@id/constraintCategorias">
+            app:layout_constraintEnd_toEndOf="@id/constraintCategorias"
+            >
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_margin="@dimen/_5sdp"
