@@ -15,7 +15,7 @@ class CardHolder(view : View):RecyclerView.ViewHolder(view) {
 
         binding.tvName.text = card.name
         binding.tvType.text = card.type
-        //.level.text = card.level.toString()
+        binding.level.text = card.level.toString()
         val image = card.card_images.forEach {
             Picasso.get().load(it.image_url).into(binding.ivCharacter)
             Log.println(Log.INFO,"Valor Imagen",it.image_url_small)
