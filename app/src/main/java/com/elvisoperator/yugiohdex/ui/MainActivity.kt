@@ -12,6 +12,7 @@ import com.elvisoperator.yugiohdex.R
 import com.elvisoperator.yugiohdex.databinding.ActivityMainBinding
 import com.elvisoperator.yugiohdex.network.YugiohAPI
 import com.elvisoperator.yugiohdex.ui.fragments.CardFragment
+import com.elvisoperator.yugiohdex.ui.fragments.HomeFragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -31,10 +32,15 @@ class MainActivity : AppCompatActivity() , SearchView.OnQueryTextListener {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.searchCharacters.setOnQueryTextListener(this)
-       // initReciclerView()
-        //testReciclerView()
+
         navigationBar()
 
+        val transcaccion = supportFragmentManager.beginTransaction()
+        val fragmento = HomeFragment()
+
+        transcaccion.replace(R.id.myNavHostFragment, fragmento)
+        transcaccion.addToBackStack(null)
+        transcaccion.commit()
 
     }
 
@@ -69,31 +75,6 @@ class MainActivity : AppCompatActivity() , SearchView.OnQueryTextListener {
         }
     }
 
-  /*  private fun testReciclerView() {
-        CoroutineScope(Dispatchers.IO).launch {
-            val call =getListCharacter().create(YugiohAPI::class.java).getCharacters("?format=Speed%20Duel")
-            val cards = call.body()
-            runOnUiThread {
-                if(call.isSuccessful){
-                    val actualCards = cards?.list ?: emptyList()
-                    listCards.clear()
-                    listCards.addAll(actualCards)
-                    adapter.notifyDataSetChanged()
-
-                }else{
-                    showError()
-                }
-            }
-
-        }
-    }*/
-/*
-    private fun initReciclerView() {
-        binding.recyclerViewCharacter.layoutManager = LinearLayoutManager(this)
-        adapter = CharacterAdapter(listCards)
-        binding.recyclerViewCharacter.adapter = adapter
-
-    }*/
 
     private fun  getListCharacter(): Retrofit {
         return Retrofit.Builder()
@@ -104,9 +85,10 @@ class MainActivity : AppCompatActivity() , SearchView.OnQueryTextListener {
 
     private fun searchName(query : String ){
 
-
+        //clase que funciona como un map
         val bundle = Bundle()
         bundle.putString("nombre" , query)
+
         val transcaccion = supportFragmentManager.beginTransaction()
         val fragmento = CardFragment()
         fragmento.arguments = bundle
@@ -114,23 +96,6 @@ class MainActivity : AppCompatActivity() , SearchView.OnQueryTextListener {
         transcaccion.addToBackStack(null)
         transcaccion.commit()
 
-        /*
-        CoroutineScope(Dispatchers.IO).launch {
-            val call =getListCharacter().create(YugiohAPI::class.java).getCharacters("?name=$query%")
-            val cards = call.body()
-            runOnUiThread {
-                if(call.isSuccessful){
-                    val actualCards = cards?.list ?: emptyList()
-                    listCards.clear()
-                    listCards.addAll(actualCards)
-                    adapter.notifyDataSetChanged()
-
-                }else{
-                    showError()
-                }
-            }
-
-        }*/
     }
 
     private fun showError() {

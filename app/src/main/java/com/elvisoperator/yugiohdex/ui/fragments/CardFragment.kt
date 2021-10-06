@@ -48,6 +48,12 @@ class CardFragment : Fragment() {
          binding = CardFragmentBinding.bind(view)
 
         initReciclerView()
+        if (arguments != null) {
+            val nombre : String? = arguments?.getString("nombre")
+            if (nombre != null) {
+                testReciclerView(nombre)
+            }
+        }
        // testReciclerView("dark")
 
     }
@@ -55,13 +61,6 @@ class CardFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(CardViewModel::class.java)
         // TODO: Use the ViewModel
-        if (arguments != null) {
-            val nombre : String? = arguments?.getString("nombre")
-            if (nombre != null) {
-                testReciclerView(nombre)
-            }
-        }
-
 
 
     }

@@ -9,6 +9,7 @@
         android:layout_width="@dimen/_60sdp"
         android:layout_height="@dimen/_60sdp"
         android:layout_margin="@dimen/_10sdp"
+        android:src="@drawable/ico_user"
        />
 
     <TextView
