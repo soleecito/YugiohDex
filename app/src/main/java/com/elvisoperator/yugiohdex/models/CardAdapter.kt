@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.elvisoperator.yugiohdex.Data
 import com.elvisoperator.yugiohdex.R
 
-class CardAdapter(private val character: MutableList<Data>) :
+class CardAdapter(private val card: MutableList<Data>) :
     RecyclerView.Adapter<CardHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardHolder {
@@ -16,12 +16,12 @@ class CardAdapter(private val character: MutableList<Data>) :
     }
 
     override fun onBindViewHolder(holder: CardHolder, position: Int) {
-     val item = character[position]
+     val item = card[position]
         holder.bind(item)
     }
 
     override fun getItemCount(): Int {
-       return character.size
+       return card.size
     }
 
 
