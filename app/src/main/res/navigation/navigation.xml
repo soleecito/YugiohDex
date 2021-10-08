@@ -3,10 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/cardFragment3">
+    app:startDestination="@id/homeFragment">
     <fragment
         android:id="@+id/cardFragment3"
         android:name="com.elvisoperator.yugiohdex.ui.fragments.CardFragment"
         android:label="card_fragment"
         tools:layout="@layout/card_fragment" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.elvisoperator.yugiohdex.ui.fragments.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/home_fragment">
+        <action
+            android:id="@+id/action_homeFragment_to_cardFragment32"
+            app:destination="@id/cardFragment3" />
+    </fragment>
+
 </navigation>

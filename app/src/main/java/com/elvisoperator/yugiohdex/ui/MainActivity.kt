@@ -6,6 +6,7 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.SearchView
+import androidx.navigation.findNavController
 import com.elvisoperator.yugiohdex.models.CardAdapter
 import com.elvisoperator.yugiohdex.Data
 import com.elvisoperator.yugiohdex.R
@@ -34,13 +35,6 @@ class MainActivity : AppCompatActivity() , SearchView.OnQueryTextListener {
         binding.searchCharacters.setOnQueryTextListener(this)
 
         navigationBar()
-
-        val transcaccion = supportFragmentManager.beginTransaction()
-        val fragmento = HomeFragment()
-
-        transcaccion.replace(R.id.myNavHostFragment, fragmento)
-        transcaccion.addToBackStack(null)
-        transcaccion.commit()
 
     }
 
