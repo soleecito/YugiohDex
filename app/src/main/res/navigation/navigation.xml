@@ -5,18 +5,34 @@
     android:id="@+id/navigation"
     app:startDestination="@id/homeFragment">
     <fragment
-        android:id="@+id/cardFragment3"
-        android:name="com.elvisoperator.yugiohdex.ui.fragments.CardFragment"
+        android:id="@+id/spellCardFragment"
+        android:name="com.elvisoperator.yugiohdex.ui.fragments.SpellCardFragment"
         android:label="card_fragment"
-        tools:layout="@layout/card_fragment" />
+        tools:layout="@layout/fragment_spell_card" />
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.elvisoperator.yugiohdex.ui.fragments.HomeFragment"
         android:label="HomeFragment"
-        tools:layout="@layout/home_fragment">
+        tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_homeFragment_to_cardFragment32"
-            app:destination="@id/cardFragment3" />
+            android:id="@+id/action_homeFragment_to_spellCardFragment"
+            app:destination="@id/spellCardFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_monsterCardFragment"
+            app:destination="@id/monsterCardFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_trampaCardFragment"
+            app:destination="@id/trampaCardFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/monsterCardFragment"
+        android:name="com.elvisoperator.yugiohdex.ui.fragments.MonsterCardFragment"
+        android:label="fragment_monster_card"
+        tools:layout="@layout/fragment_monster_card" />
+    <fragment
+        android:id="@+id/trampaCardFragment"
+        android:name="com.elvisoperator.yugiohdex.ui.fragments.TrampaCardFragment"
+        android:label="fragment_trampa_card"
+        tools:layout="@layout/fragment_trampa_card" />
 
 </navigation>

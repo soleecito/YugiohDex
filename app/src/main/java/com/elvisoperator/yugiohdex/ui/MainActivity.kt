@@ -6,17 +6,11 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.SearchView
-import androidx.navigation.findNavController
 import com.elvisoperator.yugiohdex.models.CardAdapter
 import com.elvisoperator.yugiohdex.Data
 import com.elvisoperator.yugiohdex.R
 import com.elvisoperator.yugiohdex.databinding.ActivityMainBinding
-import com.elvisoperator.yugiohdex.network.YugiohAPI
-import com.elvisoperator.yugiohdex.ui.fragments.CardFragment
-import com.elvisoperator.yugiohdex.ui.fragments.HomeFragment
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import com.elvisoperator.yugiohdex.ui.fragments.SpellCardFragment
 import retrofit2.*
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -84,7 +78,7 @@ class MainActivity : AppCompatActivity() , SearchView.OnQueryTextListener {
         bundle.putString("nombre" , query)
 
         val transcaccion = supportFragmentManager.beginTransaction()
-        val fragmento = CardFragment()
+        val fragmento = SpellCardFragment()
         fragmento.arguments = bundle
         transcaccion.replace(R.id.myNavHostFragment, fragmento)
         transcaccion.addToBackStack(null)

@@ -13,39 +13,37 @@ import com.elvisoperator.yugiohdex.Data
 import com.elvisoperator.yugiohdex.R
 import com.elvisoperator.yugiohdex.models.CardAdapter
 import com.elvisoperator.yugiohdex.network.YugiohAPI
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import com.elvisoperator.yugiohdex.*
 
-import com.elvisoperator.yugiohdex.databinding.CardFragmentBinding
+import com.elvisoperator.yugiohdex.databinding.FragmentSpellCardBinding
 
-class CardFragment : Fragment() {
+class SpellCardFragment : Fragment() {
 
     companion object {
-        fun newInstance() = CardFragment()
+        fun newInstance() = SpellCardFragment()
     }
 
     lateinit var adapter : CardAdapter
     private val listCards = mutableListOf<Data>()
 
     private lateinit var viewModel: CardViewModel
-    lateinit var binding: CardFragmentBinding
+    lateinit var binding: FragmentSpellCardBinding
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.card_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_spell_card, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-         binding = CardFragmentBinding.bind(view)
+         binding = FragmentSpellCardBinding.bind(view)
 
         initReciclerView()
         if (arguments != null) {
@@ -69,7 +67,7 @@ class CardFragment : Fragment() {
 
 
         viewLifecycleOwner.lifecycleScope.launch  {
-            val call =getListCharacter().create(YugiohAPI::class.java).getCharacters("?name=$query%")
+            val call =getListCard().create(YugiohAPI::class.java).getCards("?name=$query%")
             val cards = call.body()
             activity?.runOnUiThread {
                 if(call.isSuccessful){
@@ -97,8 +95,9 @@ class CardFragment : Fragment() {
 
     }
 
-    //Reveer si es posible pasarlo a un companion object en la interfaz o bien como clase aparte 
-    private fun  getListCharacter(): Retrofit {
+    //Reveer si es posible pasarlo a un companion object en la interfaz o bien como clase aparte
+    //Cree la clase API, le falta implementar metodo
+    private fun  getListCard(): Retrofit {
         return Retrofit.Builder()
             .baseUrl("https://db.ygoprodeck.com/api/v7/cardinfo.php/")
             .addConverterFactory(GsonConverterFactory.create())
