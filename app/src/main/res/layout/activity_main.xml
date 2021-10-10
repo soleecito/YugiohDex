@@ -35,7 +35,7 @@
                 app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MaterialCardView.Cut">
 
                 <androidx.appcompat.widget.SearchView
-                    android:id="@+id/searchCharacters"
+                    android:id="@+id/searchCard"
                     android:layout_width="match_parent"
 
                     android:layout_height="@dimen/_20sdp"
