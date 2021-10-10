@@ -31,7 +31,7 @@ android {
         jvmTarget = '1.8'
     }
 
-    viewBinding{
+    viewBinding {
         enabled = true
     }
 
@@ -85,6 +85,13 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
 
+    // Feature module Support
+    implementation("androidx.navigation:navigation-dynamic-features-fragment:2.3.5")
 
+    // Testing Navigation
+    androidTestImplementation("androidx.navigation:navigation-testing:2.3.5")
+
+    // Jetpack Compose Integration
+    implementation("androidx.navigation:navigation-compose:2.4.0-alpha08")
 
 }

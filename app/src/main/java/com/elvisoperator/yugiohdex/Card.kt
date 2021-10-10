@@ -3,7 +3,7 @@ package com.elvisoperator.yugiohdex
 import androidx.room.*
 import com.google.gson.annotations.SerializedName
 
-data class Character(
+data class Card(
     @SerializedName("data")
     var list: List<Data>
 )
@@ -15,9 +15,9 @@ data class Data(
     @ColumnInfo(name = "atk") var atk: Int,
     @ColumnInfo(name = "attribute") var attribute: String,
     @Embedded var banlist_info: BanlistInfo,
-    @Embedded var card_images: CardImage,
-    @Embedded var card_prices: CardPrice,
-    @Embedded var card_sets: CardSet,
+    //@Embedded var card_images: List<CardImage>,
+    //@Embedded var card_prices: List<CardPrice>,
+    //@Embedded var card_sets: List<CardSet>,
     @ColumnInfo(name = "def") var def: Int,
     @ColumnInfo(name = "desc") var desc: String,
     @ColumnInfo(name = "level") var level: Int,
@@ -29,31 +29,65 @@ data class Data(
     @ColumnInfo(name = "type") var type: String
 )
 
+@Entity(tableName = "banlist_info")
 data class BanlistInfo(
-    val ban_ocg: String,
-    val ban_tcg: String
+    @ColumnInfo(name = "ban_ocg") val ban_ocg: String,
+    @ColumnInfo(name = "ban_tcg") val ban_tcg: String
 )
 
+@Entity(tableName = "card_image")
 data class CardImage(
-    val image_url: String,
-    val image_url_small: String
+    @PrimaryKey var id: Int,
+    @ColumnInfo(name = "image_url") val image_url: String,
+    @ColumnInfo(name = "image_url_small") val image_url_small: String
 )
 
+data class DataWithCardImage(
+    @Embedded val data: Data,
+    @Relation(
+        parentColumn = "id",
+        entityColumn = "id"
+    )
+    val card_image: List<CardImage>
+)
+
+@Entity(tableName = "card_price")
 data class CardPrice(
-    var amazon_price: String,
-    var cardmarket_price: String,
-    var coolstuffinc_price: String,
-    var ebay_price: String,
-    var tcgplayer_price: String
+    @PrimaryKey(autoGenerate = true) val id: Int,
+    @ColumnInfo(name = "amazon_price") var amazon_price: String,
+    @ColumnInfo(name = "cardmarket_price") var cardmarket_price: String,
+    @ColumnInfo(name = "coolstuffinc_price") var coolstuffinc_price: String,
+    @ColumnInfo(name = "ebay_price") var ebay_price: String,
+    @ColumnInfo(name = "tcgplayer_price") var tcgplayer_price: String
 )
 
-data class CardSet(
-    var set_code: String,
-    var set_name: String,
-    var set_price: String,
-    var set_rarity: String,
-    var set_rarity_code: String
+data class DataWithCardPrice(
+    @Embedded val data: Data,
+    @Relation(
+        parentColumn = "id",
+        entityColumn = "id"
+    )
+    val card_price: List<CardPrice>
 )
+
+@Entity(tableName = "card_set")
+data class CardSet(
+    @PrimaryKey var set_code: String,
+    @ColumnInfo(name = "set_name") var set_name: String,
+    @ColumnInfo(name = "set_price") var set_price: String,
+    @ColumnInfo(name = "set_rarity") var set_rarity: String,
+    @ColumnInfo(name = "set_rarity_code") var set_rarity_code: String
+)
+
+data class DataWithCardSet(
+    @Embedded val data: Data,
+    @Relation(
+        parentColumn = "id",
+        entityColumn = "set_code"
+    )
+    val card_set: List<CardSet>
+)
+
 
 
 
