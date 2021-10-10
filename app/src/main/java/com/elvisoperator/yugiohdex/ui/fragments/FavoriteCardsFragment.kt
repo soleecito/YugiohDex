@@ -7,8 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.elvisoperator.yugiohdex.R
 
-
-class CardFragment : Fragment() {
+class FavoriteCardsFragment : Fragment() {
 
 
     override fun onCreateView(
@@ -16,7 +15,8 @@ class CardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_card, container, false)
+        return inflater.inflate(R.layout.fragment_favorite_cards, container, false)
     }
+
 
 }

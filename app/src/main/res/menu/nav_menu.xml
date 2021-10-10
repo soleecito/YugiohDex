@@ -7,25 +7,25 @@
 
 
     <item
-        android:id="@+id/nav_home"
+        android:id="@+id/homeFragment"
         android:title="Home"
 
 
         />
     <item
-        android:id="@+id/nav_myDesk"
+        android:id="@+id/myDeckFragment"
         android:title="My Deck"
 
 
         />
 
     <item
-        android:id="@+id/nav_favorite"
+        android:id="@+id/favoriteCardsFragment"
         android:title="Favorite cards"
         />
 
     <item
-        android:id="@+id/nav_settings"
+        android:id="@+id/configurationFragment"
         android:title="Configuration"
         />
 
@@ -36,7 +36,7 @@
 
             <item
                 android:title="Login"
-                android:id="@+id/nav_login"
+                android:id="@+id/loginFragment"
                />
 
         </menu>
