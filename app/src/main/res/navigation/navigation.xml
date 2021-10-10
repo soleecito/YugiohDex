@@ -12,7 +12,7 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.elvisoperator.yugiohdex.ui.fragments.HomeFragment"
-        android:label="HomeFragment"
+        android:label="YugiohDex"
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_spellCardFragment"
@@ -34,5 +34,25 @@
         android:name="com.elvisoperator.yugiohdex.ui.fragments.TrampaCardFragment"
         android:label="fragment_trampa_card"
         tools:layout="@layout/fragment_trampa_card" />
+    <fragment
+        android:id="@+id/myDeckFragment"
+        android:name="com.elvisoperator.yugiohdex.ui.fragments.MyDeckFragment"
+        android:label="fragment_my_deck"
+        tools:layout="@layout/fragment_my_deck" />
+    <fragment
+        android:id="@+id/favoriteCardsFragment"
+        android:name="com.elvisoperator.yugiohdex.ui.fragments.FavoriteCardsFragment"
+        android:label="fragment_favorite_cards"
+        tools:layout="@layout/fragment_favorite_cards" />
+    <fragment
+        android:id="@+id/configurationFragment"
+        android:name="com.elvisoperator.yugiohdex.ui.fragments.ConfigurationFragment"
+        android:label="fragment_configuration"
+        tools:layout="@layout/fragment_configuration" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.elvisoperator.yugiohdex.ui.fragments.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" />
 
 </navigation>
