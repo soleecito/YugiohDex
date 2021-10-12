@@ -1,0 +1,101 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id("androidx.navigation.safeargs")
+
+}
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        applicationId "com.elvisoperator.yugiohdex"
+        minSdk 26
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    viewBinding{
+        enabled  true
+    }
+
+    buildFeatures {
+        dataBinding true
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.6.0'
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+
+
+
+    //implementaciones para usar api
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+    //implementacion de imageView
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+
+    //de json a data class
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    //co-rutinas
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1'
+
+    //implementacion de tamanio escalable
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+    implementation 'com.intuit.ssp:ssp-android:1.0.6'
+
+    //implementacion de RecyclerView
+    implementation "androidx.recyclerview:recyclerview:1.2.1"
+
+
+    //dar circunferencia a imagenes
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    //componentes de navegacion
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
+
+
+    // Feature module Support
+    implementation("androidx.navigation:navigation-dynamic-features-fragment:2.3.5")
+
+    // Testing Navigation
+    androidTestImplementation("androidx.navigation:navigation-testing:2.3.5")
+
+    // Jetpack Compose Integration
+    implementation("androidx.navigation:navigation-compose:2.4.0-alpha08")
+
+
+
+
+
+}

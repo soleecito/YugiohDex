@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ShowIn="navigation_view">
+
+
+
+    <item
+        android:id="@+id/homeFragment"
+        android:title="Home"
+
+
+        />
+    <item
+        android:id="@+id/myDeckFragment"
+        android:title="My Deck"
+
+
+        />
+
+    <item
+        android:id="@+id/favoriteCardsFragment"
+        android:title="Favorite cards"
+        />
+
+    <item
+        android:id="@+id/configurationFragment"
+        android:title="Configuration"
+        />
+
+
+    <item android:title="Profile">
+
+        <menu>
+
+            <item
+                android:title="Login"
+                android:id="@+id/loginFragment"
+               />
+
+        </menu>
+
+    </item>
+
+
+
+
+
+
+</menu>

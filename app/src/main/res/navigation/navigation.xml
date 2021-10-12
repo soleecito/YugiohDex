@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/homeFragment">
+    <fragment
+        android:id="@+id/spellCardFragment"
+        android:name="com.elvisoperator.yugiohdex.ui.fragments.SpellCardFragment"
+        android:label="card_fragment"
+        tools:layout="@layout/fragment_spell_card" >
+        <action
+            android:id="@+id/action_spellCardFragment_to_cardFragment"
+            app:destination="@id/cardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.elvisoperator.yugiohdex.ui.fragments.HomeFragment"
+        android:label="YugiohDex"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_spellCardFragment"
+            app:destination="@id/spellCardFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_monsterCardFragment"
+            app:destination="@id/monsterCardFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_trampaCardFragment"
+            app:destination="@id/trampaCardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/monsterCardFragment"
+        android:name="com.elvisoperator.yugiohdex.ui.fragments.MonsterCardFragment"
+        android:label="fragment_monster_card"
+        tools:layout="@layout/fragment_monster_card" >
+        <action
+            android:id="@+id/action_monsterCardFragment_to_cardFragment"
+            app:destination="@id/cardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/trampaCardFragment"
+        android:name="com.elvisoperator.yugiohdex.ui.fragments.TrampaCardFragment"
+        android:label="fragment_trampa_card"
+        tools:layout="@layout/fragment_trampa_card" >
+        <action
+            android:id="@+id/action_trampaCardFragment_to_cardFragment"
+            app:destination="@id/cardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myDeckFragment"
+        android:name="com.elvisoperator.yugiohdex.ui.fragments.MyDeckFragment"
+        android:label="fragment_my_deck"
+        tools:layout="@layout/fragment_my_deck" />
+    <fragment
+        android:id="@+id/favoriteCardsFragment"
+        android:name="com.elvisoperator.yugiohdex.ui.fragments.FavoriteCardsFragment"
+        android:label="fragment_favorite_cards"
+        tools:layout="@layout/fragment_favorite_cards" />
+    <fragment
+        android:id="@+id/configurationFragment"
+        android:name="com.elvisoperator.yugiohdex.ui.fragments.ConfigurationFragment"
+        android:label="fragment_configuration"
+        tools:layout="@layout/fragment_configuration" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.elvisoperator.yugiohdex.ui.fragments.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" />
+    <fragment
+        android:id="@+id/cardFragment"
+        android:name="com.elvisoperator.yugiohdex.ui.fragments.CardFragment"
+        android:label="fragment_card"
+        tools:layout="@layout/fragment_card" />
+
+</navigation>
