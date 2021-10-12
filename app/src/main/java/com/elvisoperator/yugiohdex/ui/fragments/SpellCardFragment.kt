@@ -19,6 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import com.elvisoperator.yugiohdex.*
 
 import com.elvisoperator.yugiohdex.databinding.FragmentSpellCardBinding
+import com.elvisoperator.yugiohdex.network.API
 
 class SpellCardFragment : Fragment() {
 
@@ -67,7 +68,7 @@ class SpellCardFragment : Fragment() {
 
 
         viewLifecycleOwner.lifecycleScope.launch  {
-            val call =getListCard().create(YugiohAPI::class.java).getCards("?name=$query%")
+            val call = API().getCards(query)
             val cards = call.body()
             activity?.runOnUiThread {
                 if(call.isSuccessful){
@@ -97,12 +98,7 @@ class SpellCardFragment : Fragment() {
 
     //Reveer si es posible pasarlo a un companion object en la interfaz o bien como clase aparte
     //Cree la clase API, le falta implementar metodo
-    private fun  getListCard(): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl("https://db.ygoprodeck.com/api/v7/cardinfo.php/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-    }
+
 
 
 
