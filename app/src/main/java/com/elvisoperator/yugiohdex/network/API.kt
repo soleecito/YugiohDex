@@ -16,9 +16,13 @@ class API {
     }
 
     //falta implementacion
-    fun getCards(){
-
+    suspend fun getCards(url: String){
+        getAPI().getCards("?name=$url%")
     }
-
+/*
+    fun getCharacters(callback: Callback<List<GotCharacter>>){
+        getAPI().getCharacters().enqueue(callback)
+    }
+ */
 
 }
