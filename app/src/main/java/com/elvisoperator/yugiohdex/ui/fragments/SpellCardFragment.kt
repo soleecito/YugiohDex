@@ -19,6 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import com.elvisoperator.yugiohdex.*
 
 import com.elvisoperator.yugiohdex.databinding.FragmentSpellCardBinding
+import com.elvisoperator.yugiohdex.network.API
 
 class SpellCardFragment : Fragment() {
 
@@ -63,26 +64,29 @@ class SpellCardFragment : Fragment() {
 
     }
 
-     fun testReciclerView(query: String) {
 
 
-        viewLifecycleOwner.lifecycleScope.launch  {
-            val call =getListCard().create(YugiohAPI::class.java).getCards("?name=$query%")
-            val cards = call.body()
-            activity?.runOnUiThread {
-                if(call.isSuccessful){
-                    val actualCards = cards?.list ?: emptyList()
-                    listCards.clear()
-                    listCards.addAll(actualCards)
-                    adapter.notifyDataSetChanged()
 
-                }else{
-                    showError()
-                }
-            }
+  fun testReciclerView(query: String) {
 
-        }
-    }
+
+      viewLifecycleOwner.lifecycleScope.launch {
+          val call = getListCard().create(YugiohAPI::class.java).getCards("?name=$query%")
+          val cards = call.body()
+          activity?.runOnUiThread {
+              if (call.isSuccessful) {
+                  val actualCards = cards?.list ?: emptyList()
+                  listCards.clear()
+                  listCards.addAll(actualCards)
+                  adapter.notifyDataSetChanged()
+
+              } else {
+                  showError()
+              }
+          }
+
+      }
+  }
 
     private fun showError() {
         Toast.makeText(activity,"Error", Toast.LENGTH_LONG).show()
