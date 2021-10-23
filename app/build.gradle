@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
 }
+apply plugin: 'kotlin-android'
 
 android {
     compileSdk 31
@@ -30,8 +31,8 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    viewBinding{
-        enabled  true
+    viewBinding {
+        enabled true
     }
 
 
@@ -91,10 +92,8 @@ dependencies {
 
     //implementaciones para usar api
     implementation 'com.squareup.picasso:picasso:2.71828'
-
-
-
-
+    implementation "androidx.core:core-ktx:+"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
 
 }
