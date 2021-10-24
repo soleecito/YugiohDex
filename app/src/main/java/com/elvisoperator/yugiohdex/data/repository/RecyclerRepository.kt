@@ -20,6 +20,7 @@ class RecyclerRepository {
                 image_url_small = element.card_images[0].image_url_small
             )
             val new = BasicCard(
+                id = element.id,
                 name = element.name,
                 type = element.type,
                 level = element.level.toString(),
@@ -29,7 +30,6 @@ class RecyclerRepository {
         }
         CardProvider.cards = listCard.toList()
         return listCard.toList()
-
     }
 
     suspend fun searchName(query :String): CardModel {

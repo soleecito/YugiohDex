@@ -1,10 +1,9 @@
-package com.elvisoperator.yugiohdex.ui.view
+package com.elvisoperator.yugiohdex.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.elvisoperator.yugiohdex.data.model.BasicCard
-import com.elvisoperator.yugiohdex.data.model.BasicCardModel
 import com.elvisoperator.yugiohdex.domain.GetCardsUseCase
 import kotlinx.coroutines.launch
 

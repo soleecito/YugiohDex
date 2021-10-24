@@ -5,16 +5,12 @@ import android.os.Bundle
 import android.view.Menu
 import androidx.activity.viewModels
 import androidx.appcompat.widget.SearchView
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.elvisoperator.yugiohdex.R
-import com.elvisoperator.yugiohdex.data.network.CardApliClient
-import com.elvisoperator.yugiohdex.data.repository.RecyclerRepository
 import com.elvisoperator.yugiohdex.databinding.ActivityMainBinding
 import com.elvisoperator.yugiohdex.databinding.RecyclerCardFragmentBinding
 import com.elvisoperator.yugiohdex.ui.fragments.CardAdapter
 
-import com.elvisoperator.yugiohdex.ui.fragments.RecyclerCardViewModel
+import com.elvisoperator.yugiohdex.viewmodel.RecyclerCardViewModel
 import com.elvisoperator.yugiohdex.ui.fragments.RecyclerViewModelFactory
 
 class MainActivity : AppCompatActivity() , SearchView.OnQueryTextListener  {
@@ -31,8 +27,6 @@ class MainActivity : AppCompatActivity() , SearchView.OnQueryTextListener  {
         super.onCreate(savedInstanceState)
         bindingActivity = ActivityMainBinding.inflate(layoutInflater)
         setContentView(bindingActivity.root)
-
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

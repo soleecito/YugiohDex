@@ -12,11 +12,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.elvisoperator.yugiohdex.R
 
 import com.elvisoperator.yugiohdex.data.model.Data
-import com.elvisoperator.yugiohdex.data.network.CardApliClient
-import com.elvisoperator.yugiohdex.data.repository.RecyclerRepository
 
 import com.elvisoperator.yugiohdex.databinding.RecyclerCardFragmentBinding
-import com.elvisoperator.yugiohdex.ui.fragments.RecyclerViewModelFactory
+import com.elvisoperator.yugiohdex.viewmodel.RecyclerCardViewModel
 
 
 class RecyclerCardFragment : Fragment() , RecyclerViewItemClick {
