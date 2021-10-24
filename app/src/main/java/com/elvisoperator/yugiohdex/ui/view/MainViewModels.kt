@@ -1,12 +1,29 @@
 package com.elvisoperator.yugiohdex.ui.view
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.elvisoperator.yugiohdex.data.model.BasicCard
+import com.elvisoperator.yugiohdex.data.model.BasicCardModel
+import com.elvisoperator.yugiohdex.domain.GetCardsUseCase
 import kotlinx.coroutines.launch
 
 class MainViewModels : ViewModel(){
 
+    val cardModel = MutableLiveData<List<BasicCard>>()
 
+    val getCardUseCase = GetCardsUseCase()
+
+    fun onCreate() {
+        viewModelScope.launch {
+            val result = getCardUseCase()
+
+            if(!result.isNullOrEmpty()){
+                cardModel.postValue(result!!)
+            }
+        }
+    }
+}
 /*
     fun searchName(query :String) {
         viewModelScope.launch {
@@ -19,4 +36,3 @@ class MainViewModels : ViewModel(){
 
  */
 
-}

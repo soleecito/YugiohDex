@@ -6,15 +6,14 @@ import com.elvisoperator.yugiohdex.data.model.CardModel
 import com.elvisoperator.yugiohdex.data.model.CardProvider
 import com.elvisoperator.yugiohdex.data.network.CardApliClient
 
-class RecyclerRepository(
-    val api: CardApliClient
-)  {
+class RecyclerRepository {
 
-    suspend fun getCard(): CardModel {
+    private val api = CardApliClient()
+
+    suspend fun getCard(): List<BasicCard> {
         val response = api.getAllSpellCardCoroutine()
         var listCard = emptyList<BasicCard>().toMutableList()
         for(element in response.list){
-
             val image = BasicCardImage(
                 id = element.card_images[0].id,
                 image_url = element.card_images[0].image_url,
@@ -29,7 +28,7 @@ class RecyclerRepository(
             listCard.add(new)
         }
         CardProvider.cards = listCard.toList()
-        return response
+        return listCard.toList()
 
     }
 

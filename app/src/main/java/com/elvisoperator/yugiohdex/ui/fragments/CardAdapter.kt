@@ -5,10 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
 import com.elvisoperator.yugiohdex.R
+import com.elvisoperator.yugiohdex.data.model.BasicCard
 import com.elvisoperator.yugiohdex.data.model.Data
 
 
-class CardAdapter(var card: MutableList<Data> = mutableListOf(), private val listener: (Data)->Unit) :
+class CardAdapter(var card: List<BasicCard> = mutableListOf(), private val listener: (BasicCard)->Unit) :
     RecyclerView.Adapter<CardHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardHolder {

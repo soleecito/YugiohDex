@@ -41,9 +41,9 @@ class RecyclerCardFragment : Fragment() , RecyclerViewItemClick {
 
         adapter = CardAdapter(){}
 
-        val api = CardApliClient()
-        val repository = RecyclerRepository(api)
-        factory = RecyclerViewModelFactory(repository)
+        //val api = CardApliClient()
+        //val repository = RecyclerRepository(api)
+        factory = RecyclerViewModelFactory()
         viewModel = ViewModelProvider(this, factory).get(RecyclerCardViewModel::class.java)
 
 
@@ -51,8 +51,8 @@ class RecyclerCardFragment : Fragment() , RecyclerViewItemClick {
         binding.recyclerViewCard.setHasFixedSize(true)
         binding.recyclerViewCard.adapter = adapter
 
-        viewModel.carts.observe(viewLifecycleOwner, Observer { carts->
-            adapter.card = carts.list
+        viewModel.cardModel.observe(viewLifecycleOwner, Observer {
+            adapter.card = it
             adapter.notifyDataSetChanged()
         })
 
