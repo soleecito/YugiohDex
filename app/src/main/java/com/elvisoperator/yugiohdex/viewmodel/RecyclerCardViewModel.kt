@@ -21,8 +21,9 @@ class RecyclerCardViewModel : ViewModel() {
                 cardModel.postValue(result!!)
             }
         }
-
     }
+
+
 
 
 /*

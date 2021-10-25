@@ -7,7 +7,7 @@ import com.elvisoperator.yugiohdex.data.model.BasicCard
 import com.elvisoperator.yugiohdex.domain.GetCardsUseCase
 import kotlinx.coroutines.launch
 
-class MainViewModels : ViewModel(){
+class MainViewModels : ViewModel() {
 
     val cardModel = MutableLiveData<List<BasicCard>>()
 
@@ -16,8 +16,7 @@ class MainViewModels : ViewModel(){
     fun onCreate() {
         viewModelScope.launch {
             val result = getCardUseCase()
-
-            if(!result.isNullOrEmpty()){
+            if (!result.isNullOrEmpty()) {
                 cardModel.postValue(result!!)
             }
         }

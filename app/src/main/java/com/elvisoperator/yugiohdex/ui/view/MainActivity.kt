@@ -6,6 +6,9 @@ import android.view.Menu
 import androidx.activity.viewModels
 import androidx.appcompat.widget.SearchView
 import com.elvisoperator.yugiohdex.R
+import com.elvisoperator.yugiohdex.data.database.AppDatabase
+import com.elvisoperator.yugiohdex.data.database.CardDao
+import com.elvisoperator.yugiohdex.data.database.DatabaseImpl
 import com.elvisoperator.yugiohdex.databinding.ActivityMainBinding
 import com.elvisoperator.yugiohdex.databinding.RecyclerCardFragmentBinding
 import com.elvisoperator.yugiohdex.ui.fragments.CardAdapter
@@ -17,16 +20,19 @@ class MainActivity : AppCompatActivity() , SearchView.OnQueryTextListener  {
 
 
     private lateinit var bindingActivity: ActivityMainBinding
-    private val recyclerCardViewModel: RecyclerCardViewModel by viewModels()
-    private lateinit var recyclerbinding: RecyclerCardFragmentBinding
-    private lateinit var adapter: CardAdapter
-    private lateinit var factory : RecyclerViewModelFactory
-    private lateinit var viewModel: RecyclerCardViewModel
+    private lateinit var database: AppDatabase
+    private lateinit var cardDao: CardDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bindingActivity = ActivityMainBinding.inflate(layoutInflater)
         setContentView(bindingActivity.root)
+        initDatabase()
+    }
+
+    private fun initDatabase() {
+        this.database = DatabaseImpl.buildDatabase(applicationContext)
+        this.cardDao = this.database.cardDao()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

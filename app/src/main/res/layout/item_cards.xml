@@ -79,6 +79,7 @@
             android:layout_height="@dimen/_20sdp"
             android:layout_marginStart="@dimen/_5sdp"
             android:background="@color/white"
+            app:showAsAction="always"
             android:src="@drawable/ic_favorite"
 
 
