@@ -10,4 +10,5 @@
         app:showAsAction="ifRoom|withText"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         tools:targetApi="o"/>
+    <item android:title="Favorite Cards" />
 </menu>

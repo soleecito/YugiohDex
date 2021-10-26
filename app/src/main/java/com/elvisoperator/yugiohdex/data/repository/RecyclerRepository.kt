@@ -1,10 +1,12 @@
 package com.elvisoperator.yugiohdex.data.repository
 
+import com.elvisoperator.yugiohdex.data.database.DatabaseImpl
 import com.elvisoperator.yugiohdex.data.model.BasicCard
 import com.elvisoperator.yugiohdex.data.model.BasicCardImage
 import com.elvisoperator.yugiohdex.data.model.CardModel
 import com.elvisoperator.yugiohdex.data.model.CardProvider
 import com.elvisoperator.yugiohdex.data.network.CardApliClient
+import com.elvisoperator.yugiohdex.viewmodel.RecyclerCardViewModel
 
 class RecyclerRepository {
 
@@ -28,11 +30,26 @@ class RecyclerRepository {
             )
             listCard.add(new)
         }
-        CardProvider.cards = listCard.toList()
-        return listCard.toList()
+        if(CardProvider.cards.isNullOrEmpty()) {
+            CardProvider.cards = listCard.toList()
+             return listCard.toList()
+        } else {
+            return CardProvider.cards
+        }
     }
 
     suspend fun searchName(query :String): CardModel {
         return api.searchName(query)
+    }
+
+    suspend fun getFavorites(): List<BasicCard> {
+        val all = CardProvider.cards
+        var favorites = mutableListOf<BasicCard>()
+        for(element in all){
+            if(element.fav){
+                favorites.add(element)
+            }
+        }
+        return favorites
     }
 }

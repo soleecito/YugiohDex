@@ -1,18 +1,13 @@
 package com.elvisoperator.yugiohdex.ui.fragments
 
-import android.content.Context
 import android.util.Log
 import android.view.View
-import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.toDrawable
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
-import com.elvisoperator.yugiohdex.R
 import com.elvisoperator.yugiohdex.data.model.BasicCard
 
 import com.elvisoperator.yugiohdex.databinding.ItemCardsBinding
-
-import com.elvisoperator.yugiohdex.data.model.Data
-//import ar.edu.unlam.yugiohdex.databinding.ItemCardsBinding
+import com.elvisoperator.yugiohdex.viewmodel.RecyclerCardViewModel
 import com.squareup.picasso.Picasso
 
 
@@ -29,7 +24,10 @@ class CardHolder(view: View) : RecyclerView.ViewHolder(view) {
         binding.level.text = card.level.toString()
         Picasso.get().load(card.image.image_url).into(binding.ivCards)
         Log.println(Log.INFO, "Valor Imagen", card.image.image_url_small)
-        val id = if(card.fav) R.drawable.ic_favorite
-        else R.drawable.ic_favorite_filled
+        bindFavorite(card)
+    }
+
+    fun bindFavorite(card: BasicCard){
+        binding.buttonFavoriteFilled.isVisible = card.fav
     }
 }

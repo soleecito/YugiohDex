@@ -81,12 +81,23 @@
             android:background="@color/white"
             app:showAsAction="always"
             android:src="@drawable/ic_favorite"
-
-
             app:layout_constraintBottom_toTopOf="@id/tvName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/ivCards"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/buttonFavoriteFilled"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:background="@color/white"
+            app:showAsAction="always"
+            android:src="@drawable/ic_favorite_filled"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@+id/buttonFavorite"
+            app:layout_constraintTop_toTopOf="@+id/buttonFavorite"
+            app:layout_constraintBottom_toBottomOf="@+id/buttonFavorite"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>

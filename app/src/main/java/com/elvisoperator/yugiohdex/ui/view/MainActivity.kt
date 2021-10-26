@@ -20,8 +20,6 @@ class MainActivity : AppCompatActivity() , SearchView.OnQueryTextListener  {
 
 
     private lateinit var bindingActivity: ActivityMainBinding
-    private lateinit var database: AppDatabase
-    private lateinit var cardDao: CardDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,8 +29,7 @@ class MainActivity : AppCompatActivity() , SearchView.OnQueryTextListener  {
     }
 
     private fun initDatabase() {
-        this.database = DatabaseImpl.buildDatabase(applicationContext)
-        this.cardDao = this.database.cardDao()
+        DatabaseImpl.buildDatabase(applicationContext)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

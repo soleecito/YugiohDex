@@ -6,15 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.get
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.elvisoperator.yugiohdex.R
 import com.elvisoperator.yugiohdex.data.model.BasicCard
 
-import com.elvisoperator.yugiohdex.data.model.Data
-
 import com.elvisoperator.yugiohdex.databinding.RecyclerCardFragmentBinding
+import com.elvisoperator.yugiohdex.viewmodel.MainViewModels
 import com.elvisoperator.yugiohdex.viewmodel.RecyclerCardViewModel
 
 
@@ -38,7 +38,11 @@ class RecyclerCardFragment : Fragment() , RecyclerViewItemClick {
         super.onViewCreated(view, savedInstanceState)
         binding = RecyclerCardFragmentBinding.bind(view)
 
-        adapter = CardAdapter(){}
+        adapter = CardAdapter(){
+            onRecyclerViewItemClick(this.view!!, it)
+        }
+
+
 
         //val api = CardApliClient()
         //val repository = RecyclerRepository(api)
@@ -72,6 +76,7 @@ class RecyclerCardFragment : Fragment() , RecyclerViewItemClick {
     override fun onRecyclerViewItemClick(view: View, card: BasicCard) {
         when(view.id) {
             R.id.buttonFavorite -> {
+
                 Toast.makeText(requireContext(), "Book Button Clicked", Toast.LENGTH_LONG).show()
             }
         }

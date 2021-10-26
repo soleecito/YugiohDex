@@ -5,9 +5,11 @@ import androidx.room.Room
 
 class DatabaseImpl {
 
-    companion object{
-        fun buildDatabase(context: Context): AppDatabase{
-            return Room.databaseBuilder(
+    companion object {
+        lateinit var database: AppDatabase
+
+        fun buildDatabase(context: Context) {
+            database = Room.databaseBuilder(
                 context,
                 AppDatabase::class.java,
                 "favorite_database"
@@ -15,5 +17,7 @@ class DatabaseImpl {
                 .allowMainThreadQueries()
                 .build()
         }
+
+
     }
 }
