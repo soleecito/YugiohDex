@@ -42,7 +42,7 @@ class RecyclerRepository {
         return api.searchName(query)
     }
 
-    suspend fun getFavorites(): List<BasicCard> {
+    fun getFavorites(): List<BasicCard> {
         val all = CardProvider.cards
         var favorites = mutableListOf<BasicCard>()
         for(element in all){

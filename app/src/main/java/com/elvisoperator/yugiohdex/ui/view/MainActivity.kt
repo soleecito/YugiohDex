@@ -1,5 +1,6 @@
 package com.elvisoperator.yugiohdex.ui.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -36,6 +37,9 @@ class MainActivity : AppCompatActivity() , SearchView.OnQueryTextListener  {
         menuInflater.inflate(R.menu.main_menu, menu)
         val search = menu?.findItem(R.id.menu_search)
         val searchView = search?.actionView as SearchView
+        val intent = Intent(this, FavoriteActivity::class.java)
+        val favorites = menu?.findItem(R.id.optionsFavorite)!!.setIntent(intent)
+
         searchView.isSubmitButtonEnabled = true
         searchView.setOnQueryTextListener(this)
         return true
