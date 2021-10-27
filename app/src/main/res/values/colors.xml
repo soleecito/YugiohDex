@@ -18,10 +18,12 @@
     <color name="bottom_bar_icon_tint">#CFD0E2</color>
     <color name="bottom_bar_icon_tint_active">#35B7CF</color>
     <color name="bottom_bar_text_color">#35B7CF</color>
-    <color name="background">#ECECEC</color>
+    <color name="background">#F5F5F5</color>
     <color name="primary_label">#212121</color>
     <color name="secondary_label">#757575</color>
     <color name="recicler_background">#F9F9F9</color>
-    <color name="search_background">#F9F9F9</color>
+    <color name="search_background">#EFF3F4</color>
     <color name="favorite_background">#FF7173</color>
+    <color name="line">#F2F2F2</color>
+
 </resources>
