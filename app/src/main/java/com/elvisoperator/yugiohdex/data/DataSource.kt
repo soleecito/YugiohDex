@@ -19,13 +19,17 @@ class DataSource (private val appDatabase: AppDatabase){
 
 
    /*DAO*/
-    fun insertCardIntoRoom(card : BasicCard){
+    suspend fun insertCardIntoRoom(card : BasicCard){
       appDatabase.cardDao().insert(card)
    }
 
-   fun getCardFavorites(): Resource<List<BasicCard>> {
+   suspend fun getCardFavorites(): Resource<MutableList<BasicCard>> {
       return Resource.Success(appDatabase.cardDao().getFavoritesCard())
    }
+
+   suspend fun deleteCardIntoRoom(card: BasicCard) {
+        appDatabase.cardDao().deleteCard(card)
+    }
 
 
 }

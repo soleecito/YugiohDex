@@ -26,6 +26,7 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
         liveData(Dispatchers.IO) {
             emit(Resource.Loading)
             try {
+                /*modificar los datos a llevar*/
                 emit(repository.getCardsList("?name=$nameCard%"))
             } catch (e: Exception) {
                 emit(Resource.Failure(e))
@@ -34,6 +35,7 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
 
     }
 
+    /**/
     fun saveCard(card: BasicCard) {
         viewModelScope.launch {
             repository.insertCard(card)
@@ -46,6 +48,13 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
             emit(repository.getCardListFavorites())
         } catch (e: Exception) {
             emit(Resource.Failure(e))
+        }
+    }
+
+    fun deleteCard(card: BasicCard) {
+        viewModelScope.launch {
+            repository.deleteCard(card)
+            
         }
     }
 
