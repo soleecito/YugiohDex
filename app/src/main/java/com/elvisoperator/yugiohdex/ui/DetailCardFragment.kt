@@ -28,7 +28,7 @@ class DetailCardFragment : Fragment() {
 
 
     private val viewModel by activityViewModels<MainViewModel> {
-        VMFactory(RepositoryImplement(DataSource(AppDatabase.getDatabase(requireActivity().applicationContext))))
+        VMFactory(RepositoryImplement(DataSource()))
     }
     private lateinit var detailBinding: FragmentDetailCardBinding
     private lateinit var cardModel: Data
@@ -69,10 +69,6 @@ class DetailCardFragment : Fragment() {
 
     private fun saveOrDeletedListener() {
         detailBinding.btnSaveOrDeleteCard.setOnClickListener {
-
-
-
-
 
             val image = BasicCardImage(
                 id = cardModel.card_images[0].id,

@@ -1,6 +1,9 @@
 package com.elvisoperator.yugiohdex.ui.viewmodel
 
+import android.content.Context
 import androidx.lifecycle.*
+import com.elvisoperator.yugiohdex.data.database.AppDatabase
+import com.elvisoperator.yugiohdex.data.database.DatabaseImpl
 import com.elvisoperator.yugiohdex.data.model.BasicCard
 import com.elvisoperator.yugiohdex.domain.Repository
 import com.elvisoperator.yugiohdex.vo.Resource
@@ -34,8 +37,14 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
 
     }
 
-    fun saveCard(card: BasicCard) {
+    fun initDatabase(context: Context) {
         viewModelScope.launch {
+            DatabaseImpl.buildDatabase(context)
+        }
+    }
+
+    fun saveCard(card: BasicCard) {
+        viewModelScope.launch(Dispatchers.IO) {
             repository.insertCard(card)
         }
     }

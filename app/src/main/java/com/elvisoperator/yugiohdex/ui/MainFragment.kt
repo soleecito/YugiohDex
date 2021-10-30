@@ -35,9 +35,7 @@ class MainFragment : Fragment(), MainAdapter.OnCardClickListener {
     private val viewModel by viewModels<MainViewModel> {
         VMFactory(
             RepositoryImplement(
-                DataSource(
-                    AppDatabase.getDatabase(requireActivity().applicationContext)
-                )
+                DataSource()
             )
         )
     }
@@ -62,6 +60,7 @@ class MainFragment : Fragment(), MainAdapter.OnCardClickListener {
         super.onViewCreated(view, savedInstanceState)
         mainBinding = FragmentMainBinding.bind(view)
 
+        viewModel.initDatabase(requireContext())
         setupRecyclerView()
         setupSearchView()
         setupObservers()

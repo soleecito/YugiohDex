@@ -24,7 +24,7 @@ import com.elvisoperator.yugiohdex.vo.Resource
 class FavoritesFragment : Fragment(), MainAdapterFavorite.OnCardClickListener {
 
     private val viewModel by activityViewModels<MainViewModel> {
-        VMFactory(RepositoryImplement(DataSource(AppDatabase.getDatabase(requireActivity().applicationContext))))
+        VMFactory(RepositoryImplement(DataSource()))
     }
 
     private lateinit var favoriteBinding: FragmentFavoritesBinding
