@@ -40,8 +40,8 @@ class MainAdapterFavorite(
             binding.tvName.text = item.name
             binding.tvType.text = item.type
             binding.level.text = item.level.toString()
-            Picasso.get().load(item.image).into(binding.ivCards)
-            Log.println(Log.INFO, "Valor Imagen", item.image)
+            Picasso.get().load(item.image.image_url).into(binding.ivCards)
+            Log.println(Log.INFO, "Valor Imagen", item.image.image_url)
             itemView.setOnClickListener { itemClickLister.onCardClick(item) }
         }
 

@@ -16,8 +16,7 @@ data class BasicCard(
     @ColumnInfo(name = "name") var name: String,
     @ColumnInfo(name = "type") var type: String,
     @ColumnInfo(name = "level") var level: Int,
-    @ColumnInfo(name = "image") val image: String,
-    //@Embedded var image: BasicCardImage,
+    @Embedded var image: BasicCardImage,
     @ColumnInfo(name ="fav") var fav: Boolean = false
 )
 

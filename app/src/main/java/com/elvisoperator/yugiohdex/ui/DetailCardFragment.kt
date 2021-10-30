@@ -1,4 +1,5 @@
 package com.elvisoperator.yugiohdex.ui
+
 import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
@@ -26,11 +27,11 @@ import com.squareup.picasso.Picasso
 class DetailCardFragment : Fragment() {
 
 
-    private val viewModel by activityViewModels<MainViewModel>{
-        VMFactory(RepositoryImplement(DataSource( AppDatabase.getDatabase(requireActivity().applicationContext) )))
+    private val viewModel by activityViewModels<MainViewModel> {
+        VMFactory(RepositoryImplement(DataSource(AppDatabase.getDatabase(requireActivity().applicationContext))))
     }
     private lateinit var detailBinding: FragmentDetailCardBinding
-    private lateinit var cardModel : Data
+    private lateinit var cardModel: Data
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -53,35 +54,45 @@ class DetailCardFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         detailBinding = FragmentDetailCardBinding.bind(view)
 
-
-        cardModel.card_images.forEach {
-            Picasso.get().load(it.image_url).into(detailBinding.imageCard)
-        }
-        detailBinding.tvName.text  = cardModel.name
+        Picasso.get().load(cardModel.card_images[0].image_url).into(detailBinding.imageCard)
+        detailBinding.tvName.text = cardModel.name
         detailBinding.tvType.text = cardModel.type
         detailBinding.tvDesc.text = cardModel.desc
 
+        listeners()
+
+    }
+
+    private fun listeners() {
+        saveOrDeletedListener()
+    }
+
+    private fun saveOrDeletedListener() {
         detailBinding.btnSaveOrDeleteCard.setOnClickListener {
 
-            var  id  = 0
-            var image  = ""
-            var imageSmall  = ""
-
-            cardModel.card_images.forEach { result ->
-                id = result.id
-                image = result.image_url
-                imageSmall = result.image_url_small
-            }
-
-            Log.d("Text" , "${id}")
-            Log.d("Text" , "${image}")
 
 
-            val imagen  = BasicCardImage(id,image,imageSmall)
 
-            viewModel.saveCard(BasicCard(cardModel.id, cardModel.name , cardModel.type , cardModel.level , imagen.image_url  ) )
-            Toast.makeText(requireContext(), "letter was saved to favorites", Toast.LENGTH_LONG).show()
 
+            val image = BasicCardImage(
+                id = cardModel.card_images[0].id,
+                image_url = cardModel.card_images[0].image_url,
+                image_url_small = cardModel.card_images[0].image_url_small
+            )
+            Log.d("Text", "$id")
+            Log.d("Text", image.image_url)
+
+            viewModel.saveCard(
+                BasicCard(
+                    id = cardModel.id,
+                    name = cardModel.name,
+                    type = cardModel.type,
+                    level = cardModel.level,
+                    image = image
+                )
+            )
+            Toast.makeText(requireContext(), "letter was saved to favorites", Toast.LENGTH_LONG)
+                .show()
         }
     }
 

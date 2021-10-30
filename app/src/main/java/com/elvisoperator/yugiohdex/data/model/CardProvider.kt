@@ -5,7 +5,6 @@ import com.elvisoperator.yugiohdex.data.Data
 
 class CardProvider {
     companion object{
-        var basicCards = emptyList<BasicCard>()
         var allCards = emptyList<Data>()
     }
 }

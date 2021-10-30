@@ -9,9 +9,12 @@ import android.widget.GridLayout
 
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navOptions
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 
@@ -45,14 +48,12 @@ class MainFragment : Fragment(), MainAdapter.OnCardClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         return inflater.inflate(R.layout.fragment_main, container, false)
     }
 
@@ -97,7 +98,6 @@ class MainFragment : Fragment(), MainAdapter.OnCardClickListener {
         mainBinding.recyclerViewCard.setHasFixedSize(true)
     }
 
-
     private fun setupSearchView() {
         mainBinding.searchCards.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -116,7 +116,6 @@ class MainFragment : Fragment(), MainAdapter.OnCardClickListener {
 
         val bundle = Bundle()
         bundle.putParcelable("card", data)
-
         findNavController().navigate(R.id.action_mainFragment_to_detailCardFragment, bundle)
     }
 }
