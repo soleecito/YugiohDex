@@ -29,8 +29,15 @@ import com.elvisoperator.yugiohdex.vo.Resource
 
 class MainFragment : Fragment(), MainAdapter.OnCardClickListener {
 
-    private val viewModel by viewModels<MainViewModel> { VMFactory(RepositoryImplement(DataSource(
-        AppDatabase.getDatabase(requireActivity().applicationContext) ))) }
+    private val viewModel by viewModels<MainViewModel> {
+        VMFactory(
+            RepositoryImplement(
+                DataSource(
+                    AppDatabase.getDatabase(requireActivity().applicationContext)
+                )
+            )
+        )
+    }
     private lateinit var adapter: MainAdapter
     private lateinit var mainBinding: FragmentMainBinding
     private lateinit var mainAdapter: MainAdapter
@@ -68,7 +75,8 @@ class MainFragment : Fragment(), MainAdapter.OnCardClickListener {
                 }
                 is Resource.Success -> {
                     mainBinding.progressBar.visibility = View.GONE
-                    mainBinding.recyclerViewCard.adapter = MainAdapter(requireContext(), result.data, this)
+                    mainBinding.recyclerViewCard.adapter =
+                        MainAdapter(requireContext(), result.data, this)
                 }
                 is Resource.Failure -> {
                     mainBinding.progressBar.visibility = View.GONE
@@ -84,13 +92,14 @@ class MainFragment : Fragment(), MainAdapter.OnCardClickListener {
 
     private fun setupRecyclerView() {
         val columns = 2
-        mainBinding.recyclerViewCard.layoutManager = GridLayoutManager(requireContext(),columns )  //LinearLayoutManager(requireContext())
+        mainBinding.recyclerViewCard.layoutManager =
+            GridLayoutManager(requireContext(), columns)  //LinearLayoutManager(requireContext())
         mainBinding.recyclerViewCard.setHasFixedSize(true)
     }
 
 
-    private fun setupSearchView(){
-        mainBinding.searchCards.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+    private fun setupSearchView() {
+        mainBinding.searchCards.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 viewModel.setCard(query!!)
                 return false
@@ -108,7 +117,6 @@ class MainFragment : Fragment(), MainAdapter.OnCardClickListener {
         val bundle = Bundle()
         bundle.putParcelable("card", data)
 
-        //aca en vez de llamar por el fragment llamo por la accion, dando asi animacion
         findNavController().navigate(R.id.action_mainFragment_to_detailCardFragment, bundle)
     }
 }

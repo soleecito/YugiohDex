@@ -21,34 +21,28 @@ import com.elvisoperator.yugiohdex.ui.viewmodel.MainViewModel
 import com.elvisoperator.yugiohdex.ui.viewmodel.VMFactory
 import com.elvisoperator.yugiohdex.vo.Resource
 
-class FavoritesFragment : Fragment()  , MainAdapterFavorite.OnCardClickListener{
+class FavoritesFragment : Fragment(), MainAdapterFavorite.OnCardClickListener {
 
-    private val viewModel by activityViewModels<MainViewModel>{
-        VMFactory(RepositoryImplement(DataSource( AppDatabase.getDatabase(requireActivity().applicationContext) )))
+    private val viewModel by activityViewModels<MainViewModel> {
+        VMFactory(RepositoryImplement(DataSource(AppDatabase.getDatabase(requireActivity().applicationContext))))
     }
 
-    private lateinit var favoriteBinding : FragmentFavoritesBinding
+    private lateinit var favoriteBinding: FragmentFavoritesBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_favorites, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         favoriteBinding = FragmentFavoritesBinding.bind(view)
-
-
 
         setupRecyclerView()
         setupObservers()
@@ -57,24 +51,32 @@ class FavoritesFragment : Fragment()  , MainAdapterFavorite.OnCardClickListener{
 
     private fun setupObservers() {
         viewModel.getCardFavorites().observe(viewLifecycleOwner, Observer { result ->
-            when(result){
-                is Resource.Loading -> {}
+            when (result) {
+                is Resource.Loading -> {
+                }
                 is Resource.Success -> {
                     val list = result.data.map { card ->
-                        BasicCard(card.id , card.name , card.type , card.level , card.image , true)
+                        BasicCard(card.id, card.name, card.type, card.level, card.image, true)
                     }
 
-                   favoriteBinding.rvFavorite.adapter = MainAdapterFavorite(requireContext(), list ,this )
+                    favoriteBinding.rvFavorite.adapter =
+                        MainAdapterFavorite(requireContext(), list, this)
                 }
-                is Resource.Failure -> {}
+                is Resource.Failure -> {
+                }
             }
         })
     }
 
-    private fun setupRecyclerView(){
+    private fun setupRecyclerView() {
 
         favoriteBinding.rvFavorite.layoutManager = LinearLayoutManager(requireContext())
-        favoriteBinding.rvFavorite.addItemDecoration(DividerItemDecoration(requireContext(),DividerItemDecoration.VERTICAL))
+        favoriteBinding.rvFavorite.addItemDecoration(
+            DividerItemDecoration(
+                requireContext(),
+                DividerItemDecoration.VERTICAL
+            )
+        )
     }
 
     override fun onCardClick(data: BasicCard) {

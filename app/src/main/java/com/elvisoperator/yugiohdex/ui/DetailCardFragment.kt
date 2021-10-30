@@ -21,6 +21,8 @@ import com.elvisoperator.yugiohdex.ui.viewmodel.VMFactory
 import com.squareup.picasso.Picasso
 
 
+//Requerir que el buendle sea del tipo BasicCard
+
 class DetailCardFragment : Fragment() {
 
 
@@ -31,6 +33,7 @@ class DetailCardFragment : Fragment() {
     private lateinit var cardModel : Data
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         requireArguments().let {
             cardModel = it.getParcelable("card")!!
             Log.d(TAG, "OnCreate")

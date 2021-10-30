@@ -13,15 +13,14 @@ import com.elvisoperator.yugiohdex.data.Data
 import com.elvisoperator.yugiohdex.databinding.CardsRowBinding
 import com.squareup.picasso.Picasso
 
-class MainAdapter(private val context: Context, private var cardList: CardModel,
-                  val itemClickLister: OnCardClickListener
-) : RecyclerView.Adapter<BaseViewHolder<*>>(){
+class MainAdapter(
+    private val context: Context, private var cardList: CardModel,
+    val itemClickLister: OnCardClickListener
+) : RecyclerView.Adapter<BaseViewHolder<*>>() {
 
-    interface OnCardClickListener{
-        fun onCardClick(data : Data)
+    interface OnCardClickListener {
+        fun onCardClick(data: Data)
     }
-
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<*> {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -29,28 +28,22 @@ class MainAdapter(private val context: Context, private var cardList: CardModel,
     }
 
 
-
     override fun onBindViewHolder(holder: BaseViewHolder<*>, position: Int) {
-       when(holder){
-           is MainViewHolder ->holder.bind(cardList.list[position])
-       }
+        when (holder) {
+            is MainViewHolder -> holder.bind(cardList.list[position])
+        }
     }
 
     override fun getItemCount(): Int {
-       return cardList.list.size
+        return cardList.list.size
     }
 
-    inner class MainViewHolder(itemView : View):BaseViewHolder<Data>(itemView){
+    inner class MainViewHolder(itemView: View) : BaseViewHolder<Data>(itemView) {
         override fun bind(item: Data) {
-            val binding  = CardsRowBinding.bind(itemView)
-
-          /*  binding.tvName.text = item.name
-            binding.tvType.text = item.type
-            binding.level.text = item.level.toString()*/
-            val image = item.card_images.forEach {
-                Picasso.get().load(it.image_url).into(binding.ivCards)
-                Log.println(Log.INFO,"Valor Imagen",it.image_url_small)
-            }
+            val binding = CardsRowBinding.bind(itemView)
+            val image = item.card_images[0]
+            Picasso.get().load(image.image_url).into(binding.ivCards)
+            Log.println(Log.INFO, "Valor Imagen", image.image_url_small)
             itemView.setOnClickListener { itemClickLister.onCardClick(item) }
 
         }
