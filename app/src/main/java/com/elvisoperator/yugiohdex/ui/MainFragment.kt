@@ -65,6 +65,9 @@ class MainFragment : Fragment(), MainAdapter.OnCardClickListener {
         setupSearchView()
         setupObservers()
 
+        mainBinding.buttonFavorite.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_favoritesFragment)
+        }
     }
 
     private fun setupObservers() {

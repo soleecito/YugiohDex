@@ -7,11 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.elvisoperator.yugiohdex.R
+
 import com.elvisoperator.yugiohdex.base.BaseViewHolder
 import com.elvisoperator.yugiohdex.base.BaseViewHolderFavorite
 import com.elvisoperator.yugiohdex.data.Data
 import com.elvisoperator.yugiohdex.data.model.BasicCard
 import com.elvisoperator.yugiohdex.databinding.CardsRowFavoriteBinding
+
+
 import com.squareup.picasso.Picasso
 
 class MainAdapterFavorite(
@@ -19,13 +22,15 @@ class MainAdapterFavorite(
     val itemClickLister: OnCardClickListener
 ) : RecyclerView.Adapter<BaseViewHolderFavorite<*>>() {
 
+
     interface OnCardClickListener {
         fun onCardClick(data: BasicCard)
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolderFavorite<*> {
         val layoutInflater = LayoutInflater.from(parent.context)
-        return MainViewHolderFavorite(layoutInflater.inflate(R.layout.cards_row, parent, false))
+        return MainViewHolderFavorite(layoutInflater.inflate(R.layout.cards_row_favorite, parent, false))
     }
 
 
@@ -47,7 +52,11 @@ class MainAdapterFavorite(
 
     }
 
+
+
+
     override fun onBindViewHolder(holder: BaseViewHolderFavorite<*>, position: Int) {
+
         when (holder) {
             is MainViewHolderFavorite -> holder.bind(cardList[position])
         }

@@ -10,6 +10,8 @@ interface Repository {
     suspend fun getCardsList(cardName : String) : Resource<CardModel>
 
     /*DAO*/
-    suspend fun getCardListFavorites() :Resource<List<BasicCard>>
+    suspend fun getCardListFavorites() :Resource<MutableList<BasicCard>>
     suspend fun insertCard(card: BasicCard)
+    suspend fun deleteCard(card: BasicCard)
+
 }

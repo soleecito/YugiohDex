@@ -10,6 +10,8 @@ plugins {
 apply plugin: 'kotlin-android'
 
 
+
+
 android {
     compileSdk 31
 
@@ -47,6 +49,7 @@ android {
         exclude "META-INF/AL2.0"
         exclude "META-INF/LGPL2.1"
     }
+
 
 
 }

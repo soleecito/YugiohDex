@@ -71,16 +71,21 @@ class FavoritesFragment : Fragment(), MainAdapterFavorite.OnCardClickListener {
     private fun setupRecyclerView() {
 
         favoriteBinding.rvFavorite.layoutManager = LinearLayoutManager(requireContext())
+
         favoriteBinding.rvFavorite.addItemDecoration(
             DividerItemDecoration(
                 requireContext(),
                 DividerItemDecoration.VERTICAL
             )
         )
+        favoriteBinding.rvFavorite.setHasFixedSize(true)
+
     }
 
-    override fun onCardClick(data: BasicCard) {
-        TODO("Not yet implemented")
+    override fun onCardClick(data: BasicCard , position : Int) {
+        viewModel.deleteCard(data)
+        favoriteBinding.rvFavorite.adapter?.notifyItemChanged(position)
+        favoriteBinding.rvFavorite.adapter?.notifyItemRangeRemoved( position,  favoriteBinding.rvFavorite.adapter?.itemCount!!)
     }
 
 }

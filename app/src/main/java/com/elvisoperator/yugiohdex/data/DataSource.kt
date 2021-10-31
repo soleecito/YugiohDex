@@ -31,5 +31,9 @@ class DataSource (){
       return Resource.Success(DatabaseImpl.database.cardDao().getFavoritesCard())
    }
 
+   suspend fun deleteCardIntoRoom(card: BasicCard) {
+        DatabaseImpl.database.cardDao().deleteCard(card)
+    }
+
 
 }

@@ -15,6 +15,7 @@ interface CardApliClient {
     @GET("?type=Spell%20Card")
     suspend fun getAllSpellCardCoroutine(): CardModel
 
+
     @GET
     suspend fun searchName(@Url query: String ): CardModel
 
