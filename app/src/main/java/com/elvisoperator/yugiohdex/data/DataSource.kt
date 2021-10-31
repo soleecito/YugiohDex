@@ -23,11 +23,11 @@ class DataSource (){
 
 
    /*DAO*/
-   fun insertCardIntoRoom(card : BasicCard){
+   suspend fun insertCardIntoRoom(card : BasicCard){
       DatabaseImpl.database.cardDao().insert(card)
    }
 
-   fun getCardFavorites(): Resource<List<BasicCard>> {
+   suspend fun getCardFavorites(): Resource<List<BasicCard>> {
       return Resource.Success(DatabaseImpl.database.cardDao().getFavoritesCard())
    }
 
