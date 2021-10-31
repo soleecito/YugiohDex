@@ -27,7 +27,7 @@ class DataSource (){
       DatabaseImpl.database.cardDao().insert(card)
    }
 
-   suspend fun getCardFavorites(): Resource<List<BasicCard>> {
+   suspend fun getCardFavorites(): Resource<MutableList<BasicCard>> {
       return Resource.Success(DatabaseImpl.database.cardDao().getFavoritesCard())
    }
 

@@ -82,7 +82,8 @@ class FavoritesFragment : Fragment(), MainAdapterFavorite.OnCardClickListener {
 
     }
 
-    override fun onCardClick(data: BasicCard , position : Int) {
+
+    override fun onCardClick(data: BasicCard, position: Int) {
         viewModel.deleteCard(data)
         favoriteBinding.rvFavorite.adapter?.notifyItemChanged(position)
         favoriteBinding.rvFavorite.adapter?.notifyItemRangeRemoved( position,  favoriteBinding.rvFavorite.adapter?.itemCount!!)

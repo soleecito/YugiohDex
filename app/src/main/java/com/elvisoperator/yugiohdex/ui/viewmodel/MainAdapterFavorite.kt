@@ -24,8 +24,7 @@ class MainAdapterFavorite(
 
 
     interface OnCardClickListener {
-        fun onCardClick(data: BasicCard)
-
+        fun onCardClick(data: BasicCard, position: Int)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolderFavorite<*> {
@@ -40,14 +39,14 @@ class MainAdapterFavorite(
 
     inner class MainViewHolderFavorite(itemView: View) :
         BaseViewHolderFavorite<BasicCard>(itemView) {
-        override fun bind(item: BasicCard) {
+        override fun bind(item: BasicCard, position: Int) {
             val binding = CardsRowFavoriteBinding.bind(itemView)
             binding.tvName.text = item.name
             binding.tvType.text = item.type
             binding.level.text = item.level.toString()
             Picasso.get().load(item.image.image_url).into(binding.ivCards)
             Log.println(Log.INFO, "Valor Imagen", item.image.image_url)
-            itemView.setOnClickListener { itemClickLister.onCardClick(item) }
+            itemView.setOnClickListener { itemClickLister.onCardClick(item, position) }
         }
 
     }
@@ -58,7 +57,7 @@ class MainAdapterFavorite(
     override fun onBindViewHolder(holder: BaseViewHolderFavorite<*>, position: Int) {
 
         when (holder) {
-            is MainViewHolderFavorite -> holder.bind(cardList[position])
+            is MainViewHolderFavorite -> holder.bind(cardList[position], position)
         }
     }
 }
