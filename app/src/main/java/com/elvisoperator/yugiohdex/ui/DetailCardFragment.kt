@@ -76,7 +76,8 @@ class DetailCardFragment : Fragment() {
 
             val imagen  = BasicCardImage(id,image,imageSmall)
 
-            viewModel.saveCard(BasicCard(cardModel.id, cardModel.name , cardModel.type , cardModel.level , imagen.image_url  ) )
+            /*a revisar */
+            viewModel.saveCard(BasicCard(cardModel.id, cardModel.name , cardModel.type , cardModel.level , imagen  ) )
             Toast.makeText(requireContext(), "letter was saved to favorites", Toast.LENGTH_LONG).show()
 
         }

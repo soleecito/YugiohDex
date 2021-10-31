@@ -51,6 +51,7 @@ class MainAdapter(private val context: Context, private var cardList: CardModel,
                 Picasso.get().load(it.image_url).into(binding.ivCards)
                 Log.println(Log.INFO,"Valor Imagen",it.image_url_small)
             }
+
             itemView.setOnClickListener { itemClickLister.onCardClick(item) }
 
         }

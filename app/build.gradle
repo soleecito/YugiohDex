@@ -7,7 +7,7 @@ plugins {
     id 'androidx.navigation.safeargs.kotlin'
 
 }
-apply plugin: 'kotlin-android'
+
 
 
 android {
@@ -47,6 +47,8 @@ android {
         exclude "META-INF/AL2.0"
         exclude "META-INF/LGPL2.1"
     }
+
+
 
 
 }
@@ -123,7 +125,6 @@ dependencies {
 
     //dar circunferencia a imagenes
     implementation 'de.hdodenhof:circleimageview:3.1.0'
-    implementation 'com.makeramen:roundedimageview:2.3.0'
 
     //implementacion de tamanio escalable
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
@@ -131,7 +132,6 @@ dependencies {
 
     //implementaciones para usar api
     implementation 'com.squareup.picasso:picasso:2.71828'
-    implementation "androidx.core:core-ktx:+"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    implementation("com.makeramen:roundedimageview:2.3.0")
 }

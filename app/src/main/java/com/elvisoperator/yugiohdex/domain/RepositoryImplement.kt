@@ -14,12 +14,16 @@ class RepositoryImplement(private val dataSource: DataSource): Repository {
         return dataSource.getCardName(cardName)
     }
 
-    override suspend fun getCardListFavorites(): Resource<List<BasicCard>> {
+    override suspend fun getCardListFavorites(): Resource<MutableList<BasicCard>> {
         return dataSource.getCardFavorites()
     }
 
     override suspend fun insertCard(card: BasicCard) {
         dataSource.insertCardIntoRoom(card)
+    }
+
+    override suspend fun deleteCard(card: BasicCard) {
+        dataSource.deleteCardIntoRoom(card)
     }
 
 
