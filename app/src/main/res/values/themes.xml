@@ -26,5 +26,11 @@
         <item name="android:windowBackground">@drawable/splash_background</item>
     </style>
 
-</resources>
+    <style name="Menu" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textSize">@dimen/_10sdp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
 
+</resources>
