@@ -66,9 +66,6 @@ class MainFragment : Fragment(), MainAdapter.OnCardClickListener {
         setupSearchView()
         setupObservers()
 
-        mainBinding.buttonFavorite.setOnClickListener {
-            findNavController().navigate(R.id.action_mainFragment_to_favoritesFragment)
-        }
     }
 
     private fun setupObservers() {
@@ -142,6 +139,10 @@ class MainFragment : Fragment(), MainAdapter.OnCardClickListener {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.options_menu, menu)
+        menu?.findItem(R.id.favorite).setOnMenuItemClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_favoritesFragment)
+            return@setOnMenuItemClickListener true
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

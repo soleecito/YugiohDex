@@ -59,16 +59,6 @@
 
     </com.google.android.material.card.MaterialCardView>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/buttonFavorite"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Favorites"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/recyclerViewCard"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
     <androidx.recyclerview.widget.RecyclerView
 
         android:id="@+id/recyclerViewCard"
@@ -80,8 +70,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:layout_constraintTop_toBottomOf="@id/buttonFavorite"/>
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
 
 
