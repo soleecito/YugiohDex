@@ -19,7 +19,7 @@
             app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_mainFragment_to_favoritesFragment"
-            app:destination="@id/favoritesFragment"
+            app:destination="@id/favorites"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
@@ -31,7 +31,7 @@
         android:label="Detail Card"
         tools:layout="@layout/fragment_detail_card" />
     <fragment
-        android:id="@+id/favoritesFragment"
+        android:id="@+id/favorites"
         android:name="com.elvisoperator.yugiohdex.ui.favorites.FavoritesFragment"
         android:label="fragment_favorites"
         tools:layout="@layout/fragment_favorites" >

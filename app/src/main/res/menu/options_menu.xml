@@ -9,10 +9,10 @@
         android:title="Buscar"
         android:icon="@drawable/icon_search"
         app:showAsAction="always"
-        app:actionViewClass="android.widget.SearchView"/>
+        app:actionViewClass="androidx.appcompat.widget.SearchView"/>
 
     <item
-        android:id="@+id/favorite"
+        android:id="@+id/favorites"
         android:title="Favoritos"
         android:icon="@drawable/icon_favorite"
         app:showAsAction="always"/>
