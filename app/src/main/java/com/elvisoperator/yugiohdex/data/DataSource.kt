@@ -1,34 +1,38 @@
 package com.elvisoperator.yugiohdex.data
 
 import com.elvisoperator.yugiohdex.data.database.AppDatabase
+import com.elvisoperator.yugiohdex.data.database.DatabaseImpl
 import com.elvisoperator.yugiohdex.data.model.BasicCard
+import com.elvisoperator.yugiohdex.data.model.CardProvider
 import com.elvisoperator.yugiohdex.domain.CardApliClient
 import com.elvisoperator.yugiohdex.vo.Resource
 
-class DataSource (private val appDatabase: AppDatabase){
-
-
+class DataSource (){
 
    suspend fun getCardName(cardName : String) :Resource<CardModel>{
       return Resource.Success(CardApliClient.invoke().searchName(cardName))
    }
 
    suspend fun getAllSpellCardCoroutine() :Resource<CardModel>{
-      return Resource.Success(CardApliClient.invoke().getAllSpellCardCoroutine())
+      return if(CardProvider.allCards.isNullOrEmpty()) {
+         Resource.Success(CardApliClient.invoke().getAllSpellCardCoroutine())
+      } else {
+         Resource.Success(CardModel(CardProvider.allCards.toMutableList()))
+      }
    }
 
 
    /*DAO*/
-    suspend fun insertCardIntoRoom(card : BasicCard){
-      appDatabase.cardDao().insert(card)
+   suspend fun insertCardIntoRoom(card : BasicCard){
+      DatabaseImpl.database.cardDao().insert(card)
    }
 
    suspend fun getCardFavorites(): Resource<MutableList<BasicCard>> {
-      return Resource.Success(appDatabase.cardDao().getFavoritesCard())
+      return Resource.Success(DatabaseImpl.database.cardDao().getFavoritesCard())
    }
 
    suspend fun deleteCardIntoRoom(card: BasicCard) {
-        appDatabase.cardDao().deleteCard(card)
+        DatabaseImpl.database.cardDao().deleteCard(card)
     }
 
 

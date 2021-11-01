@@ -7,11 +7,11 @@ import com.elvisoperator.yugiohdex.data.model.BasicCard
 interface CardDao {
 
     @Query("SELECT * FROM cards")
-    suspend fun getFavoritesCard(): MutableList<BasicCard>
+    fun getFavoritesCard(): MutableList<BasicCard>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(vararg cards: BasicCard)
+    fun insert(vararg cards: BasicCard)
 
     @Delete
-    suspend fun deleteCard(card: BasicCard)
+    fun deleteCard(card: BasicCard)
 }

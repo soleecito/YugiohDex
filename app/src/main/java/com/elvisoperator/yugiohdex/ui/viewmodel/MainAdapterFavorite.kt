@@ -17,13 +17,14 @@ import com.elvisoperator.yugiohdex.databinding.CardsRowFavoriteBinding
 
 import com.squareup.picasso.Picasso
 
-class MainAdapterFavorite(private val context: Context, private var cardList: List<BasicCard>,
-                             val itemClickLister: OnCardClickListener
-) : RecyclerView.Adapter<BaseViewHolderFavorite<*>>(){
+class MainAdapterFavorite(
+    private val context: Context, private var cardList: List<BasicCard>,
+    val itemClickLister: OnCardClickListener
+) : RecyclerView.Adapter<BaseViewHolderFavorite<*>>() {
 
 
-    interface OnCardClickListener{
-        fun onCardClick(data: BasicCard , position: Int)
+    interface OnCardClickListener {
+        fun onCardClick(data: BasicCard, position: Int)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolderFavorite<*> {
@@ -33,25 +34,19 @@ class MainAdapterFavorite(private val context: Context, private var cardList: Li
 
 
     override fun getItemCount(): Int {
-       return cardList.size
+        return cardList.size
     }
 
-
-    inner class MainViewHolderFavorite (itemView : View):BaseViewHolderFavorite<BasicCard>(itemView){
-        override fun bind(item: BasicCard , position: Int) {
-
-            val binding  = CardsRowFavoriteBinding.bind(itemView)
-
-               binding.tvName.text = item.name
+    inner class MainViewHolderFavorite(itemView: View) :
+        BaseViewHolderFavorite<BasicCard>(itemView) {
+        override fun bind(item: BasicCard, position: Int) {
+            val binding = CardsRowFavoriteBinding.bind(itemView)
+            binding.tvName.text = item.name
             binding.tvType.text = item.type
-           binding.level.text = item.level.toString()
-
-            /*se cambia a basicCard para que sea visible*/
-
-               Picasso.get().load( item.image.image_url).into(binding.ivCards)
-
-
-            itemView.setOnClickListener { itemClickLister.onCardClick(item, position ) }
+            binding.level.text = item.level.toString()
+            Picasso.get().load(item.image.image_url).into(binding.ivCards)
+            Log.println(Log.INFO, "Valor Imagen", item.image.image_url)
+            itemView.setOnClickListener { itemClickLister.onCardClick(item, position) }
         }
 
     }
@@ -60,8 +55,9 @@ class MainAdapterFavorite(private val context: Context, private var cardList: Li
 
 
     override fun onBindViewHolder(holder: BaseViewHolderFavorite<*>, position: Int) {
-        when(holder){
-            is MainViewHolderFavorite ->holder.bind(cardList[position],position)
+
+        when (holder) {
+            is MainViewHolderFavorite -> holder.bind(cardList[position], position)
         }
     }
 }
