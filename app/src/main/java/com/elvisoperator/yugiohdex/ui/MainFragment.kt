@@ -1,6 +1,7 @@
 package com.elvisoperator.yugiohdex.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -19,6 +20,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.elvisoperator.yugiohdex.R
 import com.elvisoperator.yugiohdex.data.Data
 import com.elvisoperator.yugiohdex.data.DataSource
+import com.elvisoperator.yugiohdex.data.model.BasicCard
+import com.elvisoperator.yugiohdex.data.model.BasicCardImage
 import com.elvisoperator.yugiohdex.databinding.FragmentMainBinding
 import com.elvisoperator.yugiohdex.domain.RepositoryImplement
 import com.elvisoperator.yugiohdex.ui.viewmodel.MainAdapter
@@ -43,7 +46,6 @@ class MainFragment : Fragment(), MainAdapter.OnCardClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -116,8 +118,25 @@ class MainFragment : Fragment(), MainAdapter.OnCardClickListener {
     override fun onCardClick(data: Data) {
 
         val bundle = Bundle()
-        bundle.putParcelable("card", data)
+        val basicCard = dataToBasicCard(data)
+        bundle.putParcelable("card", basicCard)
         findNavController().navigate(R.id.action_mainFragment_to_detailCardFragment, bundle)
+    }
+
+    private fun dataToBasicCard(data: Data): BasicCard {
+        val image = BasicCardImage(
+            id = data.card_images[0].id,
+            image_url = data.card_images[0].image_url,
+            image_url_small = data.card_images[0].image_url_small
+        )
+        return BasicCard(
+            id = data.id,
+            name = data.name,
+            type = data.type,
+            level = data.level,
+            desc = data.desc,
+            image = image
+        )
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -126,8 +145,10 @@ class MainFragment : Fragment(), MainAdapter.OnCardClickListener {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return NavigationUI.onNavDestinationSelected(item, requireView()
-            .findNavController()) || super.onOptionsItemSelected(item)
+        return NavigationUI.onNavDestinationSelected(
+            item, requireView()
+                .findNavController()
+        ) || super.onOptionsItemSelected(item)
     }
 
 }

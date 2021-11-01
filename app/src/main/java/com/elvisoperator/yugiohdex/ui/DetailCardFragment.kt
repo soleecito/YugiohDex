@@ -31,7 +31,7 @@ class DetailCardFragment : Fragment() {
         VMFactory(RepositoryImplement(DataSource()))
     }
     private lateinit var detailBinding: FragmentDetailCardBinding
-    private lateinit var cardModel: Data
+    private lateinit var cardModel: BasicCard
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -54,7 +54,7 @@ class DetailCardFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         detailBinding = FragmentDetailCardBinding.bind(view)
 
-        Picasso.get().load(cardModel.card_images[0].image_url).into(detailBinding.imageCard)
+        Picasso.get().load(cardModel.image.image_url).into(detailBinding.imageCard)
         detailBinding.tvName.text = cardModel.name
         detailBinding.tvType.text = cardModel.type
         detailBinding.tvDesc.text = cardModel.desc
@@ -70,22 +70,11 @@ class DetailCardFragment : Fragment() {
     private fun saveOrDeletedListener() {
         detailBinding.btnSaveOrDeleteCard.setOnClickListener {
 
-            val image = BasicCardImage(
-                id = cardModel.card_images[0].id,
-                image_url = cardModel.card_images[0].image_url,
-                image_url_small = cardModel.card_images[0].image_url_small
-            )
             Log.d("Text", "$id")
-            Log.d("Text", image.image_url)
+            Log.d("Text", cardModel.image.image_url)
 
             viewModel.saveCard(
-                BasicCard(
-                    id = cardModel.id,
-                    name = cardModel.name,
-                    type = cardModel.type,
-                    level = cardModel.level,
-                    image = image
-                )
+                cardModel
             )
             Toast.makeText(requireContext(), "letter was saved to favorites", Toast.LENGTH_LONG)
                 .show()

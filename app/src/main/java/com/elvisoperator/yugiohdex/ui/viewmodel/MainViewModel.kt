@@ -63,7 +63,6 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
     fun deleteCard(card: BasicCard) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.deleteCard(card)
-            
         }
     }
 

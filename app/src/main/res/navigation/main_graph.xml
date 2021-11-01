@@ -34,5 +34,13 @@
         android:id="@+id/favoritesFragment"
         android:name="com.elvisoperator.yugiohdex.ui.favorites.FavoritesFragment"
         android:label="fragment_favorites"
-        tools:layout="@layout/fragment_favorites" />
+        tools:layout="@layout/fragment_favorites" >
+        <action
+            android:id="@+id/action_favoriteFragment_to_detailCardFragment"
+            app:destination="@id/detailCardFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
 </navigation>
