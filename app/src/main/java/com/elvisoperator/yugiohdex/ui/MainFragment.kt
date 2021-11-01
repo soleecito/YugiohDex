@@ -1,17 +1,21 @@
 package com.elvisoperator.yugiohdex.ui
 
 import android.os.Bundle
+import android.view.*
+import android.widget.EditText
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.GridLayout
+import android.widget.TextView
 
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContextCompat
+import androidx.core.view.MenuItemCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 
@@ -45,7 +49,7 @@ class MainFragment : Fragment(), MainAdapter.OnCardClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+        setHasOptionsMenu(true)
         return inflater.inflate(R.layout.fragment_main, container, false)
     }
 
@@ -55,12 +59,8 @@ class MainFragment : Fragment(), MainAdapter.OnCardClickListener {
         mainBinding = FragmentMainBinding.bind(view)
 
         setupRecyclerView()
-        setupSearchView()
         setupObservers()
 
-        mainBinding.buttonFavorite.setOnClickListener {
-            findNavController().navigate(R.id.action_mainFragment_to_favoritesFragment)
-        }
     }
 
     private fun setupObservers() {
@@ -92,8 +92,12 @@ class MainFragment : Fragment(), MainAdapter.OnCardClickListener {
     }
 
 
-    private fun setupSearchView(){
-        mainBinding.searchCards.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+    private fun setupSearchView(menu: Menu){
+
+        val searchItem: MenuItem = menu.findItem(R.id.search)
+        val searchView = MenuItemCompat.getActionView(searchItem) as SearchView
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 viewModel.setCard(query!!)
                 return false
@@ -104,6 +108,7 @@ class MainFragment : Fragment(), MainAdapter.OnCardClickListener {
             }
 
         })
+
     }
 
     override fun onCardClick(data: Data) {
@@ -114,4 +119,18 @@ class MainFragment : Fragment(), MainAdapter.OnCardClickListener {
         //aca en vez de llamar por el fragment llamo por la accion, dando asi animacion
         findNavController().navigate(R.id.action_mainFragment_to_detailCardFragment, bundle)
     }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.options_menu, menu)
+        setupSearchView(menu)
+
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        return NavigationUI.onNavDestinationSelected(item, requireView()
+            .findNavController()) || super.onOptionsItemSelected(item)
+    }
+
 }
