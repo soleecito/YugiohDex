@@ -47,16 +47,6 @@
         app:layout_constraintTop_toTopOf="parent"
         >
 
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/searchCards"
-            android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/_2sdp"
-            android:layout_height="@dimen/_20sdp"
-            android:layout_marginStart="@dimen/_10sdp"
-
-            android:layout_marginEnd="@dimen/_10sdp" />
-
-
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.button.MaterialButton
