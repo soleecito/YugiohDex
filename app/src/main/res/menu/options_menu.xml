@@ -12,7 +12,7 @@
         app:actionViewClass="androidx.appcompat.widget.SearchView"/>
 
     <item
-        android:id="@+id/favorite"
+        android:id="@+id/favorites"
         android:title="Favoritos"
         android:icon="@drawable/icon_favorite"
         app:showAsAction="always"/>

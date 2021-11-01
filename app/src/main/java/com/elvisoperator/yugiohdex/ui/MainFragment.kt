@@ -61,9 +61,6 @@ class MainFragment : Fragment(), MainAdapter.OnCardClickListener {
         setupRecyclerView()
         setupObservers()
 
-        mainBinding.buttonFavorite.setOnClickListener {
-            findNavController().navigate(R.id.action_mainFragment_to_favoritesFragment)
-        }
     }
 
     private fun setupObservers() {
