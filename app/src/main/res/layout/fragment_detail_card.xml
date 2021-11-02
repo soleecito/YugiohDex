@@ -22,6 +22,23 @@
             tools:context=".ui.DetailCardFragment">
 
 
+            <ScrollView
+                android:id="@+id/scrollCard"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="13dp"
+                android:scrollbarStyle="insideInset"
+                app:layout_constraintBottom_toTopOf="@+id/imageCard"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </ScrollView>
+
             <com.github.chrisbanes.photoview.PhotoView
                 android:id="@+id/imageCard"
                 android:layout_width="@dimen/_220sdp"
@@ -36,11 +53,11 @@
                 android:id="@+id/tvName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_30sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:text="Nombre"
                 android:textSize="@dimen/_25ssp"
                 android:textStyle="bold"
-                android:layout_marginStart="@dimen/_30sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/imageCard" />
 
@@ -59,13 +76,14 @@
                 android:id="@+id/btn_save_or_delete_card"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_10sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/imageCard"
-                app:layout_constraintStart_toEndOf="@id/tvName"
-                app:layout_constraintHorizontal_bias="0.9"
-                android:src="@drawable/ic_favorite"
+                android:layout_marginStart="83dp"
+                android:layout_marginEnd="38dp"
                 android:backgroundTint="@color/favorite_background"
+                android:src="@drawable/ic_favorite"
+                app:layout_constraintBottom_toBottomOf="@+id/tvType"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvType"
+                app:layout_constraintTop_toBottomOf="@+id/imageCard"
                 tools:ignore="ContentDescription" />
 
 
