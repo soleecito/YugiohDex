@@ -105,8 +105,9 @@ class MainFragment : Fragment(), MainAdapter.OnCardClickListener {
 
     private fun setupSearchView(menu: Menu){
 
+
         val searchItem: MenuItem = menu.findItem(R.id.search)
-        val searchView = MenuItemCompat.getActionView(searchItem) as SearchView
+        val searchView = searchItem.actionView as SearchView
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
 
