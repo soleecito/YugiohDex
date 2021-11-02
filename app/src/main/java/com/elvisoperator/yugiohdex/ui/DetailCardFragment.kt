@@ -1,4 +1,5 @@
 package com.elvisoperator.yugiohdex.ui
+
 import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
@@ -21,16 +22,19 @@ import com.elvisoperator.yugiohdex.ui.viewmodel.VMFactory
 import com.squareup.picasso.Picasso
 
 
+//Requerir que el buendle sea del tipo BasicCard
+
 class DetailCardFragment : Fragment() {
 
 
-    private val viewModel by activityViewModels<MainViewModel>{
-        VMFactory(RepositoryImplement(DataSource( AppDatabase.getDatabase(requireActivity().applicationContext) )))
+    private val viewModel by activityViewModels<MainViewModel> {
+        VMFactory(RepositoryImplement(DataSource()))
     }
     private lateinit var detailBinding: FragmentDetailCardBinding
-    private lateinit var cardModel : Data
+    private lateinit var cardModel: BasicCard
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         requireArguments().let {
             cardModel = it.getParcelable("card")!!
             Log.d(TAG, "OnCreate")
@@ -50,36 +54,30 @@ class DetailCardFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         detailBinding = FragmentDetailCardBinding.bind(view)
 
-
-        cardModel.card_images.forEach {
-            Picasso.get().load(it.image_url).into(detailBinding.imageCard)
-        }
-        detailBinding.tvName.text  = cardModel.name
+        Picasso.get().load(cardModel.image.image_url).into(detailBinding.imageCard)
+        detailBinding.tvName.text = cardModel.name
         detailBinding.tvType.text = cardModel.type
         detailBinding.tvDesc.text = cardModel.desc
 
+        listeners()
+
+    }
+
+    private fun listeners() {
+        saveOrDeletedListener()
+    }
+
+    private fun saveOrDeletedListener() {
         detailBinding.btnSaveOrDeleteCard.setOnClickListener {
 
-            var  id  = 0
-            var image  = ""
-            var imageSmall  = ""
+            Log.d("Text", "$id")
+            Log.d("Text", cardModel.image.image_url)
 
-            cardModel.card_images.forEach { result ->
-                id = result.id
-                image = result.image_url
-                imageSmall = result.image_url_small
-            }
-
-            Log.d("Text" , "${id}")
-            Log.d("Text" , "${image}")
-
-
-            val imagen  = BasicCardImage(id,image,imageSmall)
-
-            /*a revisar */
-            viewModel.saveCard(BasicCard(cardModel.id, cardModel.name , cardModel.type , cardModel.level , imagen  ) )
-            Toast.makeText(requireContext(), "letter was saved to favorites", Toast.LENGTH_LONG).show()
-
+            viewModel.saveCard(
+                cardModel
+            )
+            Toast.makeText(requireContext(), "letter was saved to favorites", Toast.LENGTH_LONG)
+                .show()
         }
     }
 

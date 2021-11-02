@@ -14,7 +14,6 @@ class DatabaseImpl {
                 AppDatabase::class.java,
                 "favorite_database"
             )
-                .allowMainThreadQueries()
                 .build()
         }
 

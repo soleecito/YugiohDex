@@ -1,9 +1,13 @@
 package com.elvisoperator.yugiohdex.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.EditText
 import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.GridLayout
 import android.widget.TextView
 
@@ -17,12 +21,12 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.elvisoperator.yugiohdex.R
 import com.elvisoperator.yugiohdex.data.Data
 import com.elvisoperator.yugiohdex.data.DataSource
-import com.elvisoperator.yugiohdex.data.database.AppDatabase
+import com.elvisoperator.yugiohdex.data.model.BasicCard
+import com.elvisoperator.yugiohdex.data.model.BasicCardImage
 import com.elvisoperator.yugiohdex.databinding.FragmentMainBinding
 import com.elvisoperator.yugiohdex.domain.RepositoryImplement
 import com.elvisoperator.yugiohdex.ui.viewmodel.MainAdapter
@@ -33,8 +37,13 @@ import com.elvisoperator.yugiohdex.vo.Resource
 
 class MainFragment : Fragment(), MainAdapter.OnCardClickListener {
 
-    private val viewModel by viewModels<MainViewModel> { VMFactory(RepositoryImplement(DataSource(
-        AppDatabase.getDatabase(requireActivity().applicationContext) ))) }
+    private val viewModel by viewModels<MainViewModel> {
+        VMFactory(
+            RepositoryImplement(
+                DataSource()
+            )
+        )
+    }
     private lateinit var adapter: MainAdapter
     private lateinit var mainBinding: FragmentMainBinding
     private lateinit var mainAdapter: MainAdapter
@@ -42,7 +51,6 @@ class MainFragment : Fragment(), MainAdapter.OnCardClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -58,6 +66,7 @@ class MainFragment : Fragment(), MainAdapter.OnCardClickListener {
         super.onViewCreated(view, savedInstanceState)
         mainBinding = FragmentMainBinding.bind(view)
 
+        viewModel.initDatabase(requireContext())
         setupRecyclerView()
         setupObservers()
 
@@ -71,7 +80,8 @@ class MainFragment : Fragment(), MainAdapter.OnCardClickListener {
                 }
                 is Resource.Success -> {
                     mainBinding.progressBar.visibility = View.GONE
-                    mainBinding.recyclerViewCard.adapter = MainAdapter(requireContext(), result.data, this)
+                    mainBinding.recyclerViewCard.adapter =
+                        MainAdapter(requireContext(), result.data, this)
                 }
                 is Resource.Failure -> {
                     mainBinding.progressBar.visibility = View.GONE
@@ -87,7 +97,8 @@ class MainFragment : Fragment(), MainAdapter.OnCardClickListener {
 
     private fun setupRecyclerView() {
         val columns = 2
-        mainBinding.recyclerViewCard.layoutManager = GridLayoutManager(requireContext(),columns )  //LinearLayoutManager(requireContext())
+        mainBinding.recyclerViewCard.layoutManager =
+            GridLayoutManager(requireContext(), columns)  //LinearLayoutManager(requireContext())
         mainBinding.recyclerViewCard.setHasFixedSize(true)
     }
 
@@ -98,6 +109,7 @@ class MainFragment : Fragment(), MainAdapter.OnCardClickListener {
         val searchView = MenuItemCompat.getActionView(searchItem) as SearchView
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+
             override fun onQueryTextSubmit(query: String?): Boolean {
                 viewModel.setCard(query!!)
                 return false
@@ -114,10 +126,25 @@ class MainFragment : Fragment(), MainAdapter.OnCardClickListener {
     override fun onCardClick(data: Data) {
 
         val bundle = Bundle()
-        bundle.putParcelable("card", data)
-
-        //aca en vez de llamar por el fragment llamo por la accion, dando asi animacion
+        val basicCard = dataToBasicCard(data)
+        bundle.putParcelable("card", basicCard)
         findNavController().navigate(R.id.action_mainFragment_to_detailCardFragment, bundle)
+    }
+
+    private fun dataToBasicCard(data: Data): BasicCard {
+        val image = BasicCardImage(
+            id = data.card_images[0].id,
+            image_url = data.card_images[0].image_url,
+            image_url_small = data.card_images[0].image_url_small
+        )
+        return BasicCard(
+            id = data.id,
+            name = data.name,
+            type = data.type,
+            level = data.level,
+            desc = data.desc,
+            image = image
+        )
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -131,6 +158,7 @@ class MainFragment : Fragment(), MainAdapter.OnCardClickListener {
 
         return NavigationUI.onNavDestinationSelected(item, requireView()
             .findNavController()) || super.onOptionsItemSelected(item)
+
     }
 
 }

@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
 
 
         drawerLayout = binding.drawerLayout
-        val navController = findNavController(R.id.nav_host_fragment)
+        navController = findNavController(R.id.nav_host_fragment)
         NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
         NavigationUI.setupWithNavController(binding.navView, navController)
 
