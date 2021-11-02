@@ -10,10 +10,11 @@
 
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
+
+
         android:layout_height="match_parent"
-
-
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -72,20 +73,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvName" />
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/btn_save_or_delete_card"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="83dp"
-                android:layout_marginEnd="38dp"
-                android:backgroundTint="@color/favorite_background"
-                android:src="@drawable/ic_favorite"
-                app:layout_constraintBottom_toBottomOf="@+id/tvType"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tvType"
-                app:layout_constraintTop_toBottomOf="@+id/imageCard"
-                tools:ignore="ContentDescription" />
-
 
             <TextView
                 android:id="@+id/tvDesc"
@@ -97,6 +84,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvType" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btn_save_or_delete_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/favorite_background"
+                android:src="@drawable/ic_favorite"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.501"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvDesc"
+                app:layout_constraintVertical_bias="1.0"
+                tools:ignore="ContentDescription" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
