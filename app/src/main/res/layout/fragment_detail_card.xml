@@ -53,6 +53,7 @@
                     android:layout_marginTop="@dimen/_16sdp"
                     android:padding="@dimen/_15sdp"
                     android:text="Nombre"
+                    android:gravity="center"
                     android:textSize="@dimen/_25ssp"
                     android:textStyle="bold" />
 
@@ -62,6 +63,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:text="Type"
+                    android:gravity="center"
                     android:textSize="@dimen/_20ssp" />
 
                 <TextView
