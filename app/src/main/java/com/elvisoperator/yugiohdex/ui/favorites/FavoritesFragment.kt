@@ -41,11 +41,6 @@ class FavoritesFragment : Fragment(), MainAdapterFavorite.OnCardClickListener {
         viewModel.loadFavorites()
     }
 
-    override fun onResume() {
-        super.onResume()
-        viewModel.loadFavorites()
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -59,7 +54,7 @@ class FavoritesFragment : Fragment(), MainAdapterFavorite.OnCardClickListener {
 
         setupRecyclerView()
         setupObservers()
-
+        viewModel.loadFavorites()
     }
 
 

@@ -65,7 +65,6 @@ class MainFragment : Fragment(), MainAdapter.OnCardClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mainBinding = FragmentMainBinding.bind(view)
-
         viewModel.initDatabase(requireContext())
         setupRecyclerView()
         setupObservers()

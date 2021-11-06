@@ -53,8 +53,8 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
     fun saveCard(card: BasicCard) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.insertCard(card)
+            loadFavorites()
         }
-        loadFavorites()
     }
 
     fun getCardFavorites() = liveData(Dispatchers.IO) {
@@ -76,6 +76,7 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
     fun deleteCard(card: BasicCard) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.deleteCard(card)
+            loadFavorites()
         }
     }
 
