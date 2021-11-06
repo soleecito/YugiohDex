@@ -9,12 +9,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import com.elvisoperator.yugiohdex.R
 import com.elvisoperator.yugiohdex.data.Data
 import com.elvisoperator.yugiohdex.data.DataSource
 import com.elvisoperator.yugiohdex.data.database.AppDatabase
 import com.elvisoperator.yugiohdex.data.model.BasicCard
 import com.elvisoperator.yugiohdex.data.model.BasicCardImage
+import com.elvisoperator.yugiohdex.data.model.BasicCardModel
 import com.elvisoperator.yugiohdex.databinding.FragmentDetailCardBinding
 import com.elvisoperator.yugiohdex.domain.RepositoryImplement
 import com.elvisoperator.yugiohdex.ui.viewmodel.MainViewModel
@@ -73,12 +75,29 @@ class DetailCardFragment : Fragment() {
             Log.d("Text", "$id")
             Log.d("Text", cardModel.image.image_url)
 
-            viewModel.saveCard(
-                cardModel
-            )
-            Toast.makeText(requireContext(), "letter was saved to favorites", Toast.LENGTH_LONG)
-                .show()
+            val favs = MainViewModel.copy.value ?: BasicCardModel(listOf<BasicCard>())
+            var exists = false
+            for (element in favs.list) {
+                if (element.id == cardModel.id) {
+                    exists = true
+                }
+            }
+            if (exists) {
+                deleteCard()
+            } else {
+                saveCard()
+            }
         }
+    }
+
+    private fun deleteCard() {
+        viewModel.deleteCard(cardModel)
+        Toast.makeText(requireContext(), "letter deleted to favorites", Toast.LENGTH_LONG).show()
+    }
+
+    private fun saveCard() {
+        viewModel.saveCard(cardModel)
+        Toast.makeText(requireContext(), "letter added to favorites", Toast.LENGTH_SHORT).show()
     }
 
 }

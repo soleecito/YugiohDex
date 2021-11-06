@@ -5,6 +5,7 @@ import androidx.lifecycle.*
 import com.elvisoperator.yugiohdex.data.database.AppDatabase
 import com.elvisoperator.yugiohdex.data.database.DatabaseImpl
 import com.elvisoperator.yugiohdex.data.model.BasicCard
+import com.elvisoperator.yugiohdex.data.model.BasicCardModel
 import com.elvisoperator.yugiohdex.domain.Repository
 import com.elvisoperator.yugiohdex.vo.Resource
 import kotlinx.coroutines.Dispatchers
@@ -15,6 +16,10 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
 
 
     private val cardData = MutableLiveData<String>()
+
+    companion object Favorites {
+        var copy = MutableLiveData<BasicCardModel>()
+    }
 
     fun setCard(cardName: String) {
         cardData.value = cardName
@@ -49,6 +54,7 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             repository.insertCard(card)
         }
+        loadFavorites()
     }
 
     fun getCardFavorites() = liveData(Dispatchers.IO) {
@@ -57,6 +63,13 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
             emit(repository.getCardListFavorites())
         } catch (e: Exception) {
             emit(Resource.Failure(e))
+        }
+    }
+
+    fun loadFavorites() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val list = repository.getCardModelFavorites()
+            copy.postValue(list)
         }
     }
 

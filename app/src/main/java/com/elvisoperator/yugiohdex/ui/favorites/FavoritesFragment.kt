@@ -14,12 +14,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.elvisoperator.yugiohdex.R
 import com.elvisoperator.yugiohdex.data.DataSource
 import com.elvisoperator.yugiohdex.data.model.BasicCard
+import com.elvisoperator.yugiohdex.data.model.BasicCardModel
 import com.elvisoperator.yugiohdex.databinding.FragmentFavoritesBinding
 import com.elvisoperator.yugiohdex.domain.RepositoryImplement
 import com.elvisoperator.yugiohdex.ui.viewmodel.MainAdapterFavorite
 import com.elvisoperator.yugiohdex.ui.viewmodel.MainViewModel
 import com.elvisoperator.yugiohdex.ui.viewmodel.VMFactory
 import com.elvisoperator.yugiohdex.vo.Resource
+import java.util.*
 
 class FavoritesFragment : Fragment(), MainAdapterFavorite.OnCardClickListener {
 
@@ -31,6 +33,17 @@ class FavoritesFragment : Fragment(), MainAdapterFavorite.OnCardClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val listObserver = Observer<BasicCardModel> { newList ->
+            favoriteBinding.rvFavorite.adapter = MainAdapterFavorite(requireContext(), newList.list, this)
+        }
+        MainViewModel.copy.observe(this, listObserver)
+        viewModel.loadFavorites()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.loadFavorites()
     }
 
     override fun onCreateView(
@@ -49,7 +62,15 @@ class FavoritesFragment : Fragment(), MainAdapterFavorite.OnCardClickListener {
 
     }
 
+
     private fun setupObservers() {
+        /*
+        viewModel.loadFavorites()
+        viewModel.favorites.observe(viewLifecycleOwner, Observer {
+            //it.list
+            favoriteBinding.rvFavorite.adapter = MainAdapterFavorite(requireContext(), it.list, this)
+        })
+
         viewModel.getCardFavorites().observe(viewLifecycleOwner, Observer { result ->
             when (result) {
                 is Resource.Loading -> {
@@ -66,6 +87,8 @@ class FavoritesFragment : Fragment(), MainAdapterFavorite.OnCardClickListener {
                 }
             }
         })
+
+         */
     }
 
     private fun setupRecyclerView() {
