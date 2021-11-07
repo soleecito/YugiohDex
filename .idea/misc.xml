@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Mauri/AndroidStudioProjects/YugiohDex/app/src/main/res/layout/fragment_detail_card.xml" value="0.15579710144927536" />
         <entry key="..\:/Users/OIC/Documents/GitHub/Nuevo/Nuevo/app/src/main/res/drawable-v24/ic_favorite.xml" value="0.2169230769230769" />
         <entry key="..\:/Users/OIC/Documents/GitHub/Nuevo/Nuevo/app/src/main/res/drawable/splash_background.xml" value="0.2169230769230769" />
         <entry key="..\:/Users/OIC/Documents/GitHub/Nuevo/Nuevo/app/src/main/res/layout/activity_main.xml" value="0.1" />
@@ -32,8 +33,12 @@
         <entry key="..\:/Users/OIC/Documents/GitHub/main/app/src/main/res/layout/nav_header.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/OIC/Documents/GitHub/main/app/src/main/res/menu/nav_menu.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Sole/AndroidStudioProjects/Yu-Gi-Oh/YugiohDex/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/Sole/AndroidStudioProjects/Yu-Gi-Oh/YugiohDex/app/src/main/res/layout/activity_register.xml" value="0.25" />
+        <entry key="..\:/Users/Sole/AndroidStudioProjects/Yu-Gi-Oh/YugiohDex/app/src/main/res/layout/activity_splash.xml" value="0.19972826086956522" />
+        <entry key="..\:/Users/Sole/AndroidStudioProjects/Yu-Gi-Oh/YugiohDex/app/src/main/res/layout/fragment_detail_card.xml" value="0.16893115942028986" />
         <entry key="..\:/Users/Sole/AndroidStudioProjects/Yu-Gi-Oh/YugiohDex/app/src/main/res/layout/fragment_favorites.xml" value="0.18342391304347827" />
         <entry key="..\:/Users/Sole/AndroidStudioProjects/Yu-Gi-Oh/YugiohDex/app/src/main/res/layout/fragment_main.xml" value="0.13533834586466165" />
+        <entry key="..\:/Users/Sole/AndroidStudioProjects/Yu-Gi-Oh/YugiohDex/app/src/main/res/layout/nav_header.xml" value="0.67" />
         <entry key="..\:/Users/Sole/AndroidStudioProjects/Yu-Gi-Oh/YugiohDex/app/src/main/res/menu/nav_menu.xml" value="0.22" />
         <entry key="..\:/Users/Sole/AndroidStudioProjects/Yu-Gi-Oh/YugiohDex/app/src/main/res/menu/options_menu.xml" value="0.18" />
         <entry key="..\:/Users/Sole/AndroidStudioProjects/Yu-Gi-Oh/YugiohDex/app/src/main/res/menu/toolbar.xml" value="0.20416666666666666" />
