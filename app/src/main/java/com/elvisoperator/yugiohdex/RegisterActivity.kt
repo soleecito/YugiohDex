@@ -3,6 +3,7 @@ package com.elvisoperator.yugiohdex
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.elvisoperator.yugiohdex.UserApplication.Companion.prefs
 import com.elvisoperator.yugiohdex.databinding.ActivityMainBinding
 import com.elvisoperator.yugiohdex.databinding.ActivityRegisterBinding
@@ -35,11 +36,13 @@ class RegisterActivity : AppCompatActivity() {
         val userName = binding.etName.text.toString()
         val deckName = binding.etDeck.text.toString()
 
-        if(userName.isNotEmpty() && deckName.isNotEmpty() ){
+        if (userName.isEmpty() || deckName.isEmpty()){
+            Toast.makeText(this, "Por favor llena los campos", Toast.LENGTH_SHORT).show()
+        }else{
             prefs.saveName(userName)
             prefs.saveDeckName(deckName)
+            goToMain()
         }
-        goToMain()
     }
 
     private fun goToMain() {
