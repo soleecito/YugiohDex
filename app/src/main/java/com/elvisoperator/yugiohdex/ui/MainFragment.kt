@@ -163,7 +163,6 @@ class MainFragment : Fragment(), MainAdapter.OnCardClickListener, MainAdapter.On
         } else {
             viewModel.saveCard(dataToBasicCard(data))
         }
-        mainAdapter.itemFavorite.setImageFavorites(data)
     }
 
     override fun setImageFavorites(data: Data): Boolean {
