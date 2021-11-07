@@ -35,7 +35,7 @@ import com.elvisoperator.yugiohdex.ui.viewmodel.VMFactory
 import com.elvisoperator.yugiohdex.vo.Resource
 
 
-class MainFragment : Fragment(), MainAdapter.OnCardClickListener {
+class MainFragment : Fragment(), MainAdapter.OnCardClickListener, MainAdapter.OnFavoritesClickListener, MainAdapter.ImageFavorites {
 
     private val viewModel by viewModels<MainViewModel> {
         VMFactory(
@@ -44,14 +44,9 @@ class MainFragment : Fragment(), MainAdapter.OnCardClickListener {
             )
         )
     }
-    private lateinit var adapter: MainAdapter
     private lateinit var mainBinding: FragmentMainBinding
     private lateinit var mainAdapter: MainAdapter
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,7 +60,6 @@ class MainFragment : Fragment(), MainAdapter.OnCardClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mainBinding = FragmentMainBinding.bind(view)
-
         viewModel.initDatabase(requireContext())
         setupRecyclerView()
         setupObservers()
@@ -80,8 +74,9 @@ class MainFragment : Fragment(), MainAdapter.OnCardClickListener {
                 }
                 is Resource.Success -> {
                     mainBinding.progressBar.visibility = View.GONE
-                    mainBinding.recyclerViewCard.adapter =
-                        MainAdapter(requireContext(), result.data, this)
+                    mainAdapter = MainAdapter(requireContext(), result.data, this, this, this)
+                    mainBinding.recyclerViewCard.adapter = mainAdapter
+
                 }
                 is Resource.Failure -> {
                     mainBinding.progressBar.visibility = View.GONE
@@ -160,6 +155,25 @@ class MainFragment : Fragment(), MainAdapter.OnCardClickListener {
         return NavigationUI.onNavDestinationSelected(item, requireView()
             .findNavController()) || super.onOptionsItemSelected(item)
 
+    }
+
+    override fun OnFavoritesClick(data: Data, actualValue: Boolean) {
+        if(actualValue){
+            viewModel.deleteCard(dataToBasicCard(data))
+        } else {
+            viewModel.saveCard(dataToBasicCard(data))
+        }
+    }
+
+    override fun setImageFavorites(data: Data): Boolean {
+        val favoritesList = MainViewModel.copy.value?.list ?: emptyList()
+        var exists = false
+        for(element in favoritesList){
+            if(element.id == data.id){
+                exists = true
+            }
+        }
+        return exists
     }
 
 }

@@ -29,12 +29,23 @@
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/buttonFavorite"
                 android:layout_width="@dimen/_25sdp"
-                android:layout_height="@dimen/_30sdp"
+                android:layout_height="@dimen/_25sdp"
                 android:background="#00ffffff"
                 android:scaleType="fitXY"
-                android:src="@drawable/ic_favorite"
+                android:src="@drawable/ic_favorite_border"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/buttonFavoriteAdded"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:background="#00ffffff"
+                android:scaleType="fitXY"
+                android:src="@drawable/icon_favorite"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:visibility="gone"/>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

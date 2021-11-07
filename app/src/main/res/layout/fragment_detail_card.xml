@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
 
 
     android:layout_width="match_parent"
@@ -35,25 +35,23 @@
 
             <LinearLayout
 
+                android:id="@+id/linearName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/linearName"
+                android:orientation="vertical"
                 android:padding="@dimen/_16sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/btn_save_or_delete_card"
-                app:layout_constraintHorizontal_bias="0.865"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:orientation="vertical">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageCard">
 
                 <TextView
                     android:id="@+id/tvName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_16sdp"
+                    android:gravity="center"
                     android:padding="@dimen/_15sdp"
                     android:text="Nombre"
-                    android:gravity="center"
                     android:textSize="@dimen/_25ssp"
                     android:textStyle="bold" />
 
@@ -62,8 +60,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:text="Type"
                     android:gravity="center"
+                    android:text="Type"
                     android:textSize="@dimen/_20ssp" />
 
                 <TextView
@@ -76,29 +74,6 @@
                     android:textSize="@dimen/_15ssp" />
 
             </LinearLayout>
-
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/btn_save_or_delete_card"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:backgroundTint="@color/favorite_background"
-                android:src="@drawable/ic_favorite"
-                app:layout_constraintBottom_toTopOf="@+id/linearName"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.8"
-                app:layout_constraintStart_toStartOf="parent"
-
-                app:layout_constraintTop_toTopOf="@+id/guideline2"
-                tools:ignore="ContentDescription" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_begin="349dp" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

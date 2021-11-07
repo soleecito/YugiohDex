@@ -3,6 +3,7 @@ package com.elvisoperator.yugiohdex.domain
 import com.elvisoperator.yugiohdex.data.CardModel
 import com.elvisoperator.yugiohdex.data.DataSource
 import com.elvisoperator.yugiohdex.data.model.BasicCard
+import com.elvisoperator.yugiohdex.data.model.BasicCardModel
 import com.elvisoperator.yugiohdex.vo.Resource
 
 class RepositoryImplement(private val dataSource: DataSource): Repository {
@@ -24,6 +25,10 @@ class RepositoryImplement(private val dataSource: DataSource): Repository {
 
     override suspend fun deleteCard(card: BasicCard) {
         dataSource.deleteCardIntoRoom(card)
+    }
+
+    override suspend fun getCardModelFavorites(): BasicCardModel {
+        return dataSource.getBasicCardModelFavorites()
     }
 
 

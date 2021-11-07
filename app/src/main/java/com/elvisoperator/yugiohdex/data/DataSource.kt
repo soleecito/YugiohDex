@@ -3,6 +3,7 @@ package com.elvisoperator.yugiohdex.data
 import com.elvisoperator.yugiohdex.data.database.AppDatabase
 import com.elvisoperator.yugiohdex.data.database.DatabaseImpl
 import com.elvisoperator.yugiohdex.data.model.BasicCard
+import com.elvisoperator.yugiohdex.data.model.BasicCardModel
 import com.elvisoperator.yugiohdex.data.model.CardProvider
 import com.elvisoperator.yugiohdex.domain.CardApliClient
 import com.elvisoperator.yugiohdex.vo.Resource
@@ -34,6 +35,11 @@ class DataSource (){
    suspend fun deleteCardIntoRoom(card: BasicCard) {
         DatabaseImpl.database.cardDao().deleteCard(card)
     }
+
+   fun getBasicCardModelFavorites(): BasicCardModel {
+      val favorites = DatabaseImpl.database.cardDao().getFavoritesCard()
+      return BasicCardModel(favorites)
+   }
 
 
 }

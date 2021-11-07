@@ -14,14 +14,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.elvisoperator.yugiohdex.R
 import com.elvisoperator.yugiohdex.data.DataSource
 import com.elvisoperator.yugiohdex.data.model.BasicCard
+import com.elvisoperator.yugiohdex.data.model.BasicCardModel
 import com.elvisoperator.yugiohdex.databinding.FragmentFavoritesBinding
 import com.elvisoperator.yugiohdex.domain.RepositoryImplement
 import com.elvisoperator.yugiohdex.ui.viewmodel.MainAdapterFavorite
 import com.elvisoperator.yugiohdex.ui.viewmodel.MainViewModel
 import com.elvisoperator.yugiohdex.ui.viewmodel.VMFactory
 import com.elvisoperator.yugiohdex.vo.Resource
+import java.util.*
 
-class FavoritesFragment : Fragment(), MainAdapterFavorite.OnCardClickListener {
+class FavoritesFragment : Fragment(), MainAdapterFavorite.OnCardClickListener, MainAdapterFavorite.OnDeleteItem {
 
     private val viewModel by activityViewModels<MainViewModel> {
         VMFactory(RepositoryImplement(DataSource()))
@@ -31,6 +33,12 @@ class FavoritesFragment : Fragment(), MainAdapterFavorite.OnCardClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val listObserver = Observer<BasicCardModel> { newList ->
+            favoriteBinding.rvFavorite.adapter = MainAdapterFavorite(requireContext(), newList.list, this, this)
+        }
+        MainViewModel.copy.observe(this, listObserver)
+        viewModel.loadFavorites()
     }
 
     override fun onCreateView(
@@ -45,27 +53,7 @@ class FavoritesFragment : Fragment(), MainAdapterFavorite.OnCardClickListener {
         favoriteBinding = FragmentFavoritesBinding.bind(view)
 
         setupRecyclerView()
-        setupObservers()
-
-    }
-
-    private fun setupObservers() {
-        viewModel.getCardFavorites().observe(viewLifecycleOwner, Observer { result ->
-            when (result) {
-                is Resource.Loading -> {
-                }
-                is Resource.Success -> {
-                    val list = result.data//.map { card ->
-                      //  BasicCard(card.id, card.name, card.type, card.level, card.image, card.desc, true)
-                  //  }
-
-                    favoriteBinding.rvFavorite.adapter =
-                        MainAdapterFavorite(requireContext(), list, this)
-                }
-                is Resource.Failure -> {
-                }
-            }
-        })
+        viewModel.loadFavorites()
     }
 
     private fun setupRecyclerView() {
@@ -87,15 +75,10 @@ class FavoritesFragment : Fragment(), MainAdapterFavorite.OnCardClickListener {
         val bundle = Bundle()
         bundle.putParcelable("card", data)
         findNavController().navigate(R.id.action_favoriteFragment_to_detailCardFragment, bundle)
-    /*
-        viewModel.deleteCard(data)
-        favoriteBinding.rvFavorite.adapter?.notifyItemChanged(position)
-        favoriteBinding.rvFavorite.adapter?.notifyItemRangeRemoved(
-            position,
-            favoriteBinding.rvFavorite.adapter?.itemCount!!
-        )
+    }
 
-         */
+    override fun onCloseClick(data: BasicCard) {
+        viewModel.deleteCard(data)
     }
 
 }
