@@ -89,10 +89,10 @@ class DetailCardFragment : Fragment() {
         detailBinding.tvType.text = cardModel.type
         detailBinding.tvDesc.text = cardModel.desc
 
-        listeners()
+        //listeners()
 
     }
-
+/*
     private fun listeners() {
         saveOrDeletedListener()
     }
@@ -112,6 +112,7 @@ class DetailCardFragment : Fragment() {
             }
         }
     }
+ */
 
     private fun findIfExists(favs: BasicCardModel): Boolean {
         var exists = false

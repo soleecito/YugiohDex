@@ -19,12 +19,17 @@ import com.squareup.picasso.Picasso
 
 class MainAdapterFavorite(
     private val context: Context, private var cardList: List<BasicCard>,
-    val itemClickLister: OnCardClickListener
+    val itemClickLister: OnCardClickListener,
+    val itemClose: OnDeleteItem
 ) : RecyclerView.Adapter<BaseViewHolderFavorite<*>>() {
 
 
     interface OnCardClickListener {
         fun onCardClick(data: BasicCard, position: Int)
+    }
+
+    interface OnDeleteItem {
+        fun onCloseClick(data: BasicCard)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolderFavorite<*> {
@@ -47,6 +52,7 @@ class MainAdapterFavorite(
             Picasso.get().load(item.image.image_url).into(binding.ivCards)
             Log.println(Log.INFO, "Valor Imagen", item.image.image_url)
             itemView.setOnClickListener { itemClickLister.onCardClick(item, position) }
+            binding.closeFavorite.setOnClickListener{ itemClose.onCloseClick(item) }
         }
 
     }

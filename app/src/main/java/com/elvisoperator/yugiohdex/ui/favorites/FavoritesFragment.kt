@@ -23,7 +23,7 @@ import com.elvisoperator.yugiohdex.ui.viewmodel.VMFactory
 import com.elvisoperator.yugiohdex.vo.Resource
 import java.util.*
 
-class FavoritesFragment : Fragment(), MainAdapterFavorite.OnCardClickListener {
+class FavoritesFragment : Fragment(), MainAdapterFavorite.OnCardClickListener, MainAdapterFavorite.OnDeleteItem {
 
     private val viewModel by activityViewModels<MainViewModel> {
         VMFactory(RepositoryImplement(DataSource()))
@@ -35,7 +35,7 @@ class FavoritesFragment : Fragment(), MainAdapterFavorite.OnCardClickListener {
         super.onCreate(savedInstanceState)
 
         val listObserver = Observer<BasicCardModel> { newList ->
-            favoriteBinding.rvFavorite.adapter = MainAdapterFavorite(requireContext(), newList.list, this)
+            favoriteBinding.rvFavorite.adapter = MainAdapterFavorite(requireContext(), newList.list, this, this)
         }
         MainViewModel.copy.observe(this, listObserver)
         viewModel.loadFavorites()
@@ -75,6 +75,10 @@ class FavoritesFragment : Fragment(), MainAdapterFavorite.OnCardClickListener {
         val bundle = Bundle()
         bundle.putParcelable("card", data)
         findNavController().navigate(R.id.action_favoriteFragment_to_detailCardFragment, bundle)
+    }
+
+    override fun onCloseClick(data: BasicCard) {
+        viewModel.deleteCard(data)
     }
 
 }
