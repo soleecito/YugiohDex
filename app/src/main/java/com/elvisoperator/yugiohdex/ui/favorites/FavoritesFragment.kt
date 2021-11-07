@@ -53,37 +53,7 @@ class FavoritesFragment : Fragment(), MainAdapterFavorite.OnCardClickListener {
         favoriteBinding = FragmentFavoritesBinding.bind(view)
 
         setupRecyclerView()
-        setupObservers()
         viewModel.loadFavorites()
-    }
-
-
-    private fun setupObservers() {
-        /*
-        viewModel.loadFavorites()
-        viewModel.favorites.observe(viewLifecycleOwner, Observer {
-            //it.list
-            favoriteBinding.rvFavorite.adapter = MainAdapterFavorite(requireContext(), it.list, this)
-        })
-
-        viewModel.getCardFavorites().observe(viewLifecycleOwner, Observer { result ->
-            when (result) {
-                is Resource.Loading -> {
-                }
-                is Resource.Success -> {
-                    val list = result.data//.map { card ->
-                      //  BasicCard(card.id, card.name, card.type, card.level, card.image, card.desc, true)
-                  //  }
-
-                    favoriteBinding.rvFavorite.adapter =
-                        MainAdapterFavorite(requireContext(), list, this)
-                }
-                is Resource.Failure -> {
-                }
-            }
-        })
-
-         */
     }
 
     private fun setupRecyclerView() {
@@ -105,15 +75,6 @@ class FavoritesFragment : Fragment(), MainAdapterFavorite.OnCardClickListener {
         val bundle = Bundle()
         bundle.putParcelable("card", data)
         findNavController().navigate(R.id.action_favoriteFragment_to_detailCardFragment, bundle)
-    /*
-        viewModel.deleteCard(data)
-        favoriteBinding.rvFavorite.adapter?.notifyItemChanged(position)
-        favoriteBinding.rvFavorite.adapter?.notifyItemRangeRemoved(
-            position,
-            favoriteBinding.rvFavorite.adapter?.itemCount!!
-        )
-
-         */
     }
 
 }
