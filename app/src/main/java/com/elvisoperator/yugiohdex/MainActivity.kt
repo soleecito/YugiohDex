@@ -40,6 +40,7 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = this.findNavController(R.id.nav_host_fragment)
         binding.drawerLayout.user_name.text = prefs.getName()
+        binding.drawerLayout.name_deck.text = prefs.getDeckName()
         return NavigationUI.navigateUp(navController, drawerLayout)
     }
 

@@ -17,14 +17,12 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initUI()
-        checkUserValue()
-
+        checkUserValues()
     }
 
-    private fun checkUserValue() {
+    private fun checkUserValues() {
         if (prefs.getName().isNotEmpty()){
             goToMain()
-            finish()
         }
     }
 
@@ -33,13 +31,19 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun accessToMain() {
-        if(binding.etName.text.toString().isNotEmpty()){
-            prefs.saveName(binding.etName.text.toString())
-            goToMain()
+
+        val userName = binding.etName.text.toString()
+        val deckName = binding.etDeck.text.toString()
+
+        if(userName.isNotEmpty() && deckName.isNotEmpty() ){
+            prefs.saveName(userName)
+            prefs.saveDeckName(deckName)
         }
+        goToMain()
     }
 
     private fun goToMain() {
         startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 }
