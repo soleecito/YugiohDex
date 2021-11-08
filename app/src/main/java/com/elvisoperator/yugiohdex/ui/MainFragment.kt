@@ -92,7 +92,6 @@ class MainFragment : Fragment(), MainAdapter.OnCardClickListener, MainAdapter.On
     }
 
     private fun setupRecyclerView() {
-        val columns = 2
         mainBinding.recyclerViewCard.layoutManager =
                 AutoFitGridLayoutManager(requireContext())
         mainBinding.recyclerViewCard.setHasFixedSize(true)
