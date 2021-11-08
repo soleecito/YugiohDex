@@ -29,6 +29,7 @@ import com.elvisoperator.yugiohdex.data.model.BasicCard
 import com.elvisoperator.yugiohdex.data.model.BasicCardImage
 import com.elvisoperator.yugiohdex.databinding.FragmentMainBinding
 import com.elvisoperator.yugiohdex.domain.RepositoryImplement
+import com.elvisoperator.yugiohdex.ui.viewmodel.AutoFitGridLayoutManager
 import com.elvisoperator.yugiohdex.ui.viewmodel.MainAdapter
 import com.elvisoperator.yugiohdex.ui.viewmodel.MainViewModel
 import com.elvisoperator.yugiohdex.ui.viewmodel.VMFactory
@@ -93,7 +94,7 @@ class MainFragment : Fragment(), MainAdapter.OnCardClickListener, MainAdapter.On
     private fun setupRecyclerView() {
         val columns = 2
         mainBinding.recyclerViewCard.layoutManager =
-            GridLayoutManager(requireContext(), columns)  //LinearLayoutManager(requireContext())
+                AutoFitGridLayoutManager(requireContext())
         mainBinding.recyclerViewCard.setHasFixedSize(true)
     }
 
