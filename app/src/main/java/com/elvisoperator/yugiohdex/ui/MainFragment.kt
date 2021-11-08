@@ -34,6 +34,7 @@ import com.elvisoperator.yugiohdex.ui.viewmodel.MainAdapter
 import com.elvisoperator.yugiohdex.ui.viewmodel.MainViewModel
 import com.elvisoperator.yugiohdex.ui.viewmodel.VMFactory
 import com.elvisoperator.yugiohdex.vo.Resource
+import kotlinx.android.synthetic.main.fragment_main.*
 
 
 class MainFragment : Fragment(), MainAdapter.OnCardClickListener, MainAdapter.OnFavoritesClickListener, MainAdapter.ImageFavorites {
@@ -94,6 +95,8 @@ class MainFragment : Fragment(), MainAdapter.OnCardClickListener, MainAdapter.On
     private fun setupRecyclerView() {
         mainBinding.recyclerViewCard.layoutManager =
                 AutoFitGridLayoutManager(requireContext())
+
+
         mainBinding.recyclerViewCard.setHasFixedSize(true)
     }
 

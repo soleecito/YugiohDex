@@ -8,17 +8,17 @@ import kotlin.math.max
 class AutoFitGridLayoutManager(val context: Context) : GridLayoutManager(context, 1) {
 
     private var columnWidthChanged = true
-    private val columnWidth = 500
+    private val columnWidth = 200
 
 
 
     override fun onLayoutChildren(recycler: RecyclerView.Recycler, state: RecyclerView.State){
         if(columnWidthChanged && columnWidth>0){
             var totalSpace = 0
-            if(orientation == VERTICAL){
-                totalSpace = width - paddingStart - paddingEnd
+            totalSpace = if(orientation == VERTICAL){
+                width - paddingStart - paddingEnd
             }else {
-                totalSpace = height - paddingTop - paddingBottom
+                height - paddingTop - paddingBottom
             }
             val spanCount = max(1, totalSpace/columnWidth)
             setSpanCount(spanCount)
