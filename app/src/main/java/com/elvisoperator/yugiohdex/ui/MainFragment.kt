@@ -1,5 +1,6 @@
 package com.elvisoperator.yugiohdex.ui
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -90,24 +91,22 @@ class MainFragment : Fragment(), MainAdapter.OnCardClickListener, MainAdapter.On
                 }
             }
         })
+
+
     }
 
     private fun setupRecyclerView() {
         mainBinding.recyclerViewCard.layoutManager =
-                AutoFitGridLayoutManager(requireContext())
-
-
+            AutoFitGridLayoutManager(requireContext())
         mainBinding.recyclerViewCard.setHasFixedSize(true)
     }
 
 
-    private fun setupSearchView(menu: Menu){
-
-
+    private fun setupSearchView(menu: Menu) {
         val searchItem: MenuItem = menu.findItem(R.id.search)
         val searchView = searchItem.actionView as SearchView
 
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
             override fun onQueryTextSubmit(query: String?): Boolean {
                 viewModel.setCard(query!!)
@@ -150,18 +149,19 @@ class MainFragment : Fragment(), MainAdapter.OnCardClickListener, MainAdapter.On
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.options_menu, menu)
         setupSearchView(menu)
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        return NavigationUI.onNavDestinationSelected(item, requireView()
-            .findNavController()) || super.onOptionsItemSelected(item)
+        return NavigationUI.onNavDestinationSelected(
+            item, requireView()
+                .findNavController()
+        ) || super.onOptionsItemSelected(item)
 
     }
 
     override fun OnFavoritesClick(data: Data, actualValue: Boolean) {
-        if(actualValue){
+        if (actualValue) {
             viewModel.deleteCard(dataToBasicCard(data))
         } else {
             viewModel.saveCard(dataToBasicCard(data))
@@ -171,12 +171,16 @@ class MainFragment : Fragment(), MainAdapter.OnCardClickListener, MainAdapter.On
     override fun setImageFavorites(data: Data): Boolean {
         val favoritesList = MainViewModel.copy.value?.list ?: emptyList()
         var exists = false
-        for(element in favoritesList){
-            if(element.id == data.id){
+        for (element in favoritesList) {
+            if (element.id == data.id) {
                 exists = true
             }
         }
         return exists
     }
 
+
 }
+
+
+

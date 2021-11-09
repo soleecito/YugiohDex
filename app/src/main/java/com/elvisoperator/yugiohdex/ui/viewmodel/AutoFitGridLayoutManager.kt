@@ -4,27 +4,44 @@ import android.content.Context
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlin.math.max
+import kotlin.properties.Delegates
+import android.util.DisplayMetrics
+import android.view.Display
+import com.google.android.material.internal.ContextUtils.getActivity
+import android.util.TypedValue
 
-class AutoFitGridLayoutManager(val context: Context) : GridLayoutManager(context, 1) {
+
+
+
+
+class AutoFitGridLayoutManager(val context: Context ) : GridLayoutManager(context, 1) {
 
     private var columnWidthChanged = true
-    private val columnWidth = 200
+    private var columnWidth = 220
+    private var columns = 0
+    private val columnHeight = 300
 
 
 
     override fun onLayoutChildren(recycler: RecyclerView.Recycler, state: RecyclerView.State){
+
+
         if(columnWidthChanged && columnWidth>0){
             var totalSpace = 0
-            totalSpace = if(orientation == VERTICAL){
-                width - paddingStart - paddingEnd
+             if(orientation == VERTICAL){
+                 totalSpace =  width - paddingStart - paddingEnd
+
             }else {
-                height - paddingTop - paddingBottom
+                 totalSpace = height - paddingTop - paddingBottom
             }
-            val spanCount = max(1, totalSpace/columnWidth)
+
+            val spanCount = max(2, totalSpace/400)
             setSpanCount(spanCount)
-            columnWidthChanged = false
+            columnWidthChanged = true
         }
         super.onLayoutChildren(recycler, state)
+
+
     }
 
 }

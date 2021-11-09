@@ -26,8 +26,6 @@ import com.squareup.picasso.Picasso
 //Requerir que el buendle sea del tipo BasicCard
 
 class DetailCardFragment : Fragment() {
-
-
     private val viewModel by activityViewModels<MainViewModel> {
         VMFactory(RepositoryImplement(DataSource()))
     }

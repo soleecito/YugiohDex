@@ -1,5 +1,6 @@
 package com.elvisoperator.yugiohdex
 
+import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -14,6 +15,7 @@ import com.elvisoperator.yugiohdex.UserApplication.Companion.prefs
 import com.elvisoperator.yugiohdex.data.DataSource
 import com.elvisoperator.yugiohdex.databinding.ActivityMainBinding
 import com.elvisoperator.yugiohdex.domain.RepositoryImplement
+import com.elvisoperator.yugiohdex.ui.viewmodel.AutoFitGridLayoutManager
 import com.elvisoperator.yugiohdex.ui.viewmodel.MainViewModel
 import com.elvisoperator.yugiohdex.ui.viewmodel.VMFactory
 import kotlinx.android.synthetic.main.nav_header.view.*
@@ -43,7 +45,6 @@ class MainActivity : AppCompatActivity() {
         binding.drawerLayout.name_deck.text = prefs.getDeckName()
         return NavigationUI.navigateUp(navController, drawerLayout)
     }
-
 
 
 
