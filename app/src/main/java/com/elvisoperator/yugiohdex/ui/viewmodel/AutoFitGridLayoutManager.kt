@@ -8,7 +8,7 @@ import kotlin.math.max
 class AutoFitGridLayoutManager(val context: Context) : GridLayoutManager(context, 1) {
 
     private var columnWidthChanged = true
-    private val columnWidth = 200
+    private val columnWidth = 400
 
 
 
