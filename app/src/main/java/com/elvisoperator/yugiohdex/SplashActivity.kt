@@ -6,6 +6,7 @@ import android.os.Bundle
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        Thread.sleep(2000)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         startActivity(Intent(this, RegisterActivity::class.java))
