@@ -17,9 +17,12 @@ import android.util.TypedValue
 class AutoFitGridLayoutManager(val context: Context ) : GridLayoutManager(context, 1) {
 
     private var columnWidthChanged = true
-    private var columnWidth = 220
+
+
     private var columns = 0
     private val columnHeight = 300
+    private val columnWidth = 400
+
 
 
 
