@@ -109,11 +109,15 @@ class MainFragment : Fragment(), MainAdapter.OnCardClickListener, MainAdapter.On
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
             override fun onQueryTextSubmit(query: String?): Boolean {
-                viewModel.setCard(query!!)
+
                 return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
+                if(!newText.isNullOrEmpty()) {
+                    viewModel.setCard(newText!!)
+                } else
+                    setupObservers()
                 return false
             }
 

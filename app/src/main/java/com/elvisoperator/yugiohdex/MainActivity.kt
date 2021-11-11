@@ -18,6 +18,7 @@ import com.elvisoperator.yugiohdex.domain.RepositoryImplement
 import com.elvisoperator.yugiohdex.ui.viewmodel.AutoFitGridLayoutManager
 import com.elvisoperator.yugiohdex.ui.viewmodel.MainViewModel
 import com.elvisoperator.yugiohdex.ui.viewmodel.VMFactory
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.nav_header.view.*
 
 class MainActivity : AppCompatActivity() {
@@ -37,6 +38,23 @@ class MainActivity : AppCompatActivity() {
         NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
         NavigationUI.setupWithNavController(binding.navView, navController)
 
+        binding.navView.setNavigationItemSelectedListener { item ->
+            when(item.itemId) {
+                R.id.homeFragment -> {
+
+                }
+                R.id.searchFragment -> {
+
+                }
+                R.id.favoriteCardsFragment -> {
+
+                }
+                R.id.profileFragment -> {
+
+                }
+            }
+            return@setNavigationItemSelectedListener true
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
