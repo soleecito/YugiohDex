@@ -14,14 +14,14 @@
         />
 
     <item
-        android:id="@+id/searchFragment"
-        android:title="Search"
+        android:id="@+id/mainFragment"
+        android:title="Main"
         android:enabled="true"
         android:icon="@drawable/ic_search"
         />
 
     <item
-        android:id="@+id/favoriteCardsFragment"
+        android:id="@+id/favorites"
         android:title="Favorites"
         android:enabled="true"
         android:icon="@drawable/icon_favorite"

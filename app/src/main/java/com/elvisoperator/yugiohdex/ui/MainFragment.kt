@@ -22,6 +22,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.GridLayoutManager
+import com.elvisoperator.yugiohdex.MainActivity
 
 import com.elvisoperator.yugiohdex.R
 import com.elvisoperator.yugiohdex.data.Data
@@ -35,6 +36,7 @@ import com.elvisoperator.yugiohdex.ui.viewmodel.MainAdapter
 import com.elvisoperator.yugiohdex.ui.viewmodel.MainViewModel
 import com.elvisoperator.yugiohdex.ui.viewmodel.VMFactory
 import com.elvisoperator.yugiohdex.vo.Resource
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_main.*
 
 
@@ -66,7 +68,6 @@ class MainFragment : Fragment(), MainAdapter.OnCardClickListener, MainAdapter.On
         viewModel.initDatabase(requireContext())
         setupRecyclerView()
         setupObservers()
-
     }
 
     private fun setupObservers() {
