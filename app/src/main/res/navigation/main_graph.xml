@@ -24,6 +24,9 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_mainFragment_to_dialogFilterFragment"
+            app:destination="@id/dialogFilterFragment" />
     </fragment>
 
     <fragment
@@ -53,6 +56,15 @@
         >
         <action
             android:id="@+id/action_homeFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/dialogFilterFragment"
+        android:name="com.elvisoperator.yugiohdex.ui.DialogFilterFragment"
+        android:label="fragment_dialog_filter"
+        tools:layout="@layout/fragment_dialog_filter" >
+        <action
+            android:id="@+id/action_dialogFilterFragment_to_mainFragment2"
             app:destination="@id/mainFragment" />
     </fragment>
 </navigation>

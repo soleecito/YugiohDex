@@ -1,18 +1,17 @@
 package com.elvisoperator.yugiohdex.ui
 
+import android.content.ContentValues
 import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.widget.EditText
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.*
 import android.view.ViewGroup
-import android.widget.GridLayout
-import android.widget.TextView
+import android.widget.*
 
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.core.view.MenuItemCompat
@@ -28,6 +27,7 @@ import com.elvisoperator.yugiohdex.data.Data
 import com.elvisoperator.yugiohdex.data.DataSource
 import com.elvisoperator.yugiohdex.data.model.BasicCard
 import com.elvisoperator.yugiohdex.data.model.BasicCardImage
+import com.elvisoperator.yugiohdex.data.model.DataSearch
 import com.elvisoperator.yugiohdex.databinding.FragmentMainBinding
 import com.elvisoperator.yugiohdex.domain.RepositoryImplement
 import com.elvisoperator.yugiohdex.ui.viewmodel.AutoFitGridLayoutManager
@@ -38,7 +38,7 @@ import com.elvisoperator.yugiohdex.vo.Resource
 import kotlinx.android.synthetic.main.fragment_main.*
 
 
-class MainFragment : Fragment(), MainAdapter.OnCardClickListener, MainAdapter.OnFavoritesClickListener, MainAdapter.ImageFavorites {
+class MainFragment : Fragment(),RadioGroup.OnCheckedChangeListener, MainAdapter.OnCardClickListener, MainAdapter.OnFavoritesClickListener, MainAdapter.ImageFavorites {
 
     private val viewModel by viewModels<MainViewModel> {
         VMFactory(
@@ -47,9 +47,18 @@ class MainFragment : Fragment(), MainAdapter.OnCardClickListener, MainAdapter.On
             )
         )
     }
-    private lateinit var mainBinding: FragmentMainBinding
-    private lateinit var mainAdapter: MainAdapter
 
+
+    private lateinit var mainBinding: FragmentMainBinding
+    private var dataSearch : DataSearch = DataSearch("%" , "" , "name")
+    private lateinit var mainAdapter: MainAdapter
+     lateinit var sQuery : String
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -63,17 +72,39 @@ class MainFragment : Fragment(), MainAdapter.OnCardClickListener, MainAdapter.On
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mainBinding = FragmentMainBinding.bind(view)
+
         viewModel.initDatabase(requireContext())
+
+        /*configuración de recycler view*/
         setupRecyclerView()
+
+        /*conviguración de obvervación de la inicialización y cambio del view model*/
         setupObservers()
 
+        /*inicio de check group*/
+        mainBinding.rgFilter.setOnCheckedChangeListener(this)
+        mainBinding.rgOrder.setOnCheckedChangeListener(this)
+
+        /*button filter*/
+        clickBtFilter()
+        clickBtCloseFilter()
+        clickFilterApply()
+
+        /*button order*/
+        clickBtOrder()
+        clickOrderApply()
+        clickBtCloseOrder()
     }
+
+
+
+
 
     private fun setupObservers() {
         viewModel.fetchCardList.observe(viewLifecycleOwner, Observer { result ->
             when (result) {
                 is Resource.Loading -> {
-                    mainBinding.progressBar.visibility = View.VISIBLE
+                    mainBinding.progressBar.visibility = VISIBLE
                 }
                 is Resource.Success -> {
                     mainBinding.progressBar.visibility = View.GONE
@@ -101,7 +132,6 @@ class MainFragment : Fragment(), MainAdapter.OnCardClickListener, MainAdapter.On
         mainBinding.recyclerViewCard.setHasFixedSize(true)
     }
 
-
     private fun setupSearchView(menu: Menu) {
         val searchItem: MenuItem = menu.findItem(R.id.search)
         val searchView = searchItem.actionView as SearchView
@@ -109,7 +139,9 @@ class MainFragment : Fragment(), MainAdapter.OnCardClickListener, MainAdapter.On
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
             override fun onQueryTextSubmit(query: String?): Boolean {
-                viewModel.setCard(query!!)
+                dataSearch.search = query!!
+                Log.d("Busqueda", dataSearch.search)
+                viewModel.setCard(dataSearch)
                 return false
             }
 
@@ -122,10 +154,16 @@ class MainFragment : Fragment(), MainAdapter.OnCardClickListener, MainAdapter.On
     }
 
     override fun onCardClick(data: Data) {
-
+        /*crear clase*/
         val bundle = Bundle()
+
+        /*parseo card Data a BasicCard*/
         val basicCard = dataToBasicCard(data)
+
+        /*Lo guardo a bundle*/
         bundle.putParcelable("card", basicCard)
+
+        /*pasar al otro fragment*/
         findNavController().navigate(R.id.action_mainFragment_to_detailCardFragment, bundle)
     }
 
@@ -177,6 +215,102 @@ class MainFragment : Fragment(), MainAdapter.OnCardClickListener, MainAdapter.On
             }
         }
         return exists
+    }
+
+
+
+    //seleccionador de radioGroup
+    override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {
+
+
+        when(checkedId){
+            mainBinding.rBtnEffectMonster.id -> {
+                dataSearch.filter = "Effect Monster"
+                Toast.makeText(requireContext() , "pase" , Toast.LENGTH_SHORT).show()
+            }
+            mainBinding.rBtnMagic.id -> {
+                dataSearch.filter = "Spell Card"
+            }
+            mainBinding.rBtnNormalMonster.id -> {
+                dataSearch.filter = "Normal Monster"
+            }
+            mainBinding.rBtnTramp.id -> {
+                dataSearch.filter = "Trap Card"
+            }
+
+        }
+
+        when(checkedId){
+            mainBinding.rBtnName.id -> {
+                dataSearch.order = "Name"
+
+            }
+            mainBinding.rBtnType.id -> {
+                dataSearch.order = "Type"
+
+            }
+            mainBinding.rBtnRelevance.id -> {
+                dataSearch.order = "New"
+            }
+
+        }
+
+
+    }
+
+    private fun clickBtCloseFilter(){
+        mainBinding.btCloseFilter.setOnClickListener {
+            mainBinding.filter.visibility = INVISIBLE
+
+        }
+    }
+
+    private fun clickFilterApply(){
+        mainBinding.btnApply.setOnClickListener {
+            viewModel.setCard(dataSearch)
+            mainBinding.filter.visibility = INVISIBLE
+        }
+    }
+
+    /*boton de filtro para abrir el dialogo y activar los filtros*/
+    private fun clickBtFilter(){
+        mainBinding.btFilter.setOnClickListener {
+            openFilterDialog()
+        }
+    }
+    
+
+    /*apertura de openDialog*/
+    private fun  openFilterDialog(){
+        mainBinding.filter.visibility = VISIBLE
+        mainBinding.order.visibility = INVISIBLE
+    }
+
+    /*boton de order para abrir el dialogo y activar los filtros*/
+    private fun clickBtOrder(){
+        mainBinding.btOrder.setOnClickListener {
+            openOrderDialog()
+        }
+    }
+
+    /*apertura de openDialog*/
+    private fun  openOrderDialog(){
+        mainBinding.filter.visibility = INVISIBLE
+        mainBinding.order.visibility = VISIBLE
+    }
+
+
+    private fun clickBtCloseOrder(){
+        mainBinding.btCloseOrder.setOnClickListener {
+            mainBinding.order.visibility = INVISIBLE
+        }
+    }
+
+    private fun clickOrderApply(){
+        mainBinding.btnApplyOrder.setOnClickListener {
+            viewModel.setCard(dataSearch)
+            mainBinding.order.visibility = INVISIBLE
+        }
     }
 
 

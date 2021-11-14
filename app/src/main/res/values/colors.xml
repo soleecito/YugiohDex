@@ -25,6 +25,7 @@
     <color name="search_background">#EFF3F4</color>
     <color name="favorite_background">#FF7173</color>
     <color name="line">#F2F2F2</color>
+    <color name="trans">#00000000</color>
 
 </resources>
 

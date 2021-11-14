@@ -31,9 +31,10 @@ class DetailCardFragment : Fragment() {
     }
     private lateinit var detailBinding: FragmentDetailCardBinding
     private lateinit var cardModel: BasicCard
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         requireArguments().let {
             cardModel = it.getParcelable("card")!!
             Log.d(TAG, "OnCreate")
