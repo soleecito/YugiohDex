@@ -21,6 +21,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.GridLayoutManager
+import com.elvisoperator.yugiohdex.MainActivity
 
 import com.elvisoperator.yugiohdex.R
 import com.elvisoperator.yugiohdex.data.Data
@@ -35,6 +36,7 @@ import com.elvisoperator.yugiohdex.ui.viewmodel.MainAdapter
 import com.elvisoperator.yugiohdex.ui.viewmodel.MainViewModel
 import com.elvisoperator.yugiohdex.ui.viewmodel.VMFactory
 import com.elvisoperator.yugiohdex.vo.Resource
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_main.*
 
 
@@ -81,6 +83,7 @@ class MainFragment : Fragment(),RadioGroup.OnCheckedChangeListener, MainAdapter.
         /*conviguración de obvervación de la inicialización y cambio del view model*/
         setupObservers()
 
+
         /*inicio de check group*/
         mainBinding.rgFilter.setOnCheckedChangeListener(this)
         mainBinding.rgOrder.setOnCheckedChangeListener(this)
@@ -94,6 +97,7 @@ class MainFragment : Fragment(),RadioGroup.OnCheckedChangeListener, MainAdapter.
         clickBtOrder()
         clickOrderApply()
         clickBtCloseOrder()
+
     }
 
 
@@ -139,13 +143,19 @@ class MainFragment : Fragment(),RadioGroup.OnCheckedChangeListener, MainAdapter.
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
             override fun onQueryTextSubmit(query: String?): Boolean {
+
                 dataSearch.search = query!!
                 Log.d("Busqueda", dataSearch.search)
                 viewModel.setCard(dataSearch)
+
                 return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
+                if(!newText.isNullOrEmpty()) {
+                    viewModel.setCard(newText!!)
+                } else
+                    setupObservers()
                 return false
             }
 
