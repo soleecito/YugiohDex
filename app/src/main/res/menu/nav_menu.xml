@@ -15,7 +15,7 @@
 
     <item
         android:id="@+id/mainFragment"
-        android:title="Main"
+        android:title="Search"
         android:enabled="true"
         android:icon="@drawable/ic_search"
         />
