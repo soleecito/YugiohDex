@@ -56,6 +56,21 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
 
     }
 
+    val fetchCardListHome = cardData.switchMap{
+        liveData(Dispatchers.IO) {
+            emit(Resource.Loading)
+            try {
+               it.order = "New"
+                emit(repository.getCardsList(it))
+                Log.d("Estado", it.search)
+                //emit(repository.getCardsList("?name=$nameCard.search"))
+            } catch (e: Exception) {
+                emit(Resource.Failure(e))
+            }
+        }
+
+    }
+
 
     fun initDatabase(context: Context) {
         viewModelScope.launch(Dispatchers.IO) {

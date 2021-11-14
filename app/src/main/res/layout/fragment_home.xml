@@ -15,358 +15,388 @@
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
 
-
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:id="@+id/constraintHome"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/background"
-    tools:context=".ui.HomeFragment">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintMenu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/border"
-        android:padding="@dimen/_5sdp"
-        app:layout_constraintEnd_toEndOf="@+id/constraintHome"
-        app:layout_constraintStart_toStartOf="@+id/constraintHome"
-        app:layout_constraintTop_toTopOf="@+id/constraintHome">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/circleMagic"
-            android:layout_width="@dimen/_40sdp"
-            android:layout_height="@dimen/_40sdp"
-            android:src="@drawable/ico_magica"
-            app:layout_constraintEnd_toEndOf="@+id/constraintMenu"
-            app:layout_constraintStart_toStartOf="@+id/constraintMenu"
-            app:layout_constraintTop_toTopOf="@+id/constraintMenu" />
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/circleTramp"
-            android:layout_width="@dimen/_40sdp"
-            android:layout_height="@dimen/_40sdp"
-            android:src="@drawable/ico_trampa"
-            app:layout_constraintEnd_toEndOf="@+id/constraintMenu"
-            app:layout_constraintHorizontal_bias="0.9"
-            app:layout_constraintStart_toStartOf="@id/constraintMenu"
-            app:layout_constraintTop_toTopOf="@+id/constraintMenu" />
-
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/circleDivine"
-            android:layout_width="@dimen/_40sdp"
-            android:layout_height="@dimen/_40sdp"
-            android:src="@drawable/ico_divinidad"
-            app:layout_constraintEnd_toEndOf="@id/constraintMenu"
-            app:layout_constraintHorizontal_bias="0.1"
-            app:layout_constraintStart_toStartOf="@+id/constraintMenu"
-            app:layout_constraintTop_toTopOf="@+id/constraintMenu" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/ConstraintUltimate"
-        android:layout_width="@dimen/_250sdp"
-        android:layout_height="@dimen/_300sdp"
-        android:layout_marginTop="@dimen/_15sdp"
-        android:background="@drawable/border"
-        app:layout_constraintEnd_toEndOf="@+id/constraintHome"
-        app:layout_constraintStart_toStartOf="@+id/constraintHome"
-        app:layout_constraintTop_toBottomOf="@+id/constraintMenu">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/textUltimate"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/homeConstraint"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_30sdp"
-            android:background="@drawable/border"
-            android:text="Seen lately"
-            android:textAlignment="center"
-            android:textSize="@dimen/_20ssp"
-            app:layout_constraintEnd_toEndOf="@id/ConstraintUltimate"
-            app:layout_constraintStart_toStartOf="@id/ConstraintUltimate"
-            app:layout_constraintTop_toTopOf="@id/ConstraintUltimate" />
+            android:layout_height="wrap_content"
+            android:background="@color/background"
+            tools:context=".ui.HomeFragment">
 
-        <com.makeramen.roundedimageview.RoundedImageView
-            android:layout_width="@dimen/_180sdp"
-            android:layout_height="@dimen/_250sdp"
-            android:src="@drawable/sin_carta"
-            app:layout_constraintBottom_toBottomOf="@id/ConstraintUltimate"
-            app:layout_constraintEnd_toEndOf="@id/ConstraintUltimate"
-            app:layout_constraintStart_toStartOf="@id/ConstraintUltimate"
-            app:layout_constraintTop_toBottomOf="@id/textUltimate" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintPrincipal"
-        android:layout_width="@dimen/_250sdp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:background="@drawable/border"
-        android:paddingBottom="@dimen/_10sdp"
-        app:layout_constraintEnd_toEndOf="@+id/constraintHome"
-        app:layout_constraintStart_toStartOf="@+id/constraintHome"
-        app:layout_constraintTop_toBottomOf="@+id/ConstraintUltimate">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/textPrincipal"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_30sdp"
-            android:background="@drawable/border"
-            android:text="Main Letters"
-            android:textAlignment="center"
-            android:textSize="@dimen/_20ssp"
-            app:layout_constraintEnd_toEndOf="@+id/constraintPrincipal"
-            app:layout_constraintStart_toStartOf="@+id/constraintPrincipal"
-            app:layout_constraintTop_toTopOf="@+id/constraintPrincipal" />
-
-        <com.makeramen.roundedimageview.RoundedImageView
-            android:id="@+id/cardPrincipal1"
-            android:layout_width="@dimen/_100sdp"
-            android:layout_height="@dimen/_150sdp"
-            android:layout_margin="@dimen/_10sdp"
-            android:src="@drawable/sin_carta"
-            app:layout_constraintStart_toStartOf="@id/constraintPrincipal"
-
-            app:layout_constraintTop_toBottomOf="@id/textPrincipal" />
-
-        <com.makeramen.roundedimageview.RoundedImageView
-            android:id="@+id/cardPrincipal2"
-            android:layout_width="@dimen/_100sdp"
-            android:layout_height="@dimen/_150sdp"
-            android:layout_margin="@dimen/_10sdp"
-            android:src="@drawable/sin_carta"
-            app:layout_constraintEnd_toEndOf="@id/constraintPrincipal"
-            app:layout_constraintTop_toBottomOf="@id/textPrincipal" />
-
-
-        <com.makeramen.roundedimageview.RoundedImageView
-            android:id="@+id/cardPrincipal3"
-            android:layout_width="@dimen/_100sdp"
-            android:layout_height="@dimen/_150sdp"
-            android:layout_margin="@dimen/_10sdp"
-            android:src="@drawable/sin_carta"
-            app:layout_constraintStart_toStartOf="@id/constraintPrincipal"
-
-            app:layout_constraintTop_toBottomOf="@id/cardPrincipal1" />
-
-        <com.makeramen.roundedimageview.RoundedImageView
-            android:id="@+id/cardPrincipal4"
-            android:layout_width="@dimen/_100sdp"
-            android:layout_height="@dimen/_150sdp"
-            android:layout_margin="@dimen/_10sdp"
-            android:background="@drawable/border"
-            android:src="@drawable/sin_carta"
-            app:layout_constraintEnd_toEndOf="@id/constraintPrincipal"
-            app:layout_constraintTop_toBottomOf="@id/cardPrincipal2" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintCategorias"
-        android:layout_width="@dimen/_250sdp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:background="@drawable/border"
-        android:paddingBottom="@dimen/_10sdp"
-        app:layout_constraintEnd_toEndOf="@+id/constraintHome"
-        app:layout_constraintStart_toStartOf="@+id/constraintHome"
-        app:layout_constraintTop_toBottomOf="@+id/constraintPrincipal">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/textCategorias"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_30sdp"
-            android:background="@drawable/border"
-            android:text="Main Types"
-            android:textAlignment="center"
-            android:textSize="@dimen/_20ssp"
-            app:layout_constraintEnd_toEndOf="@+id/constraintCategorias"
-            app:layout_constraintStart_toStartOf="@+id/constraintCategorias"
-            app:layout_constraintTop_toTopOf="@+id/constraintCategorias" />
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/catWater"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_35sdp"
-            android:elevation="@dimen/_2sdp"
-            app:cardCornerRadius="@dimen/_2sdp"
-            app:layout_constraintEnd_toEndOf="@id/constraintCategorias"
-            app:layout_constraintStart_toStartOf="@id/constraintCategorias"
-            app:layout_constraintTop_toBottomOf="@id/textCategorias">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="@dimen/_25sdp"
-                android:layout_height="@dimen/_25sdp"
-                android:layout_margin="@dimen/_5sdp"
-                android:src="@drawable/ico_agua" />
-
-            <androidx.appcompat.widget.AppCompatTextView
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/progressBar"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/_25sdp"
-                android:layout_marginStart="@dimen/_40sdp"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:layout_marginBottom="@dimen/_5sdp"
-                android:text="Water"
-                android:textSize="@dimen/_20ssp" />
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.3">
 
-        </androidx.cardview.widget.CardView>
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@id/progressBar"
+                    app:layout_constraintEnd_toEndOf="@id/progressBar"
+                    app:layout_constraintStart_toStartOf="@id/progressBar"
+                    app:layout_constraintTop_toTopOf="@id/progressBar" />
 
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/catFire"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_35sdp"
-            android:background="@drawable/border"
-            android:elevation="@dimen/_2sdp"
-            app:cardCornerRadius="@dimen/_2sdp"
-            app:layout_constraintEnd_toEndOf="@id/constraintCategorias"
-            app:layout_constraintStart_toStartOf="@id/constraintCategorias"
-            app:layout_constraintTop_toBottomOf="@id/catWater">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="@dimen/_25sdp"
-                android:layout_height="@dimen/_25sdp"
-                android:layout_margin="@dimen/_5sdp"
-                android:src="@drawable/ico_fuego" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/_25sdp"
-                android:layout_marginStart="@dimen/_40sdp"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:layout_marginBottom="@dimen/_5sdp"
-                android:text="Fire"
-                android:textSize="@dimen/_20ssp" />
-
-        </androidx.cardview.widget.CardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/catLight"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_35sdp"
-            android:background="@drawable/border"
-            android:elevation="@dimen/_2sdp"
-            app:cardCornerRadius="@dimen/_2sdp"
-            app:layout_constraintEnd_toEndOf="@id/constraintCategorias"
-            app:layout_constraintStart_toStartOf="@id/constraintCategorias"
-            app:layout_constraintTop_toBottomOf="@id/catFire">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="@dimen/_25sdp"
-                android:layout_height="@dimen/_25sdp"
-                android:layout_margin="@dimen/_5sdp"
-                android:src="@drawable/ico_luz" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/_25sdp"
-                android:layout_marginStart="@dimen/_40sdp"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:layout_marginBottom="@dimen/_5sdp"
-                android:text="Light"
-                android:textSize="@dimen/_20ssp" />
-
-        </androidx.cardview.widget.CardView>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintHome"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/catDarkness"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_35sdp"
-            android:background="@drawable/border"
-            android:elevation="@dimen/_2sdp"
-            app:cardCornerRadius="@dimen/_2sdp"
-            app:layout_constraintEnd_toEndOf="@id/constraintCategorias"
-            app:layout_constraintStart_toStartOf="@id/constraintCategorias"
-            app:layout_constraintTop_toBottomOf="@id/catLight">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border"
+                    android:padding="@dimen/_5sdp"
+                    app:layout_constraintEnd_toEndOf="@+id/constraintHome"
+                    app:layout_constraintStart_toStartOf="@+id/constraintHome"
+                    app:layout_constraintTop_toTopOf="@+id/constraintHome">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="@dimen/_25sdp"
-                android:layout_height="@dimen/_25sdp"
-                android:layout_margin="@dimen/_5sdp"
-                android:src="@drawable/ico_oscuridad" />
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/circleMagic"
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:src="@drawable/ico_magica"
+                        app:layout_constraintEnd_toEndOf="@+id/constraintMenu"
+                        app:layout_constraintStart_toStartOf="@+id/constraintMenu"
+                        app:layout_constraintTop_toTopOf="@+id/constraintMenu" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/_25sdp"
-                android:layout_marginStart="@dimen/_40sdp"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:layout_marginBottom="@dimen/_5sdp"
-                android:text="Darkness"
-                android:textSize="@dimen/_20ssp" />
-
-        </androidx.cardview.widget.CardView>
-
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/catMagic"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_35sdp"
-            android:background="@drawable/border"
-            android:elevation="@dimen/_2sdp"
-            app:cardCornerRadius="@dimen/_2sdp"
-            app:layout_constraintEnd_toEndOf="@id/constraintCategorias"
-            app:layout_constraintStart_toStartOf="@id/constraintCategorias"
-            app:layout_constraintTop_toBottomOf="@id/catDarkness">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="@dimen/_25sdp"
-                android:layout_height="@dimen/_25sdp"
-                android:layout_margin="@dimen/_5sdp"
-                android:src="@drawable/ico_magica" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/_25sdp"
-                android:layout_marginStart="@dimen/_40sdp"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:layout_marginBottom="@dimen/_5sdp"
-                android:text="Magic"
-                android:textSize="@dimen/_20ssp" />
-
-        </androidx.cardview.widget.CardView>
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/circleTramp"
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:src="@drawable/ico_trampa"
+                        app:layout_constraintEnd_toEndOf="@+id/constraintMenu"
+                        app:layout_constraintHorizontal_bias="0.9"
+                        app:layout_constraintStart_toStartOf="@id/constraintMenu"
+                        app:layout_constraintTop_toTopOf="@+id/constraintMenu" />
 
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/catTramp"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_35sdp"
-            android:background="@drawable/border"
-            android:elevation="@dimen/_2sdp"
-            app:cardCornerRadius="@dimen/_2sdp"
-            app:layout_constraintEnd_toEndOf="@id/constraintCategorias"
-            app:layout_constraintStart_toStartOf="@id/constraintCategorias"
-            app:layout_constraintTop_toBottomOf="@id/catMagic">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/circleDivine"
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:src="@drawable/ico_divinidad"
+                        app:layout_constraintEnd_toEndOf="@id/constraintMenu"
+                        app:layout_constraintHorizontal_bias="0.1"
+                        app:layout_constraintStart_toStartOf="@+id/constraintMenu"
+                        app:layout_constraintTop_toTopOf="@+id/constraintMenu" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="@dimen/_25sdp"
-                android:layout_height="@dimen/_25sdp"
-                android:layout_margin="@dimen/_5sdp"
-                android:src="@drawable/ico_trampa" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/_25sdp"
-                android:layout_marginStart="@dimen/_40sdp"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:layout_marginBottom="@dimen/_5sdp"
-                android:text="Tramp"
-                android:textSize="@dimen/_20ssp" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/ConstraintUltimate"
+                    android:layout_width="@dimen/_250sdp"
+                    android:layout_height="@dimen/_300sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:background="@drawable/border"
+                    app:layout_constraintEnd_toEndOf="@+id/constraintHome"
+                    app:layout_constraintStart_toStartOf="@+id/constraintHome"
+                    app:layout_constraintTop_toBottomOf="@+id/constraintMenu">
 
-        </androidx.cardview.widget.CardView>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/textUltimate"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp"
+                        android:background="@drawable/border"
+                        android:text="Recommended"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/_20ssp"
+                        app:layout_constraintEnd_toEndOf="@id/ConstraintUltimate"
+                        app:layout_constraintStart_toStartOf="@id/ConstraintUltimate"
+                        app:layout_constraintTop_toTopOf="@id/ConstraintUltimate" />
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/imageCardRecommended"
+                        android:layout_width="@dimen/_180sdp"
+                        android:layout_height="@dimen/_250sdp"
+                        android:src="@drawable/sin_carta"
+                        app:layout_constraintBottom_toBottomOf="@id/ConstraintUltimate"
+                        app:layout_constraintEnd_toEndOf="@id/ConstraintUltimate"
+                        app:layout_constraintStart_toStartOf="@id/ConstraintUltimate"
+                        app:layout_constraintTop_toBottomOf="@id/textUltimate" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintPrincipal"
+                    android:layout_width="@dimen/_250sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/border"
+                    android:paddingBottom="@dimen/_10sdp"
+                    app:layout_constraintEnd_toEndOf="@+id/constraintHome"
+                    app:layout_constraintStart_toStartOf="@+id/constraintHome"
+                    app:layout_constraintTop_toBottomOf="@+id/ConstraintUltimate">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/textPrincipal"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp"
+                        android:background="@drawable/border"
+                        android:text="new cards"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/_20ssp"
+                        app:layout_constraintEnd_toEndOf="@+id/constraintPrincipal"
+                        app:layout_constraintStart_toStartOf="@+id/constraintPrincipal"
+                        app:layout_constraintTop_toTopOf="@+id/constraintPrincipal" />
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/cardPrincipal1"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_150sdp"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:src="@drawable/sin_carta"
+                        app:layout_constraintStart_toStartOf="@id/constraintPrincipal"
+
+                        app:layout_constraintTop_toBottomOf="@id/textPrincipal" />
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/cardPrincipal2"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_150sdp"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:src="@drawable/sin_carta"
+                        app:layout_constraintEnd_toEndOf="@id/constraintPrincipal"
+                        app:layout_constraintTop_toBottomOf="@id/textPrincipal" />
+
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/cardPrincipal3"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_150sdp"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:src="@drawable/sin_carta"
+                        app:layout_constraintStart_toStartOf="@id/constraintPrincipal"
+
+                        app:layout_constraintTop_toBottomOf="@id/cardPrincipal1" />
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/cardPrincipal4"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_150sdp"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:src="@drawable/sin_carta"
+                        app:layout_constraintEnd_toEndOf="@id/constraintPrincipal"
+                        app:layout_constraintTop_toBottomOf="@id/cardPrincipal2" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintCategorias"
+                    android:layout_width="@dimen/_250sdp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:background="@drawable/border"
+                    android:paddingBottom="@dimen/_10sdp"
+                    app:layout_constraintEnd_toEndOf="@+id/constraintHome"
+                    app:layout_constraintStart_toStartOf="@+id/constraintHome"
+                    app:layout_constraintTop_toBottomOf="@+id/constraintPrincipal">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/textCategorias"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp"
+                        android:background="@drawable/border"
+                        android:text="Main Types"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/_20ssp"
+                        app:layout_constraintEnd_toEndOf="@+id/constraintCategorias"
+                        app:layout_constraintStart_toStartOf="@+id/constraintCategorias"
+                        app:layout_constraintTop_toTopOf="@+id/constraintCategorias" />
+
+                  
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/catWater"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_35sdp"
+                        android:elevation="@dimen/_2sdp"
+                        app:cardCornerRadius="@dimen/_2sdp"
+                        app:layout_constraintEnd_toEndOf="@id/constraintCategorias"
+                        app:layout_constraintStart_toStartOf="@id/constraintCategorias"
+                        app:layout_constraintTop_toBottomOf="@id/textCategorias">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_margin="@dimen/_5sdp"
+                            android:src="@drawable/ico_agua" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_marginStart="@dimen/_40sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:text="Water"
+                            android:textSize="@dimen/_20ssp" />
+
+                    </androidx.cardview.widget.CardView>
+
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/catFire"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_35sdp"
+                        android:background="@drawable/border"
+                        android:elevation="@dimen/_2sdp"
+                        android:padding="@dimen/_2sdp"
+                        app:cardCornerRadius="@dimen/_2sdp"
+                        app:layout_constraintEnd_toEndOf="@id/constraintCategorias"
+                        app:layout_constraintStart_toStartOf="@id/constraintCategorias"
+                        app:layout_constraintTop_toBottomOf="@id/catWater">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_margin="@dimen/_5sdp"
+                            android:src="@drawable/ico_fuego" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_marginStart="@dimen/_40sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:text="Fire"
+                            android:textSize="@dimen/_20ssp" />
+
+                    </androidx.cardview.widget.CardView>
+
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/catLight"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_35sdp"
+                        android:background="@drawable/border"
+                        android:elevation="@dimen/_2sdp"
+                        app:cardCornerRadius="@dimen/_2sdp"
+                        app:layout_constraintEnd_toEndOf="@id/constraintCategorias"
+                        app:layout_constraintStart_toStartOf="@id/constraintCategorias"
+                        app:layout_constraintTop_toBottomOf="@id/catFire">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_margin="@dimen/_5sdp"
+                            android:src="@drawable/ico_luz" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_marginStart="@dimen/_40sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:text="Light"
+                            android:textSize="@dimen/_20ssp" />
+
+                    </androidx.cardview.widget.CardView>
+
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/catDarkness"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_35sdp"
+                        android:background="@drawable/border"
+                        android:elevation="@dimen/_2sdp"
+                        app:cardCornerRadius="@dimen/_2sdp"
+                        app:layout_constraintEnd_toEndOf="@id/constraintCategorias"
+                        app:layout_constraintStart_toStartOf="@id/constraintCategorias"
+                        app:layout_constraintTop_toBottomOf="@id/catLight">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_margin="@dimen/_5sdp"
+                            android:src="@drawable/ico_oscuridad" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_marginStart="@dimen/_40sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:text="Darkness"
+                            android:textSize="@dimen/_20ssp" />
+
+                    </androidx.cardview.widget.CardView>
+
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/catMagic"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_35sdp"
+                        android:background="@drawable/border"
+                        android:elevation="@dimen/_2sdp"
+                        app:cardCornerRadius="@dimen/_2sdp"
+                        app:layout_constraintEnd_toEndOf="@id/constraintCategorias"
+                        app:layout_constraintStart_toStartOf="@id/constraintCategorias"
+                        app:layout_constraintTop_toBottomOf="@id/catDarkness">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_margin="@dimen/_5sdp"
+                            android:src="@drawable/ico_magica" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_marginStart="@dimen/_40sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:text="Magic"
+                            android:textSize="@dimen/_20ssp" />
+
+                    </androidx.cardview.widget.CardView>
+
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/catTramp"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_35sdp"
+                        android:background="@drawable/border"
+                        android:elevation="@dimen/_2sdp"
+                        app:cardCornerRadius="@dimen/_2sdp"
+                        app:layout_constraintEnd_toEndOf="@id/constraintCategorias"
+                        app:layout_constraintStart_toStartOf="@id/constraintCategorias"
+                        app:layout_constraintTop_toBottomOf="@id/catMagic">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_margin="@dimen/_5sdp"
+                            android:src="@drawable/ico_trampa" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_marginStart="@dimen/_40sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:text="Tramp"
+                            android:textSize="@dimen/_20ssp" />
+
+                    </androidx.cardview.widget.CardView>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
 
