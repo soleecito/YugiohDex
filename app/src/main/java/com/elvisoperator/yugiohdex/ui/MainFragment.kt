@@ -288,7 +288,7 @@ class MainFragment : Fragment(),RadioGroup.OnCheckedChangeListener, MainAdapter.
             openFilterDialog()
         }
     }
-    
+
 
     /*apertura de openDialog*/
     private fun  openFilterDialog(){
