@@ -152,10 +152,11 @@ class MainFragment : Fragment(),RadioGroup.OnCheckedChangeListener, MainAdapter.
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                if(!newText.isNullOrEmpty()) {
-                    viewModel.setCard(newText!!)
+                /*if(!newText.isNullOrEmpty()) {
+                    dataSearch.search = newText!!
+                    viewModel.setCard(dataSearch)
                 } else
-                    setupObservers()
+                    setupObservers()*/
                 return false
             }
 
