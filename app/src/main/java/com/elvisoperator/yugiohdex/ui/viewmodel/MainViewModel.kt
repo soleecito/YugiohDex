@@ -1,11 +1,13 @@
 package com.elvisoperator.yugiohdex.ui.viewmodel
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.*
 import com.elvisoperator.yugiohdex.data.database.AppDatabase
 import com.elvisoperator.yugiohdex.data.database.DatabaseImpl
 import com.elvisoperator.yugiohdex.data.model.BasicCard
 import com.elvisoperator.yugiohdex.data.model.BasicCardModel
+import com.elvisoperator.yugiohdex.data.model.DataSearch
 import com.elvisoperator.yugiohdex.domain.Repository
 import com.elvisoperator.yugiohdex.vo.Resource
 import kotlinx.coroutines.Dispatchers
@@ -15,27 +17,38 @@ import java.lang.Exception
 class MainViewModel(private val repository: Repository) : ViewModel() {
 
 
-    private val cardData = MutableLiveData<String>()
+    private var cardData = MutableLiveData<DataSearch>()
 
     companion object Favorites {
         var copy = MutableLiveData<BasicCardModel>()
     }
 
-    fun setCard(cardName: String) {
+    fun setCard(cardName: DataSearch) {
         cardData.value = cardName
     }
 
+    /*  fun setCard(cardName: String) {
+        cardData.value = cardName
+    }*/
+
     init {
-        setCard("a%")
+        val init = DataSearch("%" ,"" ,"name" )
+        setCard(init)
     }
 
-    val fetchCardList = cardData.distinctUntilChanged().switchMap { nameCard ->
+    /* init {
+        setCard(init)
+    }*/
 
+    val fetchCardList = cardData.switchMap{
         liveData(Dispatchers.IO) {
             emit(Resource.Loading)
             try {
-                /*modificar los datos a llevar*/
-                emit(repository.getCardsList("?name=$nameCard%"))
+                //it.order = "name"
+
+                emit(repository.getCardsList(it))
+                Log.d("Estado", it.search)
+                //emit(repository.getCardsList("?name=$nameCard.search"))
             } catch (e: Exception) {
                 emit(Resource.Failure(e))
             }
