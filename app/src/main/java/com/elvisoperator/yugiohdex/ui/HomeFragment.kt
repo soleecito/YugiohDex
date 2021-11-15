@@ -50,6 +50,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         homeBinding = FragmentHomeBinding.bind(view)
+        viewModel.initDatabase(requireContext())
         setupObservers()
     }
 

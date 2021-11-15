@@ -217,7 +217,7 @@
                         app:layout_constraintStart_toStartOf="@+id/constraintCategorias"
                         app:layout_constraintTop_toTopOf="@+id/constraintCategorias" />
 
-                  
+
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/catWater"
