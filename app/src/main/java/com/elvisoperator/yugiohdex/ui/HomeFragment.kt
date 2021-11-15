@@ -5,10 +5,15 @@ import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.elvisoperator.yugiohdex.R
 import com.elvisoperator.yugiohdex.data.CardModel
+import com.elvisoperator.yugiohdex.data.Data
 import com.elvisoperator.yugiohdex.data.DataSource
+import com.elvisoperator.yugiohdex.data.model.BasicCard
+import com.elvisoperator.yugiohdex.data.model.BasicCardImage
 import com.elvisoperator.yugiohdex.data.model.DataSearch
 import com.elvisoperator.yugiohdex.databinding.FragmentHomeBinding
 import com.elvisoperator.yugiohdex.domain.RepositoryImplement
@@ -32,7 +37,15 @@ class HomeFragment : Fragment() {
 
     private lateinit var cardList: CardModel
     private lateinit var homeBinding: FragmentHomeBinding
-    private var dataSearch : DataSearch = DataSearch("%" , "" , "name")
+    private var dataSearch : DataSearch = DataSearch("%" , "" , "name" , "")
+
+    private lateinit var cardRecommended: BasicCard
+    /*pasar a recycler view*/
+    private lateinit var card1 : BasicCard
+    private lateinit var card2 : BasicCard
+    private lateinit var card3 : BasicCard
+    private lateinit var card4 : BasicCard
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +65,93 @@ class HomeFragment : Fragment() {
         homeBinding = FragmentHomeBinding.bind(view)
         viewModel.initDatabase(requireContext())
         setupObservers()
+      //  clickCircleDivine()
+
+        /*implementacio de las cartas*/
+        clickCardPrincipal1()
+        clickCardPrincipal2()
+        clickCardPrincipal3()
+        clickCardPrincipal4()
+
+        clickRecommended()
+
+    }
+
+    private fun clickRecommended() {
+
+        homeBinding.imageCardRecommended.setOnClickListener {
+
+            val bundle = Bundle()
+            /*parseo card Data a BasicCard*/
+            /*Lo guardo a bundle*/
+            bundle.putParcelable("card",cardRecommended)
+            /*pasar al otro fragment*/
+            findNavController().navigate(R.id.detailCardFragment, bundle)
+
+        }
+    }
+
+    private fun clickCardPrincipal4() {
+        homeBinding.cardPrincipal4.setOnClickListener {
+            val bundle = Bundle()
+            /*parseo card Data a BasicCard*/
+            /*Lo guardo a bundle*/
+            bundle.putParcelable("card", card4)
+            /*pasar al otro fragment*/
+            findNavController().navigate(R.id.detailCardFragment, bundle)
+        }
+    }
+
+    private fun clickCardPrincipal3() {
+        homeBinding.cardPrincipal3.setOnClickListener {
+            val bundle = Bundle()
+            /*parseo card Data a BasicCard*/
+            /*Lo guardo a bundle*/
+            bundle.putParcelable("card", card3)
+            /*pasar al otro fragment*/
+            findNavController().navigate(R.id.detailCardFragment, bundle)
+        }
+    }
+
+    private fun clickCardPrincipal2() {
+        homeBinding.cardPrincipal2.setOnClickListener {
+            val bundle = Bundle()
+            /*parseo card Data a BasicCard*/
+            /*Lo guardo a bundle*/
+            bundle.putParcelable("card", card2)
+            /*pasar al otro fragment*/
+            findNavController().navigate(R.id.detailCardFragment, bundle)
+        }
+    }
+
+    private fun clickCardPrincipal1() {
+        homeBinding.cardPrincipal1.setOnClickListener {
+            val bundle = Bundle()
+            /*parseo card Data a BasicCard*/
+            /*Lo guardo a bundle*/
+            bundle.putParcelable("card", card1)
+            /*pasar al otro fragment*/
+            findNavController().navigate(R.id.detailCardFragment, bundle)
+        }
+    }
+
+    private fun clickCircleDivine() {
+        circleDivine.setOnClickListener {
+            Toast.makeText(requireContext() , "tocaste" , Toast.LENGTH_SHORT).show()
+
+            /*crear clase*/
+
+
+
+            /*parseo card Data a BasicCard*/
+            //dataSearch.filter =
+
+            /*Lo guardo a bundle*/
+            //bundle.putParcelable("card", basicCard)
+
+            /*pasar al otro fragment*/
+            //findNavController().navigate(R.id.action_mainFragment_to_detailCardFragment, bundle)
+        }
     }
 
 
@@ -74,6 +174,7 @@ class HomeFragment : Fragment() {
                     homeBinding.constraintHome.visibility = View.VISIBLE
                     recommend(result.data)
                     new(result.data)
+
                 }
                 is Resource.Failure -> {
                     homeBinding.progressBar.visibility = View.GONE
@@ -89,24 +190,54 @@ class HomeFragment : Fragment() {
 
     }
 
+    private fun dataPass(it: Data): BasicCard {
+
+
+          val image = BasicCardImage(
+              id = it.card_images[0].id,
+              image_url = it.card_images[0].image_url,
+              image_url_small = it.card_images[0].image_url_small
+          )
+
+          val cardDialog = BasicCard(
+              id = it.id,
+              name = it.name,
+              type = it.type,
+              level = it.level,
+              desc = it.desc,
+              image = image
+          )
+
+          return cardDialog
+
+    }
+
+
+
+
     private fun new(data: CardModel) {
 
 
         val item1 =  data.list[0]
         val image1 = item1.card_images[0]
         Picasso.get().load(image1.image_url_small).into(homeBinding.cardPrincipal1)
+        card1 = dataPass(data.list[0])
+
 
         val item2 =  data.list[1]
         val image2 = item2.card_images[0]
         Picasso.get().load(image2.image_url_small).into(homeBinding.cardPrincipal2)
+        card2= dataPass(data.list[1])
 
         val item3 =  data.list[2]
         val image3 = item3.card_images[0]
         Picasso.get().load(image3.image_url_small).into(homeBinding.cardPrincipal3)
+        card3 = dataPass(data.list[2])
 
         val item4 =  data.list[3]
         val image4 = item4.card_images[0]
         Picasso.get().load(image4.image_url_small).into(homeBinding.cardPrincipal4)
+        card4 = dataPass(data.list[3])
 
     }
 
@@ -115,6 +246,7 @@ class HomeFragment : Fragment() {
         val item =  data.list[position]
         val image = item.card_images[0]
         Picasso.get().load(image.image_url).into(homeBinding.imageCardRecommended)
+        cardRecommended = dataPass(data.list[position])
     }
 
 }

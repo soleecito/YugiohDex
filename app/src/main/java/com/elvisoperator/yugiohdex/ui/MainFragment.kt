@@ -52,13 +52,13 @@ class MainFragment : Fragment(),RadioGroup.OnCheckedChangeListener, MainAdapter.
 
 
     private lateinit var mainBinding: FragmentMainBinding
-    private var dataSearch : DataSearch = DataSearch("%" , "" , "name")
+    private var dataSearch : DataSearch = DataSearch("%" , "" , "name", "")
     private lateinit var mainAdapter: MainAdapter
      lateinit var sQuery : String
+    private var dataSearchHome : DataSearch = DataSearch("%" , "" , "name" , "")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
 
     }
 

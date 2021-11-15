@@ -32,7 +32,7 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
     }*/
 
     init {
-        val init = DataSearch("%" ,"" ,"name" )
+        val init = DataSearch("%" ,"" ,"name" , "")
         setCard(init)
     }
 
