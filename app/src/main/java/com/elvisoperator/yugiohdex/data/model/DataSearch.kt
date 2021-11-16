@@ -1,7 +1,12 @@
 package com.elvisoperator.yugiohdex.data.model
 
-data class DataSearch (
+import android.os.Parcel
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
+data class DataSearch  (
         var search  :   String     ,
         var filter  :   String    ,
         var order   :   String    ,
-        val filterArchetype  : String , )
+        val filterArchetype  : String ): Parcelable

@@ -56,6 +56,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/border"
                     android:padding="@dimen/_5sdp"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="@+id/constraintHome"
                     app:layout_constraintStart_toStartOf="@+id/constraintHome"
                     app:layout_constraintTop_toTopOf="@+id/constraintHome">
@@ -144,7 +145,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_30sdp"
                         android:background="@drawable/border"
-                        android:text="new cards"
+                        android:text="New Cards"
                         android:textAlignment="center"
                         android:textSize="@dimen/_20ssp"
                         app:layout_constraintEnd_toEndOf="@+id/constraintPrincipal"
@@ -196,6 +197,7 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintCategorias"
+                    android:visibility="gone"
                     android:layout_width="@dimen/_250sdp"
                     android:layout_height="match_parent"
                     android:layout_marginTop="@dimen/_20sdp"

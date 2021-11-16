@@ -60,12 +60,20 @@ class MainFragment : Fragment(),RadioGroup.OnCheckedChangeListener, MainAdapter.
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        requireArguments().let {
+            dataSearch = it.getParcelable("clickcard")!!
+            viewModel.setCard(dataSearch)
+            viewModel.initDatabase(requireContext())
+            setupObservers()
+        }
         setHasOptionsMenu(true)
         return inflater.inflate(R.layout.fragment_main, container, false)
     }
@@ -76,6 +84,8 @@ class MainFragment : Fragment(),RadioGroup.OnCheckedChangeListener, MainAdapter.
         mainBinding = FragmentMainBinding.bind(view)
 
         viewModel.initDatabase(requireContext())
+
+
 
         /*configuración de recycler view*/
         setupRecyclerView()
@@ -97,6 +107,7 @@ class MainFragment : Fragment(),RadioGroup.OnCheckedChangeListener, MainAdapter.
         clickBtOrder()
         clickOrderApply()
         clickBtCloseOrder()
+
 
     }
 
@@ -323,6 +334,8 @@ class MainFragment : Fragment(),RadioGroup.OnCheckedChangeListener, MainAdapter.
             mainBinding.order.visibility = INVISIBLE
         }
     }
+
+
 
 
 }

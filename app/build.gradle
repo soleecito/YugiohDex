@@ -5,7 +5,6 @@ plugins {
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
     id 'androidx.navigation.safeargs.kotlin'
-
 }
 apply plugin: 'kotlin-android'
 
@@ -17,7 +16,7 @@ android {
 
     defaultConfig {
         applicationId "com.elvisoperator.yugiohdex"
-        minSdk 26
+        minSdk 28
         targetSdk 31
         versionCode 1
         versionName "1.0"

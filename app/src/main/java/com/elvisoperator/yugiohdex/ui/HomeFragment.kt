@@ -65,7 +65,7 @@ class HomeFragment : Fragment() {
         homeBinding = FragmentHomeBinding.bind(view)
         viewModel.initDatabase(requireContext())
         setupObservers()
-      //  clickCircleDivine()
+       clickCircleDivine()
 
         /*implementacio de las cartas*/
         clickCardPrincipal1()
@@ -139,18 +139,13 @@ class HomeFragment : Fragment() {
         circleDivine.setOnClickListener {
             Toast.makeText(requireContext() , "tocaste" , Toast.LENGTH_SHORT).show()
 
-            /*crear clase*/
-
-
-
+            val bundle = Bundle()
             /*parseo card Data a BasicCard*/
-            //dataSearch.filter =
-
             /*Lo guardo a bundle*/
-            //bundle.putParcelable("card", basicCard)
-
+            val dataSearch = DataSearch("%a" , "" , "name" , "d" )
+            bundle.putParcelable("clickcard",dataSearch)
             /*pasar al otro fragment*/
-            //findNavController().navigate(R.id.action_mainFragment_to_detailCardFragment, bundle)
+            findNavController().navigate(R.id.mainFragment, bundle)
         }
     }
 
@@ -249,4 +244,10 @@ class HomeFragment : Fragment() {
         cardRecommended = dataPass(data.list[position])
     }
 
+    override fun onDestroyView() {
+    viewModel.fetchCardListHome.removeObservers(requireParentFragment().viewLifecycleOwner)
+    super.onDestroyView()
+    }
+
 }
+

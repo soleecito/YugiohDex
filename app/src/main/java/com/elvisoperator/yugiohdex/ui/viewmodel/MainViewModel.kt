@@ -72,6 +72,8 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
     }
 
 
+
+
     fun initDatabase(context: Context) {
         viewModelScope.launch(Dispatchers.IO) {
             DatabaseImpl.buildDatabase(context)
