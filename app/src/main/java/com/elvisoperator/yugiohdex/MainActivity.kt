@@ -31,6 +31,7 @@ import kotlinx.synthetic.main.nav_header.view.*
 import javax.inject.Inject
 
 
+
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     lateinit var binding: ActivityMainBinding
