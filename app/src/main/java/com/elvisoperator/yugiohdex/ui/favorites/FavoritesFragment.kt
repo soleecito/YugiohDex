@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.elvisoperator.yugiohdex.R
 import com.elvisoperator.yugiohdex.data.DataSource
+import com.elvisoperator.yugiohdex.data.database.CardDao
 import com.elvisoperator.yugiohdex.data.model.BasicCard
 import com.elvisoperator.yugiohdex.data.model.BasicCardModel
 import com.elvisoperator.yugiohdex.databinding.FragmentFavoritesBinding
@@ -21,9 +22,16 @@ import com.elvisoperator.yugiohdex.ui.viewmodel.MainAdapterFavorite
 import com.elvisoperator.yugiohdex.ui.viewmodel.MainViewModel
 import com.elvisoperator.yugiohdex.ui.viewmodel.VMFactory
 import com.elvisoperator.yugiohdex.vo.Resource
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class FavoritesFragment : Fragment(), MainAdapterFavorite.OnCardClickListener, MainAdapterFavorite.OnDeleteItem {
+
+
+    /*@Inject
+    lateinit var cardDao : CardDao*/
 
     private val viewModel by activityViewModels<MainViewModel> {
         VMFactory(RepositoryImplement(DataSource()))

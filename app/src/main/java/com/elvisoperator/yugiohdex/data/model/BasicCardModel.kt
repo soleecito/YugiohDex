@@ -1,10 +1,7 @@
 package com.elvisoperator.yugiohdex.data.model
 
 import android.os.Parcelable
-import androidx.room.ColumnInfo
-import androidx.room.Embedded
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.*
 import com.elvisoperator.yugiohdex.data.CardImage
 import kotlinx.android.parcel.Parcelize
 
@@ -13,6 +10,7 @@ data class BasicCardModel(
 )
 
 @Parcelize
+
 @Entity(tableName = "cards")
 data class BasicCard(
     @PrimaryKey @ColumnInfo(name = "id") var id: Int,
@@ -25,6 +23,7 @@ data class BasicCard(
 ): Parcelable
 
 @Parcelize
+
 @Entity(tableName = "image")
 data class BasicCardImage(
     @PrimaryKey @ColumnInfo(name = "img_id") var id: Int,

@@ -21,7 +21,6 @@ import com.elvisoperator.yugiohdex.ui.viewmodel.MainViewModel
 import com.elvisoperator.yugiohdex.ui.viewmodel.VMFactory
 import com.elvisoperator.yugiohdex.vo.Resource
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.fragment_home.*
 import kotlin.random.Random
 
 class HomeFragment : Fragment() {
@@ -136,7 +135,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun clickCircleDivine() {
-        circleDivine.setOnClickListener {
+        homeBinding.circleDivine.setOnClickListener {
             Toast.makeText(requireContext() , "tocaste" , Toast.LENGTH_SHORT).show()
 
             val bundle = Bundle()

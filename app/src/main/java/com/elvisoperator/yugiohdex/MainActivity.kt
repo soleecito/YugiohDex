@@ -17,6 +17,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.elvisoperator.yugiohdex.UserApplication.Companion.prefs
 import com.elvisoperator.yugiohdex.data.DataSource
+import com.elvisoperator.yugiohdex.data.database.CardDao
 import com.elvisoperator.yugiohdex.databinding.ActivityMainBinding
 import com.elvisoperator.yugiohdex.domain.RepositoryImplement
 import com.elvisoperator.yugiohdex.ui.favorites.FavoritesFragment
@@ -25,13 +26,15 @@ import com.elvisoperator.yugiohdex.ui.viewmodel.MainViewModel
 import com.elvisoperator.yugiohdex.ui.viewmodel.VMFactory
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
-import kotlinx.android.synthetic.main.nav_header.view.*
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.synthetic.main.nav_header.view.*
+import javax.inject.Inject
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     lateinit var binding: ActivityMainBinding
     private lateinit var drawerLayout: DrawerLayout
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -36,8 +36,6 @@ import com.elvisoperator.yugiohdex.ui.viewmodel.MainAdapter
 import com.elvisoperator.yugiohdex.ui.viewmodel.MainViewModel
 import com.elvisoperator.yugiohdex.ui.viewmodel.VMFactory
 import com.elvisoperator.yugiohdex.vo.Resource
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_main.*
 
 
 class MainFragment : Fragment(),RadioGroup.OnCheckedChangeListener, MainAdapter.OnCardClickListener, MainAdapter.OnFavoritesClickListener, MainAdapter.ImageFavorites {
@@ -68,12 +66,12 @@ class MainFragment : Fragment(),RadioGroup.OnCheckedChangeListener, MainAdapter.
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-       /* requireArguments().let {
+        requireArguments().let {
             dataSearch = it.getParcelable("clickcard")!!
             viewModel.setCard(dataSearch)
             viewModel.initDatabase(requireContext())
             setupObservers()
-        }*/
+        }
         setHasOptionsMenu(true)
         return inflater.inflate(R.layout.fragment_main, container, false)
     }

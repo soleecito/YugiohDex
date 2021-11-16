@@ -1,6 +1,8 @@
 package com.elvisoperator.yugiohdex
 
 import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
+
 
 class UserApplication : Application() {
 
