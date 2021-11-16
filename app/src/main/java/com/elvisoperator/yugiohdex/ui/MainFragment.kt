@@ -68,12 +68,12 @@ class MainFragment : Fragment(),RadioGroup.OnCheckedChangeListener, MainAdapter.
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        requireArguments().let {
+       /* requireArguments().let {
             dataSearch = it.getParcelable("clickcard")!!
             viewModel.setCard(dataSearch)
             viewModel.initDatabase(requireContext())
             setupObservers()
-        }
+        }*/
         setHasOptionsMenu(true)
         return inflater.inflate(R.layout.fragment_main, container, false)
     }
