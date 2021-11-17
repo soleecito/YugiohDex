@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.MainFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/progressBar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/progressBar"
+            app:layout_constraintEnd_toEndOf="@id/progressBar"
+            app:layout_constraintStart_toStartOf="@id/progressBar"
+            app:layout_constraintBottom_toBottomOf="@id/progressBar"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    <androidx.cardview.widget.CardView
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/filter"
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="@dimen/_250sdp"
+            app:cardCornerRadius="@dimen/_10sdp"
+            android:visibility="invisible">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="@dimen/_250sdp"
+                android:layout_height="@dimen/_250sdp"
+                android:layout_gravity="center"
+                android:background="@color/search_background"
+
+                android:id="@+id/constraint">
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btCloseFilter"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    app:layout_constraintTop_toTopOf="@id/constraint"
+                    app:layout_constraintEnd_toEndOf="@id/constraint"
+                    android:src="@drawable/ic_close"/>
+
+                <TextView
+                    android:id="@+id/txtFilter"
+                    android:layout_width="@dimen/_150sdp"
+                    android:layout_height="@dimen/_60sdp"
+                    app:layout_constraintTop_toTopOf="@id/constraint"
+                    app:layout_constraintStart_toStartOf="@id/constraint"
+                    app:layout_constraintEnd_toEndOf="@id/constraint"
+                    android:text="Filter Search"
+                    android:textSize="@dimen/_25sdp"/>
+
+                <RadioGroup
+                    android:id="@+id/rgFilter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="@id/constraint"
+                    app:layout_constraintTop_toBottomOf="@id/txtFilter"
+                    app:layout_constraintStart_toStartOf="@id/constraint"
+                    >
+
+                    <RadioButton
+                        android:id="@+id/rBtnMagic"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Magic" />
+
+                    <RadioButton
+                        android:id="@+id/rBtnNormalMonster"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Normal Monster" />
+
+                    <RadioButton
+                        android:id="@+id/rBtnEffectMonster"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Effect Monster" />
+
+                    <RadioButton
+                        android:id="@+id/rBtnTramp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Tramp" />
+                </RadioGroup>
+
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnApply"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@id/constraint"
+                    app:layout_constraintStart_toStartOf="@id/constraint"
+                    app:layout_constraintEnd_toEndOf="@id/constraint"
+                    android:backgroundTint="@color/search_background"
+                    android:text="APPLY"
+                    android:layout_marginBottom="@dimen/_5sdp"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+
+
+    <androidx.cardview.widget.CardView
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/order"
+        android:layout_width="@dimen/_250sdp"
+        android:layout_height="@dimen/_250sdp"
+        app:cardCornerRadius="@dimen/_10sdp"
+        android:visibility="invisible">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="@dimen/_250sdp"
+            android:layout_gravity="center"
+            android:background="@color/search_background"
+
+            android:id="@+id/constraintO">
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btCloseOrder"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                app:layout_constraintTop_toTopOf="@id/constraintO"
+                app:layout_constraintEnd_toEndOf="@id/constraintO"
+                android:src="@drawable/ic_close"/>
+
+            <TextView
+                android:id="@+id/txtOrder"
+                android:layout_width="@dimen/_150sdp"
+                android:layout_height="@dimen/_60sdp"
+                app:layout_constraintTop_toTopOf="@id/constraintO"
+                app:layout_constraintStart_toStartOf="@id/constraintO"
+                app:layout_constraintEnd_toEndOf="@id/constraintO"
+                android:text="Order Search"
+                android:textSize="@dimen/_25sdp"/>
+
+            <RadioGroup
+                android:id="@+id/rgOrder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="@id/constraintO"
+                app:layout_constraintTop_toBottomOf="@id/txtOrder"
+                app:layout_constraintStart_toStartOf="@id/constraintO">
+
+                <RadioButton
+                    android:id="@+id/rBtnName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Name" />
+
+                <RadioButton
+                    android:id="@+id/rBtnType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Type" />
+
+                <RadioButton
+                    android:id="@+id/rBtnRelevance"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="New" />
+
+
+            </RadioGroup>
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnApplyOrder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/constraintO"
+                app:layout_constraintStart_toStartOf="@id/constraintO"
+                app:layout_constraintEnd_toEndOf="@id/constraintO"
+                android:backgroundTint="@color/search_background"
+                android:text="APPLY"
+                android:layout_marginBottom="@dimen/_5sdp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/btOrder"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_3sdp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_sort"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/btFilter"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btOrder"
+        android:layout_marginTop="@dimen/_3sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:src="@drawable/ic_filter" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/_20sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="0dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewCard"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/_10sdp"
+            android:padding="@dimen/_5sdp"
+            android:scrollbars="vertical"
+            app:layoutManager="LinearLayoutManager" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

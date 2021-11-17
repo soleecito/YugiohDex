@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ShowIn="navigation_view">
+
+
+    <item
+        android:id="@+id/homeFragment"
+        android:title="Home"
+        android:enabled="true"
+        android:icon="@drawable/ic_home"
+        />
+
+    <item
+        android:id="@+id/mainFragment"
+        android:title="Search"
+        android:enabled="true"
+        android:icon="@drawable/ic_search"
+        />
+
+    <item
+        android:id="@+id/favorites"
+        android:title="Favorites"
+        android:enabled="true"
+        android:icon="@drawable/icon_favorite"
+        />
+
+    <item
+        android:id="@+id/profileFragment"
+        android:title="Profile"
+        android:enabled="true"
+        android:icon="@drawable/ic_account"
+        />
+
+
+</menu>

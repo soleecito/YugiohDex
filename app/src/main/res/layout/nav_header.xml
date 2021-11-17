@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/background">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
+        android:layout_margin="@dimen/_10sdp"
+        android:src="@drawable/ico_user"
+       />
+
+    <TextView
+        android:layout_margin="@dimen/_10sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/user_name"
+        android:paddingTop="@dimen/_8sdp"
+        android:textSize="@dimen/_20ssp"
+        android:text="Name User"
+        android:textColor="@color/primary_label"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/name_deck"
+        android:layout_margin="@dimen/_10sdp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/_16sdp"
+        android:fontFamily="@font/yugioh_font"
+        android:text="Name Deck"
+        android:textColor="@color/blue"
+        android:textStyle="bold"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:background="@color/recicler_background"/>
+
+
+</LinearLayout>

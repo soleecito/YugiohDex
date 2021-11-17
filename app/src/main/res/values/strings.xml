@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">YugiohDex</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="name">Name</string>
+    <string name="deck_name">Deck Name</string>
+</resources>
