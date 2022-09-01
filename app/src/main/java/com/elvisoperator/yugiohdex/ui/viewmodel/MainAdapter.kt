@@ -9,8 +9,8 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.elvisoperator.yugiohdex.R
 import com.elvisoperator.yugiohdex.base.BaseViewHolder
-import com.elvisoperator.yugiohdex.data.CardModel
-import com.elvisoperator.yugiohdex.data.Data
+import com.elvisoperator.yugiohdex.data.model.CardModel
+import com.elvisoperator.yugiohdex.data.model.Data
 import com.elvisoperator.yugiohdex.databinding.CardsRowBinding
 import com.squareup.picasso.Picasso
 

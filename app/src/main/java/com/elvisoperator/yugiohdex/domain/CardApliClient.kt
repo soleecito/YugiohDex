@@ -1,12 +1,9 @@
 package com.elvisoperator.yugiohdex.domain
 
-import com.elvisoperator.yugiohdex.data.CardModel
-import com.elvisoperator.yugiohdex.vo.Resource
-import retrofit2.Response
+import com.elvisoperator.yugiohdex.data.model.CardModel
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
-import retrofit2.http.Query
 import retrofit2.http.Url
 
 interface CardApliClient {

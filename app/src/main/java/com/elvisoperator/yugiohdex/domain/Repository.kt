@@ -1,6 +1,6 @@
 package com.elvisoperator.yugiohdex.domain
 
-import com.elvisoperator.yugiohdex.data.CardModel
+import com.elvisoperator.yugiohdex.data.model.CardModel
 import com.elvisoperator.yugiohdex.data.model.BasicCard
 import com.elvisoperator.yugiohdex.data.model.BasicCardModel
 import com.elvisoperator.yugiohdex.data.model.DataSearch

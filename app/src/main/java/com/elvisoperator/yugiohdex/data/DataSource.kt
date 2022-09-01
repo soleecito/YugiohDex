@@ -1,12 +1,8 @@
 package com.elvisoperator.yugiohdex.data
 
 import android.util.Log
-import com.elvisoperator.yugiohdex.data.database.AppDatabase
 import com.elvisoperator.yugiohdex.data.database.DatabaseImpl
-import com.elvisoperator.yugiohdex.data.model.BasicCard
-import com.elvisoperator.yugiohdex.data.model.BasicCardModel
-import com.elvisoperator.yugiohdex.data.model.CardProvider
-import com.elvisoperator.yugiohdex.data.model.DataSearch
+import com.elvisoperator.yugiohdex.data.model.*
 import com.elvisoperator.yugiohdex.domain.CardApliClient
 import com.elvisoperator.yugiohdex.vo.Resource
 

@@ -1,7 +1,5 @@
 package com.elvisoperator.yugiohdex.ui
 
-import android.content.ContentValues
-import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -13,18 +11,14 @@ import android.view.ViewGroup
 import android.widget.*
 
 import androidx.appcompat.widget.SearchView
-import androidx.core.content.ContextCompat
-import androidx.core.view.MenuItemCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
-import androidx.recyclerview.widget.GridLayoutManager
-import com.elvisoperator.yugiohdex.MainActivity
 
 import com.elvisoperator.yugiohdex.R
-import com.elvisoperator.yugiohdex.data.Data
+import com.elvisoperator.yugiohdex.data.model.Data
 import com.elvisoperator.yugiohdex.data.DataSource
 import com.elvisoperator.yugiohdex.data.model.BasicCard
 import com.elvisoperator.yugiohdex.data.model.BasicCardImage
@@ -36,8 +30,6 @@ import com.elvisoperator.yugiohdex.ui.viewmodel.MainAdapter
 import com.elvisoperator.yugiohdex.ui.viewmodel.MainViewModel
 import com.elvisoperator.yugiohdex.ui.viewmodel.VMFactory
 import com.elvisoperator.yugiohdex.vo.Resource
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_main.*
 
 
 class MainFragment : Fragment(),RadioGroup.OnCheckedChangeListener, MainAdapter.OnCardClickListener, MainAdapter.OnFavoritesClickListener, MainAdapter.ImageFavorites {
@@ -116,7 +108,7 @@ class MainFragment : Fragment(),RadioGroup.OnCheckedChangeListener, MainAdapter.
 
 
     private fun setupObservers() {
-        viewModel.fetchCardList.observe(viewLifecycleOwner, Observer { result ->
+        viewModel.fetchCardList.observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Resource.Loading -> {
                     mainBinding.progressBar.visibility = VISIBLE
@@ -136,7 +128,7 @@ class MainFragment : Fragment(),RadioGroup.OnCheckedChangeListener, MainAdapter.
                     ).show()
                 }
             }
-        })
+        }
 
 
     }

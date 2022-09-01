@@ -8,9 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.elvisoperator.yugiohdex.R
 
-import com.elvisoperator.yugiohdex.base.BaseViewHolder
 import com.elvisoperator.yugiohdex.base.BaseViewHolderFavorite
-import com.elvisoperator.yugiohdex.data.Data
 import com.elvisoperator.yugiohdex.data.model.BasicCard
 import com.elvisoperator.yugiohdex.databinding.CardsRowFavoriteBinding
 

@@ -1,19 +1,16 @@
 package com.elvisoperator.yugiohdex.ui
 
 import android.content.ContentValues.TAG
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import com.elvisoperator.yugiohdex.R
-import com.elvisoperator.yugiohdex.data.Data
 import com.elvisoperator.yugiohdex.data.DataSource
-import com.elvisoperator.yugiohdex.data.database.AppDatabase
 import com.elvisoperator.yugiohdex.data.model.BasicCard
-import com.elvisoperator.yugiohdex.data.model.BasicCardImage
 import com.elvisoperator.yugiohdex.data.model.BasicCardModel
 import com.elvisoperator.yugiohdex.databinding.FragmentDetailCardBinding
 import com.elvisoperator.yugiohdex.domain.RepositoryImplement
@@ -36,7 +33,13 @@ class DetailCardFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requireArguments().let {
-            cardModel = it.getParcelable("card")!!
+            cardModel = if (Build.VERSION.SDK_INT >= 33) {
+                it.getParcelable("card", BasicCard::class.java)!!
+
+            }else{
+                it.getParcelable("card")!!
+
+            }
             Log.d(TAG, "OnCreate")
         }
         setHasOptionsMenu(true)
@@ -58,8 +61,7 @@ class DetailCardFragment : Fragment() {
             addItem.setIcon(R.drawable.ic_add)
         addItem.setOnMenuItemClickListener {
             val favs = copy.value ?: BasicCardModel(listOf<BasicCard>())
-            var exists = findIfExists(favs)
-            if (exists) {
+            if (findIfExists(favs)) {
                 deleteCard()
                 it.setIcon(R.drawable.ic_add)
             } else {

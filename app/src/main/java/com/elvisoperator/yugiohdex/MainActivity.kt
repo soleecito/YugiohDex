@@ -5,6 +5,7 @@ import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.core.view.children
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModel
@@ -18,14 +19,6 @@ import androidx.navigation.ui.setupWithNavController
 import com.elvisoperator.yugiohdex.UserApplication.Companion.prefs
 import com.elvisoperator.yugiohdex.data.DataSource
 import com.elvisoperator.yugiohdex.databinding.ActivityMainBinding
-import com.elvisoperator.yugiohdex.domain.RepositoryImplement
-import com.elvisoperator.yugiohdex.ui.favorites.FavoritesFragment
-import com.elvisoperator.yugiohdex.ui.viewmodel.AutoFitGridLayoutManager
-import com.elvisoperator.yugiohdex.ui.viewmodel.MainViewModel
-import com.elvisoperator.yugiohdex.ui.viewmodel.VMFactory
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.navigation.NavigationView
-import kotlinx.android.synthetic.main.nav_header.view.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
@@ -55,8 +48,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = this.findNavController(R.id.nav_host_fragment)
-        binding.drawerLayout.user_name.text = prefs.getName()
-        binding.drawerLayout.name_deck.text = prefs.getDeckName()
+
+       // drawerLayout.user_name.text = prefs.getName()
+        //drawerLayout.name_deck.text = prefs.getDeckName()
         return NavigationUI.navigateUp(navController, drawerLayout)
     }
 

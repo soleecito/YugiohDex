@@ -1,10 +1,10 @@
-package com.elvisoperator.yugiohdex.data
+package com.elvisoperator.yugiohdex.data.model
 
 //data class QuoteModel (val quote : String , val author: String)
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class CardModel( @SerializedName("data")

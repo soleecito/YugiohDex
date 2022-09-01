@@ -5,8 +5,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.elvisoperator.yugiohdex.data.CardImage
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 data class BasicCardModel(
     var list: List<BasicCard>
